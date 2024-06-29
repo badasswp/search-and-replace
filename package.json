@@ -2,15 +2,6 @@
   "name": "search-and-replace",
   "version": "1.0.0",
   "description": "Search and Replace text within the Block Editor.",
-  "keywords": [
-    "wordpress",
-    "plugin",
-    "search",
-    "replace",
-    "text",
-    "block",
-    "editor"
-  ],
   "author": "badasswp",
   "license": "GPL-2.0-or-later",
   "homepage": "https://github.com/badasswp/search-and-replace#readme",
@@ -47,5 +38,14 @@
     "uuid": "^9.0.0",
     "webpack": "^5.88.2",
     "webpack-cli": "^5.1.4"
-  }
+  },
+  "keywords": [
+    "wordpress",
+    "plugin",
+    "search",
+    "replace",
+    "text",
+    "block",
+    "editor"
+  ]
 }
