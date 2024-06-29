@@ -30,7 +30,7 @@ if ( ! defined( 'WPINC' ) ) {
 add_action( 'enqueue_block_editor_assets', function() {
 	wp_enqueue_script(
 		'search-replace-for-block-editor',
-		plugins_url( 'search-replace-for-block-editor/dist/scripts.js' ),
+		plugins_url( 'search-replace-for-block-editor/dist/app.js' ),
 		[
 			'wp-i18n',
 			'wp-element',
