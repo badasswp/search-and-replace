@@ -27,9 +27,9 @@ const SearchReplaceForBlockEditor = () => {
     setIsModalVisible(false);
   }
 
-  const Container = ({ children }) => {
+  const Container = ({ children, className }) => {
     return (
-      <div className="search-replace-modal-container">
+      <div className={className || ''}>
         {children}
       </div>
     )
@@ -49,7 +49,7 @@ const SearchReplaceForBlockEditor = () => {
             onRequestClose={closeModal}
             className="search-replace-modal"
           >
-            <Container>
+            <Container className="search-replace-modal__text-group">
               <TextControl
                 label={__('Search')}
                 value={searchInput}
@@ -62,18 +62,20 @@ const SearchReplaceForBlockEditor = () => {
                 onChange={(value) => setReplaceInput(value)}
               />
             </Container>
-            <Button
-              variant="primary"
-              onClick={replace}
-            >
-              {__('Replace')}
-            </Button>
-            <Button
-              variant="secondary"
-              onClick={closeModal}
-            >
-              {__('Done')}
-          </Button>
+            <Container className="search-replace-modal__button-group">
+              <Button
+                variant="primary"
+                onClick={replace}
+              >
+                {__('Replace')}
+              </Button>
+              <Button
+                variant="secondary"
+                onClick={closeModal}
+              >
+                {__('Done')}
+              </Button>
+            </Container>
           </Modal>
         )
       }

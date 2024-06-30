@@ -10,17 +10,19 @@
 }
 
 .search-replace-modal {
-	&-container {
+	&__text-group {
 		display: flex;
 		flex-direction: column;
 		gap: 0.75em;
 		margin: 0.75em 0 1.5em 0;
 	}
 
-	button {
-		margin-left: 0;
-		margin-right: 7.5px;
-		width: 75px;
-		justify-content: center;
+	&__button-group {
+		button {
+			margin-left: 0;
+			margin-right: 7.5px;
+			width: 75px;
+			justify-content: center;
+		}
 	}
 }
