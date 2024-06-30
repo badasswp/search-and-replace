@@ -23,6 +23,14 @@ const SearchReplaceForBlockEditor = () => {
     setIsModalVisible(false);
   }
 
+  const Container = ({ children }) => {
+    return (
+      <div className="search-replace-modal-container">
+        {children}
+      </div>
+    )
+  }
+
   return (
     <MainDashboardButton>
       <FullscreenModeClose />
@@ -37,39 +45,29 @@ const SearchReplaceForBlockEditor = () => {
             onRequestClose={closeModal}
             className="search-replace-modal"
           >
-            <TextControl
-              label="Search"
-              value={searchInput}
-              onChange={(value) => setSearchInput(value)}
-              placeholder="Lorem ipsum..."
-              style={{ marginBottom: 2.5 }}
-            />
-            <TextControl
-              label="Replace"
-              value={replaceInput}
-              onChange={(value) => setReplaceInput(value)}
-              style={{ marginBottom: 10 }}
-            />
+            <Container>
+              <TextControl
+                label={__('Search')}
+                value={searchInput}
+                onChange={(value) => setSearchInput(value)}
+                placeholder="Lorem ipsum..."
+              />
+              <TextControl
+                label={__('Replace')}
+                value={replaceInput}
+                onChange={(value) => setReplaceInput(value)}
+              />
+            </Container>
             <Button
               variant="primary"
-              onClick={()=>{}}
-              style={{
-                marginLeft: 0,
-                marginRight: 7.5,
-                width: 75,
-                justifyContent: 'center',
-              }}>
+              onClick={replace}
+            >
               {__('Replace')}
             </Button>
             <Button
               variant="secondary"
               onClick={closeModal}
-              style={{
-                marginLeft: 0,
-                marginRight: 7.5,
-                width: 75,
-                justifyContent: 'center',
-              }}>
+            >
               {__('Done')}
           </Button>
           </Modal>

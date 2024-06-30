@@ -1,6 +1,26 @@
-#editor.block-editor__container .edit-post-header > div:nth-child(1) {
-	display: flex;
-    align-items: center;
-    gap: 7.5px;
-    margin-right: -15px;
+#editor.block-editor__container  {
+	.edit-post-header {
+		& > div:nth-child(1) {
+			display: flex;
+			align-items: center;
+			gap: 7.5px;
+			margin-right: -15px;
+		}
+	}
+}
+
+.search-replace-modal {
+	&-container {
+		display: flex;
+		flex-direction: column;
+		gap: 0.75em;
+		margin: 0.75em 0 1.5em 0;
+	}
+
+	button {
+		margin-left: 0;
+		margin-right: 7.5px;
+		width: 75px;
+		justify-content: center;
+	}
 }
