@@ -10,7 +10,7 @@
     "dev": "webpack --watch",
     "build": "webpack",
     "test": "npm-run-all --parallel test:*",
-    "test:js": "jest"
+    "test:js": "jest --passWithNoTests"
   },
   "devDependencies": {
     "@babel/core": "^7.22.11",
