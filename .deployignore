@@ -2,7 +2,7 @@
 .editorconfig
 .gitignore
 .github
-LICENSE
+CHANGELOG.md
 jest.config.js
 jest.setup.js
 README.md
