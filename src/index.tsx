@@ -2,7 +2,7 @@ import {
     __experimentalFullscreenModeClose as FullscreenModeClose,
     __experimentalMainDashboardButton as MainDashboardButton,
 } from '@wordpress/edit-post';
-import { __ } from '@wordpress/i18n';
+import { __ , setLocaleData } from '@wordpress/i18n';
 import { useState } from '@wordpress/element';
 import { Modal, TextControl, Button } from '@wordpress/components';
 import { registerPlugin } from '@wordpress/plugins';
@@ -11,6 +11,8 @@ import { search } from '@wordpress/icons';
 import './styles.scss';
 
 import replace from './utils/replace';
+
+setLocaleData( { '': {} }, 'search-replace-for-block-editor' );
 
 const SearchReplaceForBlockEditor = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
