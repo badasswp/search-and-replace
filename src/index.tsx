@@ -10,6 +10,8 @@ import { search } from '@wordpress/icons';
 
 import './styles.scss';
 
+import replace from './utils/replace';
+
 const SearchReplaceForBlockEditor = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [searchInput, setSearchInput] = useState('');
