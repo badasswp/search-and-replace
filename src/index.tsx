@@ -46,6 +46,26 @@ const SearchReplaceForBlockEditor = () => {
     });
   };
 
+  /**
+   * Recursively traverse and replace the text in the
+   * Block Editor with the user's text.
+   *
+   * @param {Object} element Gutenberg editor block.
+   * @param {string} pattern Search pattern.
+   * @param {string} text    Replace pattern.
+   */
+  const recursivelyReplace = (element, pattern, text) => {
+    if ([].indexOf(element.name) === -1) {
+      replaceString(element, pattern, text);
+    }
+
+    if (element.innerBlocks.length) {
+      element.innerBlocks.forEach((innerElement) => {
+        recursivelyReplace(innerElement, pattern, text);
+      });
+    }
+  }
+
   return (
     <MainDashboardButton>
       <FullscreenModeClose />
