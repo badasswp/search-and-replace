@@ -10,9 +10,7 @@ import { search } from '@wordpress/icons';
 
 import './styles.scss';
 
-import replace from './utils/replace';
-
-setLocaleData( { '': {} }, 'search-replace-for-block-editor' );
+setLocaleData({ '': {} }, 'search-replace-for-block-editor');
 
 const SearchReplaceForBlockEditor = () => {
   const [replacements, setReplacements] = useState(0);
