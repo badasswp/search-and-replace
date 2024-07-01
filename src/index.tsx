@@ -66,6 +66,47 @@ const SearchReplaceForBlockEditor = () => {
     }
   }
 
+  /**
+   * Do the actual job of replacing the string
+   * by dispatching the change using the block's clientID
+   * as reference.
+   *
+   * @param {Object} element Gutenberg editor block.
+   * @param {string} pattern Search pattern.
+   * @param {string} text    Replace pattern.
+   */
+  const replaceString = (element, pattern, text) => {
+    const { name, attributes, clientId } = element;
+    let oldString = '';
+    let newString = '';
+
+    oldString = 'core/list' === name ? attributes.values : attributes.content;
+    newString = oldString.replace(pattern, () => {
+      setReplacements((items) => items + 1);
+      return text;
+    });
+
+    if (newString === oldString) {
+      return;
+    }
+
+    if ('core/list' === name) {
+      (dispatch('core/block-editor') as any).updateBlockAttributes(
+        clientId,
+        {
+          values: newString
+        }
+      );
+    } else {
+      (dispatch('core/block-editor') as any).updateBlockAttributes(
+        clientId,
+        {
+          content: newString
+        }
+      );
+    }
+  };
+
   return (
     <MainDashboardButton>
       <FullscreenModeClose />
