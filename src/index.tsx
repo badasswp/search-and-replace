@@ -27,13 +27,24 @@ const SearchReplaceForBlockEditor = () => {
     setIsModalVisible(false);
   }
 
-  const Container = ({ children, className }) => {
-    return (
-      <div className={className || ''}>
-        {children}
-      </div>
-    )
-  }
+  /**
+   * Handle the implementation for when the user
+   * clicks the 'Replace' button.
+   *
+   * @return {void}
+   */
+  const replace = () => {
+    setReplacements(0);
+
+    const pattern = new RegExp(
+      `(?<!<[^>]*)${searchInput}(?<![^>]*<)`,
+      'gi'
+    );
+
+    select('core/block-editor').getBlocks().forEach((element) => {
+      recursivelyReplace(element, pattern, replaceInput);
+    });
+  };
 
   return (
     <MainDashboardButton>
