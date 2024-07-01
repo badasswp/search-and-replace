@@ -5,6 +5,7 @@ import {
 import { __ , setLocaleData } from '@wordpress/i18n';
 import { useState } from '@wordpress/element';
 import { Modal, TextControl, Button } from '@wordpress/components';
+import { dispatch, select } from '@wordpress/data';
 import { registerPlugin } from '@wordpress/plugins';
 import { search } from '@wordpress/icons';
 
