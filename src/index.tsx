@@ -123,15 +123,17 @@ const SearchReplaceForBlockEditor = () => {
           >
             <Container className="search-replace-modal__text-group">
               <TextControl
+                type="text"
                 label={__('Search')}
                 value={searchInput}
-                onChange={(value) => setSearchInput(value)}
+                onChange={(value)=>setSearchInput(value)}
                 placeholder="Lorem ipsum..."
               />
               <TextControl
+                type="text"
                 label={__('Replace')}
                 value={replaceInput}
-                onChange={(value) => setReplaceInput(value)}
+                onChange={(value)=>setReplaceInput(value)}
               />
             </Container>
             <Container className="search-replace-modal__button-group">
