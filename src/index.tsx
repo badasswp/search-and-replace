@@ -15,16 +15,19 @@ import replace from './utils/replace';
 setLocaleData( { '': {} }, 'search-replace-for-block-editor' );
 
 const SearchReplaceForBlockEditor = () => {
+  const [replacements, setReplacements] = useState(0);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [searchInput, setSearchInput] = useState('');
   const [replaceInput, setReplaceInput] = useState('');
 
   const openModal = () => {
     setIsModalVisible(true);
+    setReplacements(0);
   }
 
   const closeModal = () => {
     setIsModalVisible(false);
+    setReplacements(0);
   }
 
   /**
@@ -136,6 +139,9 @@ const SearchReplaceForBlockEditor = () => {
                 onChange={(value)=>setReplaceInput(value)}
               />
             </div>
+
+            {replacements ? (<p><strong>{replacements}</strong> items replaced successfully.</p>) : ''}
+
             <div id="search-replace-modal__button-group">
               <Button
                 variant="primary"
