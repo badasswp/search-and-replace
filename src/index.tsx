@@ -11,10 +11,11 @@ import { registerPlugin } from '@wordpress/plugins';
 import { search } from '@wordpress/icons';
 
 import './styles.scss';
-import { contextConnect } from '@wordpress/components/build-types/context';
 
 /**
  * Search & Replace for Block Editor.
+ *
+ * @since 1.0.0
  *
  * @returns {JSX.Element}
  */
@@ -38,6 +39,8 @@ const SearchReplaceForBlockEditor = () => {
    * Handle the implementation for when the user
    * clicks the 'Replace' button.
    *
+   * @since 1.0.0
+   *
    * @returns {void}
    */
   const replace = () => {
@@ -56,6 +59,8 @@ const SearchReplaceForBlockEditor = () => {
   /**
    * Recursively traverse and replace the text in the
    * Block Editor with the user's text.
+   *
+   * @since 1.0.0
    *
    * @param {Object} element Gutenberg editor block.
    * @param {string} pattern Search pattern.
@@ -92,6 +97,8 @@ const SearchReplaceForBlockEditor = () => {
    * Do the actual job of replacing the string
    * by dispatching the change using the block's clientID
    * as reference.
+   *
+   * @since 1.0.0
    *
    * @param {Object} element Gutenberg editor block.
    * @param {string} pattern Search pattern.
