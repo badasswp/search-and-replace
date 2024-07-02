@@ -1,0 +1,21 @@
+{
+  "translation-revision-date": "2024-07-02 15:47+0100",
+  "generator": "WP-CLI\/2.6.0",
+  "source": "dist\/app.js",
+  "domain": "messages",
+  "locale_data": {
+    "messages": {
+      "": {
+        "domain": "messages",
+        "lang": "hr",
+        "plural-forms": "nplurals=2; plural=(n != 1);"
+      },
+      "Search & Replace": [
+        "Pretra\u017eivanje i Zamjena"
+      ],
+      "items replaced successfully": [
+        "stavke su uspje\u0161no zamijenjene"
+      ]
+    }
+  }
+}
