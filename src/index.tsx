@@ -3,7 +3,6 @@ import {
     __experimentalMainDashboardButton as MainDashboardButton,
 } from '@wordpress/edit-post';
 import { __ } from '@wordpress/i18n';
-import { applyFilters } from '@wordpress/hooks'
 import { useState } from '@wordpress/element';
 import { Modal, TextControl, Button } from '@wordpress/components';
 import { dispatch, select } from '@wordpress/data';
@@ -11,6 +10,8 @@ import { registerPlugin } from '@wordpress/plugins';
 import { search } from '@wordpress/icons';
 
 import './styles.scss';
+
+import getRestrictedBlocks from './utils/getRestrictedBlocks';
 
 /**
  * Search & Replace for Block Editor.
@@ -72,20 +73,7 @@ const SearchReplaceForBlockEditor = () => {
    * @returns {void}
    */
   const recursivelyReplace = (element, pattern, text) => {
-    /**
-     * Restrict Blocks.
-     *
-     * Filter and exclude these Specific blocks
-     * away from the Search & Replace.
-     *
-     * @since 1.0.0
-     *
-     * @param {string[]} blocks List of Blocks.
-     * @returns {string[]}
-     */
-    const restrictedBlocks: string[] = applyFilters('search-replace-for-block-editor.restrictedBlocks', []) as string[];
-
-    if (restrictedBlocks.indexOf(element.name) === -1) {
+    if (getRestrictedBlocks().indexOf(element.name) === -1) {
       replaceString(element, pattern, text);
     }
 
