@@ -12,6 +12,11 @@ import { search } from '@wordpress/icons';
 
 import './styles.scss';
 
+/**
+ * Search & Replace for Block Editor.
+ *
+ * @returns {JSX.Element}
+ */
 const SearchReplaceForBlockEditor = () => {
   const [replacements, setReplacements] = useState(0);
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -32,7 +37,7 @@ const SearchReplaceForBlockEditor = () => {
    * Handle the implementation for when the user
    * clicks the 'Replace' button.
    *
-   * @return {void}
+   * @returns {void}
    */
   const replace = () => {
     setReplacements(0);
@@ -54,6 +59,8 @@ const SearchReplaceForBlockEditor = () => {
    * @param {Object} element Gutenberg editor block.
    * @param {string} pattern Search pattern.
    * @param {string} text    Replace pattern.
+   *
+   * @returns {void}
    */
   const recursivelyReplace = (element, pattern, text) => {
     /**
@@ -86,6 +93,8 @@ const SearchReplaceForBlockEditor = () => {
    * @param {Object} element Gutenberg editor block.
    * @param {string} pattern Search pattern.
    * @param {string} text    Replace pattern.
+   *
+   * @returns {void}
    */
   const replaceString = (element, pattern, text) => {
     const { name, attributes, clientId } = element;
