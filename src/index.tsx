@@ -2,7 +2,8 @@ import {
     __experimentalFullscreenModeClose as FullscreenModeClose,
     __experimentalMainDashboardButton as MainDashboardButton,
 } from '@wordpress/edit-post';
-import { __ , setLocaleData } from '@wordpress/i18n';
+import { __ } from '@wordpress/i18n';
+import { applyFilters } from '@wordpress/hooks'
 import { useState } from '@wordpress/element';
 import { Modal, TextControl, Button } from '@wordpress/components';
 import { dispatch, select } from '@wordpress/data';
@@ -55,7 +56,18 @@ const SearchReplaceForBlockEditor = () => {
    * @param {string} text    Replace pattern.
    */
   const recursivelyReplace = (element, pattern, text) => {
-    if ([].indexOf(element.name) === -1) {
+    /**
+     * Restrict Blocks.
+     *
+     * Filter and exclude these Specific blocks
+     * away from the Search & Replace.
+     *
+     * @param {string[]} blocks List of Blocks.
+     * @returns {string[]}
+     */
+    const restrictedBlocks: string[] = applyFilters('search-replace-for-block-editor.restrictedBlocks', []) as string[];
+
+    if (restrictedBlocks.indexOf(element.name) === -1) {
       replaceString(element, pattern, text);
     }
 
