@@ -1,0 +1,21 @@
+{
+  "translation-revision-date": "2024-07-02 15:20+0100",
+  "generator": "WP-CLI\/2.6.0",
+  "source": "dist\/app.js",
+  "domain": "messages",
+  "locale_data": {
+    "messages": {
+      "": {
+        "domain": "messages",
+        "lang": "he_IL",
+        "plural-forms": "nplurals=2; plural=(n != 1);"
+      },
+      "Search & Replace": [
+        "\u05d7\u05d9\u05e4\u05d5\u05e9 \u05d5\u05d4\u05d7\u05dc\u05e4\u05d4"
+      ],
+      "items replaced successfully": [
+        "\u05E4\u05E8\u05D9\u05D8\u05D9\u05DD \u05E9\u05D4\u05D5\u05D7\u05DC\u05E4\u05D5 \u05D1\u05D4\u05E6\u05DC\u05D7\u05D4"
+      ]
+    }
+  }
+}
