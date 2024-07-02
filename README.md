@@ -22,7 +22,7 @@ addFilter(
   'search-replace-for-block-editor.restrictedBlocks',
   'restrictedBlocks',
   (restrictedBlocks) => {
-    if (restrictedBlocks.indexOf('core/paragraph')) {
+    if (restrictedBlocks.indexOf('core/paragraph') !== -1) {
       restrictedBlocks.push('core/paragraph')
     }
 
