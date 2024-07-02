@@ -46,6 +46,12 @@ add_action( 'enqueue_block_editor_assets', function() {
 		mt_rand(),
 		false,
 	);
+
+	wp_set_script_translations(
+		'search-replace-for-block-editor',
+		'search-replace-for-block-editor',
+		plugin_dir_path( __FILE__ ) . 'languages'
+	);
 } );
 
 /**
@@ -56,5 +62,9 @@ add_action( 'enqueue_block_editor_assets', function() {
  * @wp-hook 'init'
  */
 add_action( 'init', function() {
-	load_plugin_textdomain( 'search-replace-for-block-editor', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
+	load_plugin_textdomain(
+		'search-replace-for-block-editor',
+		false,
+		dirname( plugin_basename( __FILE__ ) ) . '/languages'
+	);
 } );
