@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Search and Replace for Block Editor\n"
 "POT-Creation-Date: 2024-07-2 00:00+0100\n"
-"PO-Revision-Date: 2024-07-02 09:32+0100\n"
+"PO-Revision-Date: 2024-07-02 11:42+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -40,7 +40,7 @@ msgstr "badasswp"
 msgid "https://github.com/badasswp"
 msgstr "https://github.com/badasswp"
 
-#. Search & Replace
+#: dist/app.js
 msgid "Search & Replace"
 msgstr "Recherche & Remplace"
 
@@ -56,6 +56,6 @@ msgstr "Remplacer"
 msgid "Done"
 msgstr "Terminé"
 
-#. items replaced successfully
+#. dist/app.js
 msgid "items replaced successfully"
 msgstr "articles remplacés avec succès"
