@@ -40,7 +40,7 @@ msgstr ""
 msgid "https://github.com/badasswp"
 msgstr ""
 
-#. Search & Replace
+#: dist/app.js
 msgid "Search & Replace"
 msgstr ""
 
@@ -56,6 +56,6 @@ msgstr ""
 msgid "Done"
 msgstr ""
 
-#. items replaced successfully
+#. dist/app.js
 msgid "items replaced successfully"
 msgstr ""
