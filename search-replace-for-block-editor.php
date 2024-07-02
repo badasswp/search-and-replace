@@ -47,3 +47,14 @@ add_action( 'enqueue_block_editor_assets', function() {
 		false,
 	);
 } );
+
+/**
+ * Add Plugin text translation.
+ *
+ * @since 1.0.0
+ *
+ * @wp-hook 'init'
+ */
+add_action( 'init', function() {
+	load_plugin_textdomain( 'search-replace-for-block-editor', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
+} );
