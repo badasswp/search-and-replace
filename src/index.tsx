@@ -69,6 +69,8 @@ const SearchReplaceForBlockEditor = () => {
      * Filter and exclude these Specific blocks
      * away from the Search & Replace.
      *
+     * @since 1.0.0
+     *
      * @param {string[]} blocks List of Blocks.
      * @returns {string[]}
      */
