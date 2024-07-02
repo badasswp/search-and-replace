@@ -139,7 +139,7 @@ const SearchReplaceForBlockEditor = () => {
               />
             </div>
 
-            {replacements ? (<p><strong>{replacements}</strong> items replaced successfully.</p>) : ''}
+            {replacements ? (<p><strong>{replacements}</strong> {__('items replaced successfully')}.</p>) : ''}
 
             <div id="search-replace-modal__button-group">
               <Button
