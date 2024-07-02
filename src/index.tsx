@@ -100,8 +100,8 @@ const SearchReplaceForBlockEditor = () => {
    */
   const replaceString = (element, pattern, text) => {
     const { name, attributes, clientId } = element;
-    let oldString = '';
-    let newString = '';
+    let oldString: string = '';
+    let newString: string = '';
 
     oldString = 'core/list' === name ? attributes.values : attributes.content;
     newString = oldString.replace(pattern, () => {
