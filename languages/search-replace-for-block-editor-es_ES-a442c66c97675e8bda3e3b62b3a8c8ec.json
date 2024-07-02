@@ -1,0 +1,21 @@
+{
+  "translation-revision-date": "2024-07-02 12:02+0100",
+  "generator": "WP-CLI\/2.6.0",
+  "source": "dist\/app.js",
+  "domain": "messages",
+  "locale_data": {
+    "messages": {
+      "": {
+        "domain": "messages",
+        "lang": "es_ES",
+        "plural-forms": "nplurals=2; plural=(n != 1);"
+      },
+      "Search & Replace": [
+        "Buscar y Reemplazar"
+      ],
+      "items replaced successfully": [
+        "artículos reemplazados con éxito"
+      ]
+    }
+  }
+}
