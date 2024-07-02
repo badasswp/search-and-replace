@@ -15,6 +15,9 @@ import './styles.scss';
 /**
  * Search & Replace for Block Editor.
  *
+ * This function returns a JSX component that comprises
+ * the WP Main dashboard, FullscreenModeClose, Modal & Search button.
+ *
  * @since 1.0.0
  *
  * @returns {JSX.Element}
