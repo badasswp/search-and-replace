@@ -11,8 +11,6 @@ import { search } from '@wordpress/icons';
 
 import './styles.scss';
 
-setLocaleData({ '': {} }, 'search-replace-for-block-editor');
-
 const SearchReplaceForBlockEditor = () => {
   const [replacements, setReplacements] = useState(0);
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -119,7 +117,7 @@ const SearchReplaceForBlockEditor = () => {
       {
         isModalVisible && (
           <Modal
-            title={__('Search & Replace')}
+            title={__('Search & Replace', 'search-replace-for-block-editor')}
             onRequestClose={closeModal}
             className="search-replace-modal"
           >
@@ -139,7 +137,7 @@ const SearchReplaceForBlockEditor = () => {
               />
             </div>
 
-            {replacements ? (<p><strong>{replacements}</strong> {__('items replaced successfully')}.</p>) : ''}
+            {replacements ? (<p><strong>{replacements}</strong> {__('items replaced successfully', 'search-replace-for-block-editor')}.</p>) : ''}
 
             <div id="search-replace-modal__button-group">
               <Button
