@@ -11,6 +11,7 @@ import { registerPlugin } from '@wordpress/plugins';
 import { search } from '@wordpress/icons';
 
 import './styles.scss';
+import { contextConnect } from '@wordpress/components/build-types/context';
 
 /**
  * Search & Replace for Block Editor.
@@ -99,12 +100,19 @@ const SearchReplaceForBlockEditor = () => {
    * @returns {void}
    */
   const replaceString = (element, pattern, text) => {
-    const { name, attributes, clientId } = element;
-    let oldString: string = '';
-    let newString: string = '';
+    const { attributes, clientId } = element;
 
-    oldString = 'core/list' === name ? attributes.values : attributes.content;
-    newString = oldString.replace(pattern, () => {
+    // Bail out if undefined...
+    if (
+      attributes === undefined ||
+      attributes.content === undefined ||
+      attributes.content.text === undefined
+    ) {
+      return;
+    }
+
+    let oldString: string = attributes.content.text;
+    let newString: string = oldString.replace(pattern, () => {
       setReplacements((items) => items + 1);
       return text;
     });
@@ -113,21 +121,13 @@ const SearchReplaceForBlockEditor = () => {
       return;
     }
 
-    if ('core/list' === name) {
-      (dispatch('core/block-editor') as any).updateBlockAttributes(
+    (dispatch('core/block-editor') as any)
+      .updateBlockAttributes(
         clientId,
         {
-          values: newString
+          content: newString,
         }
       );
-    } else {
-      (dispatch('core/block-editor') as any).updateBlockAttributes(
-        clientId,
-        {
-          content: newString
-        }
-      );
-    }
   };
 
   return (
