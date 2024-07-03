@@ -36,7 +36,7 @@ export const getAllowedBlocks = () => {
  *
  * @returns {string[]}
  */
-const getTextBlocks = () => getBlockTypes()
+export const getTextBlocks = () => getBlockTypes()
   .filter((block) => {
     return !!(block?.category === 'text');
   })
