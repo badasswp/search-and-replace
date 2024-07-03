@@ -13,26 +13,26 @@ https://github.com/badasswp/search-and-replace/assets/149586343/d4acfab3-338b-43
 
 ### Hooks
 
-#### `search-replace-for-block-editor.restrictedBlocks`
+#### `search-replace-for-block-editor.allowedBlocks`
 
-This custom hook (filter) provides the ability to exclude the search and replace functionality away from specific blocks:
+This custom hook (filter) provides the ability to include the search and replace functionality for your custom block:
 
 ```js
 import { addFilter } from '@wordpress/hooks';
 
 addFilter(
-  'search-replace-for-block-editor.restrictedBlocks',
-  'restrictedBlocks',
-  (restrictedBlocks) => {
-    if (restrictedBlocks.indexOf('core/paragraph') !== -1) {
-      restrictedBlocks.push('core/paragraph')
+  'search-replace-for-block-editor.allowedBlocks',
+  'yourFilter',
+  (allowedBlocks) => {
+    if (allowedBlocks.indexOf('your/block') === -1) {
+      allowedBlocks.push('your/block');
     }
 
-    return restrictedBlocks;
+    return allowedBlocks;
   }
 );
 ```
 
 **Parameters**
 
-- restrictedBlocks _`{string[]}`_ List of Restricted Blocks.
+- allowedBlocks _`{string[]}`_ List of Allowed Blocks.
