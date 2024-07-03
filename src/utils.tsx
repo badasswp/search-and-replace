@@ -1,10 +1,11 @@
 import { applyFilters } from '@wordpress/hooks';
+import { getBlockTypes } from '@wordpress/blocks';
 
 /**
  * Allowed Blocks.
  *
- * This function grabs the list of allowed blocks
- * and returns a list of the items.
+ * This function filters the list of text blocks
+ * using the `allowedBlocks` hook.
  *
  * @since 1.0.0
  *
@@ -12,9 +13,9 @@ import { applyFilters } from '@wordpress/hooks';
  */
 export const getAllowedBlocks = () => {
   /**
-   * Allow Blocks.
+   * Allow Text Blocks.
    *
-   * Filter and include these Specific blocks
+   * Filter and allow only these Specific blocks
    * for the Search & Replace.
    *
    * @since 1.0.0
@@ -22,20 +23,23 @@ export const getAllowedBlocks = () => {
    * @param {string[]} blocks List of Blocks.
    * @returns {string[]}
    */
-  return applyFilters(
-    'search-replace-for-block-editor.allowedBlocks',
-    [
-      'core/paragraph',
-      'core/heading',
-      'core/list',
-      'core/quote',
-      'core/code',
-      'core/details',
-      'core/preformatted',
-      'core/pullquote',
-      'core/verse',
-      'core/table',
-      'core/freeform',
-    ]
-  ) as string[];
+  return applyFilters('search-replace-for-block-editor.allowedBlocks', getTextBlocks()) as string[];
 }
+
+/**
+ * Get Text Blocks.
+ *
+ * This function grabs the list of text blocks
+ * and returns the block names.
+ *
+ * @since 1.0.0
+ *
+ * @returns {string[]}
+ */
+const getTextBlocks = () => getBlockTypes()
+  .filter((block) => {
+    return !!(block.category === 'text');
+  })
+  .map((block) => {
+    return block.name;
+  });
