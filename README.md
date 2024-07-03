@@ -1,5 +1,5 @@
 # search-and-replace
-Search and Replace text within the Block Editor.
+Search and Replace text within the Block Editor. Now you have one less thing to worry about as a blog owner, site editor or administrator. Make changes quickly and easily on the Block Editor.
 
 https://github.com/badasswp/search-and-replace/assets/149586343/d4acfab3-338b-434f-b09c-769df9331095
 
