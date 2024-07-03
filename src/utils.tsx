@@ -38,8 +38,8 @@ export const getAllowedBlocks = () => {
  */
 const getTextBlocks = () => getBlockTypes()
   .filter((block) => {
-    return !!(block.category === 'text');
+    return !!(block?.category === 'text');
   })
   .map((block) => {
-    return block.name;
+    return block?.name;
   });
