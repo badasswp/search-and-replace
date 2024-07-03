@@ -10,7 +10,7 @@ import { applyFilters } from '@wordpress/hooks';
  *
  * @returns {string[]}
  */
-const getAllowedBlocks = () => {
+export const getAllowedBlocks = () => {
   /**
    * Allow Blocks.
    *
@@ -39,5 +39,3 @@ const getAllowedBlocks = () => {
     ]
   ) as string[];
 }
-
-export default getAllowedBlocks;

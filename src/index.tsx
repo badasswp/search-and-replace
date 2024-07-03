@@ -11,7 +11,7 @@ import { search } from '@wordpress/icons';
 
 import './styles.scss';
 
-import getRestrictedBlocks from './utils/getRestrictedBlocks';
+import { getAllowedBlocks } from './utils';
 
 /**
  * Search & Replace for Block Editor.
@@ -73,7 +73,7 @@ const SearchReplaceForBlockEditor = () => {
    * @returns {void}
    */
   const recursivelyReplace = (element, pattern, text) => {
-    if (getRestrictedBlocks().indexOf(element.name) === -1) {
+    if (getAllowedBlocks().indexOf(element.name) !== -1) {
       replaceString(element, pattern, text);
     }
 
