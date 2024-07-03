@@ -1,28 +1,43 @@
 import { applyFilters } from '@wordpress/hooks';
 
 /**
- * Restricted Blocks.
+ * Allowed Blocks.
  *
- * This function grabs the list of restricted blocks
+ * This function grabs the list of allowed blocks
  * and returns a list of the items.
  *
  * @since 1.0.0
  *
  * @returns {string[]}
  */
-const getRestrictedBlocks = () => {
+const getAllowedBlocks = () => {
   /**
-   * Restrict Blocks.
+   * Allow Blocks.
    *
-   * Filter and exclude these Specific blocks
-   * away from the Search & Replace.
+   * Filter and include these Specific blocks
+   * for the Search & Replace.
    *
    * @since 1.0.0
    *
    * @param {string[]} blocks List of Blocks.
    * @returns {string[]}
    */
-  return applyFilters('search-replace-for-block-editor.restrictedBlocks', []) as string[];
+  return applyFilters(
+    'search-replace-for-block-editor.allowedBlocks',
+    [
+      'core/paragraph',
+      'core/heading',
+      'core/list',
+      'core/quote',
+      'core/code',
+      'core/details',
+      'core/preformatted',
+      'core/pullquote',
+      'core/verse',
+      'core/table',
+      'core/freeform',
+    ]
+  ) as string[];
 }
 
-export default getRestrictedBlocks;
+export default getAllowedBlocks;
