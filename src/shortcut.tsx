@@ -23,8 +23,8 @@ export const Shortcut = ({ onKeyDown }) => {
     category: 'global',
     description: 'Search & Replace',
     keyCombination: {
-      modifier: 'primary',
-      character: 'd',
+      modifier: 'primaryShift',
+      character: 'f',
     }
   } );
 
