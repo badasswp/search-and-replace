@@ -132,7 +132,7 @@ const SearchReplaceForBlockEditor = () => {
   return (
     <MainDashboardButton>
       <FullscreenModeClose />
-      <Shortcut />
+      <Shortcut onKeyDown={openModal} />
       <Button
         icon={search}
         onClick={openModal}
