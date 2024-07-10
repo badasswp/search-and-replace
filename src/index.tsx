@@ -12,6 +12,7 @@ import { search } from '@wordpress/icons';
 import './styles.scss';
 
 import { getAllowedBlocks } from './utils';
+import { Shortcut } from './shortcut';
 
 /**
  * Search & Replace for Block Editor.
@@ -131,6 +132,7 @@ const SearchReplaceForBlockEditor = () => {
   return (
     <MainDashboardButton>
       <FullscreenModeClose />
+      <Shortcut />
       <Button
         icon={search}
         onClick={openModal}
