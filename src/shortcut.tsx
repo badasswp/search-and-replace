@@ -15,7 +15,7 @@ import { useShortcut } from '@wordpress/keyboard-shortcuts';
  *
  * @returns {JSX.Element|null}
  */
-export const Shortcut = () => {
+export const Shortcut = ({ onKeyDown }) => {
   const dispatch = useDispatch();
 
   dispatch( 'core/keyboard-shortcuts' ).registerShortcut( {
@@ -31,7 +31,7 @@ export const Shortcut = () => {
   useShortcut(
     'search-replace-for-block-editor/search-replace',
     useCallback( () => {
-      alert('hello world!');
+      onKeyDown();
     }, [] )
   );
 
