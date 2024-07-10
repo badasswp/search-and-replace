@@ -10,7 +10,7 @@ import { useShortcut } from '@wordpress/keyboard-shortcuts';
  *
  * @since 1.0.0
  *
- * @params Object     Props.
+ * @params {Object}   Props.
  * @params {function} OpenModal Function.
  *
  * @returns {JSX.Element|null}
