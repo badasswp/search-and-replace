@@ -9,7 +9,7 @@ import { dispatch, select } from '@wordpress/data';
 import { registerPlugin } from '@wordpress/plugins';
 import { search } from '@wordpress/icons';
 
-import './styles.scss';
+import './styles/app.scss';
 
 import { getAllowedBlocks } from './utils';
 import { Shortcut } from './shortcut';
