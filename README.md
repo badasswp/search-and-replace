@@ -36,3 +36,26 @@ addFilter(
 **Parameters**
 
 - allowedBlocks _`{string[]}`_ List of Allowed Blocks.
+
+#### `search-replace-for-block-editor.keyboardShortcut`
+
+This custom hook (filter) provides a way for users to specify their preferred keyboard shortcut option. For e.g to use the 'K' option on your keyboard, you could do like so:
+
+```js
+import { addFilter } from '@wordpress/hooks';
+
+addFilter(
+  'search-replace-for-block-editor.keyboardShortcut',
+  'yourShortcut',
+  (option) => {
+    return {
+      character: 'k',
+      ...option,
+    }
+  }
+);
+```
+
+**Parameters**
+
+- option _`{Object}`_ By default this is an object, containing `modifier` and `character` properties which together represent the following command `CMD + SHIFT + F`.
