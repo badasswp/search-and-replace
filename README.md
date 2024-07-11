@@ -22,7 +22,7 @@ import { addFilter } from '@wordpress/hooks';
 
 addFilter(
   'search-replace-for-block-editor.allowedBlocks',
-  'yourFilter',
+  'yourBlocks',
   (allowedBlocks) => {
     if (allowedBlocks.indexOf('your/block') === -1) {
       allowedBlocks.push('your/block');
