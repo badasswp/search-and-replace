@@ -43,3 +43,43 @@ export const getTextBlocks = () => getBlockTypes()
   .map((block) => {
     return block?.name;
   });
+
+/**
+ * Get ShortCut.
+ *
+ * This function filters the user's preferred
+ * shortcut option.
+ *
+ * @since 1.0.0
+ *
+ * @returns {Object}
+ */
+export const getShortCut = () => {
+  const options = {
+    CMD: {
+      modifier: 'primary',
+      character: 'f',
+    },
+    SHIFT: {
+      modifier: 'primaryShift',
+      character: 'f',
+    },
+    ALT: {
+      modifier: 'primaryAlt',
+      character: 'f',
+    },
+  }
+
+  /**
+   * Filter Keyboard Shortcut.
+   *
+   * Filter the user's preferred Shortcut option
+   * for plugin use.
+   *
+   * @since 1.0.0
+   *
+   * @param {Object} Shortcut Option.
+   * @returns {Object}
+   */
+  return applyFilters('search-replace-for-block-editor.keyboardShortcut', options.CMD);
+}
