@@ -73,8 +73,8 @@ export const getShortcut = () => {
   /**
    * Filter Keyboard Shortcut.
    *
-   * Filter the user's preferred Shortcut option
-   * for plugin use.
+   * By default the passed option would be SHIFT which
+   * represents `CMD + SHIFT + F`.
    *
    * @since 1.0.0
    *
