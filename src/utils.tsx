@@ -81,5 +81,5 @@ export const getShortcut = () => {
    * @param {Object} Shortcut Option.
    * @returns {Object}
    */
-  return applyFilters('search-replace-for-block-editor.keyboardShortcut', options.CMD);
+  return applyFilters('search-replace-for-block-editor.keyboardShortcut', options.SHIFT);
 }
