@@ -2,6 +2,8 @@ import { useDispatch } from '@wordpress/data';
 import { useCallback } from '@wordpress/element';
 import { useShortcut } from '@wordpress/keyboard-shortcuts';
 
+import { getShortCut } from './utils';
+
 /**
  * Shortcut for Block Editor.
  *
@@ -20,12 +22,9 @@ export const Shortcut = ({ onKeyDown }) => {
 
   dispatch( 'core/keyboard-shortcuts' ).registerShortcut( {
     name: 'search-replace-for-block-editor/search-replace',
+    keyCombination: getShortCut(),
     category: 'global',
     description: 'Search & Replace',
-    keyCombination: {
-      modifier: 'primaryShift',
-      character: 'f',
-    }
   } );
 
   useShortcut(
