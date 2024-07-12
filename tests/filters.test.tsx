@@ -1,14 +1,11 @@
 describe('search-replace-for-block-editor.keyboardShortcut', () => {
   it('passes and returns the default keyboard shortcut', () => {
-    jest.resetModules();
-
     jest.doMock('@wordpress/hooks', () => ({
-      applyFilters: jest.fn((hook, arg) => arg),
+      applyFilters: jest.fn((hook: string, arg: object) => arg),
     }));
 
     const { getShortcut } = require('../src/utils');
     const shortcut = getShortcut();
-
     expect(shortcut).toStrictEqual(
       {
         character: 'f',
@@ -18,22 +15,14 @@ describe('search-replace-for-block-editor.keyboardShortcut', () => {
   });
 
   it('passes and returns a custom keyboard shortcut', () => {
-    jest.resetModules();
-
     jest.doMock('@wordpress/hooks', () => ({
-      applyFilters: jest.fn((hook, arg) => {
-        return Object.assign(
-          arg,
-          {
-            character: 'j',
-          },
-        )
+      applyFilters: jest.fn((hook: string, arg: object) => {
+        return { ...arg, character: 'j' };
       }),
     }));
 
     const { getShortcut } = require('../src/utils');
     const shortcut = getShortcut();
-
     expect(shortcut).toStrictEqual(
       {
         character: 'j',
@@ -43,6 +32,8 @@ describe('search-replace-for-block-editor.keyboardShortcut', () => {
   });
 
   afterEach(() => {
+    jest.unmock('@wordpress/hooks');
+    jest.unmock('../src/utils');
     jest.resetModules();
   });
-})
+});
