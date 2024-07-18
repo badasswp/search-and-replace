@@ -102,15 +102,11 @@ const SearchReplaceForBlockEditor = () => {
     const { attributes, clientId } = element;
 
     // Bail out if undefined...
-    if (
-      attributes === undefined ||
-      attributes.content === undefined ||
-      attributes.content.text === undefined
-    ) {
+    if (attributes === undefined || attributes.content === undefined) {
       return;
     }
 
-    let oldString: string = attributes.content.text;
+    let oldString: string = attributes.content.text || attributes.content;
     let newString: string = oldString.replace(pattern, () => {
       setReplacements((items) => items + 1);
       return text;
