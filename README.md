@@ -59,3 +59,23 @@ addFilter(
 **Parameters**
 
 - shortcut _`{Object}`_ By default this is an object, containing `modifier` and `character` properties which together represent the following command `CMD + SHIFT + F`.
+
+#### `search-replace-for-block-editor.caseSensitive`
+
+This custom hook (filter) provides a way for users to specify the case sensitivity of each Search & Replace activity. For e.g. to make it case sensitive, you can do like so:
+
+```js
+import { addFilter } from '@wordpress/hooks';
+
+addFilter(
+  'search-replace-for-block-editor.caseSensitive',
+  'yourCaseSensitivity',
+  (isCaseSensitive) => {
+    return true;
+  }
+);
+```
+
+**Parameters**
+
+- isCaseSensitive _`{bool}`_ By default, this is a falsy value.
