@@ -22,6 +22,14 @@ This plugin brings the familiar Search and Replace functionality that PC users h
 
 == Changelog ==
 
+= 1.0.2 =
+* Fix styling issues observed on search icon.
+* Implement case sensitivity feature for search and replace.
+* Add custom hook - `search-replace-for-block-editor.caseSensitive`.
+* Load assets via plugin directory URL.
+* Address bugs and linting issues.
+* Tested up to WP 6.6.1.
+
 = 1.0.1 =
 * Handle edge cases with quote, pullquote & details block.
 * Add custom hook - `search-replace-for-block-editor.keyboardShortcut`.
