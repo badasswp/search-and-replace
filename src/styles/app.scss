@@ -1,6 +1,10 @@
 #editor.block-editor__container  {
 	.edit-post-header {
-		& > div:nth-child(1) {
+		& > div:nth-child(1):not(.css-0) {
+			margin-right: 5px;
+		}
+
+		.css-0 {
 			display: flex;
 			align-items: center;
 			gap: 7.5px;
