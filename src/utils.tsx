@@ -83,3 +83,25 @@ export const getShortcut = () => {
    */
   return applyFilters('search-replace-for-block-editor.keyboardShortcut', options.SHIFT);
 }
+
+/**
+ * Determine if a Search & Replace activity is case-sensitive
+ * and treat accordingly.
+ *
+ * @since 1.0.2
+ *
+ * @returns {bool}
+ */
+export const isCaseSensitive = () => {
+  /**
+   * Filter Case Sensitivity.
+   *
+   * By default this would be a falsy value.
+   *
+   * @since 1.0.2
+   *
+   * @param {bool} Case Sensitivity.
+   * @returns {bool}
+   */
+  return applyFilters('search-replace-for-block-editor.caseSensitive', false);
+}
