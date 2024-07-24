@@ -11,7 +11,7 @@ import { search } from '@wordpress/icons';
 
 import './styles/app.scss';
 
-import { getAllowedBlocks } from './utils';
+import { getAllowedBlocks, isCaseSensitive } from './utils';
 import { Shortcut } from './shortcut';
 
 /**
@@ -53,7 +53,7 @@ const SearchReplaceForBlockEditor = () => {
 
     const pattern = new RegExp(
       `(?<!<[^>]*)${searchInput}(?<![^>]*<)`,
-      'gi'
+      isCaseSensitive() ? 'g' : 'gi'
     );
 
     select('core/block-editor').getBlocks().forEach((element) => {
