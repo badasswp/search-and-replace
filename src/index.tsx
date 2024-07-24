@@ -119,7 +119,7 @@ const SearchReplaceForBlockEditor = () => {
 
   /**
    * Do the actual job of replacing the string
-   * by dispatching the change using the block's clientID
+   * by dispatching the change using the block's clientId
    * as reference.
    *
    * @param {Object} args      Args object containing element, pattern and text.
