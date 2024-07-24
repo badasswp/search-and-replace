@@ -63,31 +63,8 @@ const SearchReplaceForBlockEditor = () => {
 
   /**
    * Recursively traverse and replace the text in the
-   * Block Editor with the user's text.
-   *
-   * @since 1.0.0
-   *
-   * @param {Object} element Gutenberg editor block.
-   * @param {string} pattern Search pattern.
-   * @param {string} text    Replace pattern.
-   *
-   * @returns {void}
-   */
-  const recursivelyReplace = (element, pattern, text) => {
-    if (getAllowedBlocks().indexOf(element.name) !== -1) {
-      replaceString(element, pattern, text);
-    }
-
-    if (element.innerBlocks.length) {
-      element.innerBlocks.forEach((innerElement) => {
-        recursivelyReplace(innerElement, pattern, text);
-      });
-    }
-  }
-
-  /**
-   * Handle Block attribute update on a case by case basis
-   * based on mutating attribute.
+   * Block Editor with the user's text. Perform attribute update
+   * on a case by case basis based on mutating attribute.
    *
    * @since 1.0.0
    * @since 1.0.1 Handle edge-cases for quote, pullquote & details block.
@@ -98,29 +75,39 @@ const SearchReplaceForBlockEditor = () => {
    *
    * @returns {void}
    */
-  const replaceString = (element, pattern, text) => {
-    const args = { element, pattern, text };
+  const recursivelyReplace = (element, pattern, text) => {
+    if (getAllowedBlocks().indexOf(element.name) !== -1) {
+      const args = { element, pattern, text };
 
-    switch (element.name) {
-      case 'core/quote':
-      case 'core/pullquote':
-        replaceBlockAttribute(args, 'citation');
-        break;
+      switch (element.name) {
+        case 'core/quote':
+        case 'core/pullquote':
+          replaceBlockAttribute(args, 'citation');
+          break;
 
-      case 'core/details':
-        replaceBlockAttribute(args, 'summary');
-        break;
+        case 'core/details':
+          replaceBlockAttribute(args, 'summary');
+          break;
 
-      default:
-        replaceBlockAttribute(args, 'content');
-        break;
+        default:
+          replaceBlockAttribute(args, 'content');
+          break;
+      }
     }
-  };
+
+    if (element.innerBlocks.length) {
+      element.innerBlocks.forEach((innerElement) => {
+        recursivelyReplace(innerElement, pattern, text);
+      });
+    }
+  }
 
   /**
    * Do the actual job of replacing the string
    * by dispatching the change using the block's clientId
    * as reference.
+   *
+   * @since 1.0.1
    *
    * @param {Object} args      Args object containing element, pattern and text.
    * @param {string} attribute The attribute to be mutated e.g. content.
