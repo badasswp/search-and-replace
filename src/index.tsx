@@ -86,11 +86,11 @@ const SearchReplaceForBlockEditor = () => {
   }
 
   /**
-   * Do the actual job of replacing the string
-   * by dispatching the change using the block's clientID
-   * as reference.
+   * Handle Block attribute update on a case by case basis
+   * based on mutating attribute.
    *
    * @since 1.0.0
+   * @since 1.0.1 Handle edge-cases for quote, pullquote & details block.
    *
    * @param {Object} element Gutenberg editor block.
    * @param {string} pattern Search pattern.
@@ -99,31 +99,63 @@ const SearchReplaceForBlockEditor = () => {
    * @returns {void}
    */
   const replaceString = (element, pattern, text) => {
-    const { attributes, clientId } = element;
+    const args = { element, pattern, text };
 
-    // Bail out if undefined...
-    if (attributes === undefined || attributes.content === undefined) {
+    switch (element.name) {
+      case 'core/quote':
+      case 'core/pullquote':
+        replaceBlockAttribute(args, 'citation');
+        break;
+
+      case 'core/details':
+        replaceBlockAttribute(args, 'summary');
+        break;
+
+      default:
+        replaceBlockAttribute(args, 'content');
+        break;
+    }
+  };
+
+  /**
+   * Do the actual job of replacing the string
+   * by dispatching the change using the block's clientID
+   * as reference.
+   *
+   * @param {Object} args      Args object containing element, pattern and text.
+   * @param {string} attribute The attribute to be mutated e.g. content.
+   *
+   * @returns {void}
+   */
+  const replaceBlockAttribute = (args, attribute) => {
+    const { attributes, clientId } = args.element;
+
+    if (attributes === undefined || attributes[attribute] === undefined) {
       return;
     }
 
-    let oldString: string = attributes.content.text || attributes.content;
-    let newString: string = oldString.replace(pattern, () => {
+    let oldString: string = attributes[attribute].text || attributes[attribute];
+    let newString: string = oldString.replace(args.pattern, () => {
       setReplacements((items) => items + 1);
-      return text;
+      return args.text;
     });
 
     if (newString === oldString) {
       return;
     }
 
-    (dispatch('core/block-editor') as any)
-      .updateBlockAttributes(
-        clientId,
-        {
-          content: newString,
-        }
-      );
-  };
+    const property = {};
+    property[attribute] = newString;
+
+    (dispatch('core/block-editor') as any).updateBlockAttributes(clientId, property);
+
+    // Handle edge-case ('value') with Pullquotes.
+    if (attributes.value) {
+      (dispatch('core/block-editor') as any)
+        .updateBlockAttributes(clientId, { value: newString });
+      setReplacements((items) => items + 1);
+    }
+  }
 
   return (
     <MainDashboardButton>
