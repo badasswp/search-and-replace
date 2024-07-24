@@ -10,7 +10,7 @@ import { getShortcut } from './utils';
  * This method implements the custom shortcut
  * functionality for this plugin.
  *
- * @since 1.0.0
+ * @since 1.0.1
  *
  * @params {Object}   Props.
  * @params {function} OpenModal Function.

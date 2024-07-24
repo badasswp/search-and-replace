@@ -50,7 +50,7 @@ export const getTextBlocks = () => getBlockTypes()
  * This function filters the user's preferred
  * shortcut option.
  *
- * @since 1.0.0
+ * @since 1.0.1
  *
  * @returns {Object}
  */
@@ -76,7 +76,7 @@ export const getShortcut = () => {
    * By default the passed option would be SHIFT which
    * represents `CMD + SHIFT + F`.
    *
-   * @since 1.0.0
+   * @since 1.0.1
    *
    * @param {Object} Shortcut Option.
    * @returns {Object}
