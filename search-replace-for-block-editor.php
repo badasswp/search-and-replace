@@ -24,6 +24,7 @@ if ( ! defined( 'WPINC' ) ) {
  * Load Search & Replace Script for Block Editor.
  *
  * @since 1.0.0
+ * @since 1.0.2 Load asset via plugin directory URL.
  *
  * @wp-hook 'enqueue_block_editor_assets'
  */
