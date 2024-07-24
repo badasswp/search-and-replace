@@ -47,10 +47,10 @@ import { addFilter } from '@wordpress/hooks';
 addFilter(
   'search-replace-for-block-editor.keyboardShortcut',
   'yourShortcut',
-  (option) => {
+  (shortcut) => {
     return {
       character: 'k',
-      ...option,
+      ...shortcut,
     }
   }
 );
@@ -58,4 +58,4 @@ addFilter(
 
 **Parameters**
 
-- option _`{Object}`_ By default this is an object, containing `modifier` and `character` properties which together represent the following command `CMD + SHIFT + F`.
+- shortcut _`{Object}`_ By default this is an object, containing `modifier` and `character` properties which together represent the following command `CMD + SHIFT + F`.
