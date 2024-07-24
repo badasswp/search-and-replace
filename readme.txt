@@ -2,8 +2,8 @@
 Contributors: badasswp
 Tags: search, replace, text, block, editor.
 Requires at least: 4.0
-Tested up to: 6.5.5
-Stable tag: 1.0.0
+Tested up to: 6.6
+Stable tag: 1.0.1
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -21,6 +21,13 @@ Search and Replace text within the Block Editor.
 This plugin brings the familiar Search and Replace functionality that PC users have grown accustomed to in Microsoft Word and Google Docs to the block editor. It enhances user efficiency by allowing quick text searches and bulk changes throughout content, saving time and ensuring consistency. It also reduces the risk of manual errors, streamlining workflows for content creators and site administrators, ultimately improving the overall management of WordPress sites.
 
 == Changelog ==
+
+= 1.0.1 =
+* Handle edge cases with quote, pullquote & details block.
+* Add custom hook - `search-replace-for-block-editor.keyboardShortcut`.
+* Fix Bugs & linting issues.
+* Updated Unit Tests & README notes.
+* Tested up to WP 6.6.
 
 = 1.0.0 =
 * Ability to Search & Replace text within the Block Editor.
