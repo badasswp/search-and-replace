@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.3
+* Implement Build Workflow
+* Replace `mt_rand` with `string` for asset enqueuing.
+* Fix Bugs and Linting issues.
+* Tested up to WP 6.6.1.
+
 ## 1.0.2
 * Fix styling issues observed on search icon.
 * Implement case sensitivity feature for search and replace.
