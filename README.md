@@ -79,3 +79,12 @@ addFilter(
 **Parameters**
 
 - isCaseSensitive _`{bool}`_ By default, this is a falsy value.
+
+## Development
+
+### Setup
+
+- Clone the repository.
+- Make sure you have [Node](https://nodejs.org) installed on your computer.
+- Run `npm install && npm run build` to build JS dependencies.
+- For local development, you can use [Docker](https://docs.docker.com/install/) or [Local by Flywheel](https://localwp.com/).
