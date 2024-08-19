@@ -52,4 +52,6 @@ This plugin brings the familiar Search and Replace functionality that PC users h
 
 == Contribute ==
 
-If you'd like to contribute to the development of this plugin, you can find it on [GitHub](https://github.com/badasswp/search-replace-for-block-editor).
+If you'd like to contribute to the development of this plugin, you can find it on [GitHub](https://github.com/badasswp/search-and-replace).
+
+To build, clone repo and run `npm install && npm run build`
