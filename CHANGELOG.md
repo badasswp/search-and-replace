@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.0.4
+* Update README.txt file.
+
 ## 1.0.3
 * Implement Build Workflow
 * Replace `mt_rand` with `string` for asset enqueuing.
