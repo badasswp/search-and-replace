@@ -3,11 +3,11 @@ import {
     __experimentalMainDashboardButton as MainDashboardButton,
 } from '@wordpress/edit-post';
 import { __ } from '@wordpress/i18n';
+import { search } from '@wordpress/icons';
 import { useState } from '@wordpress/element';
-import { Modal, TextControl, Button } from '@wordpress/components';
 import { dispatch, select } from '@wordpress/data';
 import { registerPlugin } from '@wordpress/plugins';
-import { search } from '@wordpress/icons';
+import { Modal, TextControl, Button } from '@wordpress/components';
 
 import './styles/app.scss';
 
