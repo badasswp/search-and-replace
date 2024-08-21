@@ -12,8 +12,8 @@ import { getShortcut } from './utils';
  *
  * @since 1.0.1
  *
- * @params {Object}   Props.
- * @params {function} OpenModal Function.
+ * @param {Object}   Props.
+ * @param {function} OpenModal Function.
  *
  * @returns {JSX.Element|null}
  */
