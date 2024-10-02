@@ -12,6 +12,12 @@
       },
       "Search & Replace": [
         "S\u00f8g og erstat"
+      ],
+      "item(s) replaced successfully": [
+        "vare(r) er blevet udskiftet"
+      ],
+      "Match Case | Expression": [
+        "Match Case | Udtryk"
       ]
     }
   }
