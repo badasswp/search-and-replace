@@ -135,7 +135,7 @@ const SearchReplaceForBlockEditor = () => {
   const replaceBlockAttribute = (args, attribute) => {
     const { attributes, clientId } = args.element;
 
-    if (attributes === undefined || attributes[attribute] === undefined) {
+    if (undefined === attributes || undefined === attributes[attribute]) {
       return;
     }
 
