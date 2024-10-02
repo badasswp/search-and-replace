@@ -31,12 +31,12 @@ const SearchReplaceForBlockEditor = () => {
   const [replaceInput, setReplaceInput] = useState('');
   const [caseSensitive, setCaseSensitive] = useState(false);
 
-  const openModal = () => {
+  const openModal = (): void => {
     setIsModalVisible(true);
     setReplacements(0);
   }
 
-  const closeModal = () => {
+  const closeModal = (): void => {
     setIsModalVisible(false);
     setReplacements(0);
   }
@@ -62,7 +62,7 @@ const SearchReplaceForBlockEditor = () => {
    *
    * @returns {void}
    */
-  const replace = () => {
+  const replace = (): void => {
     setReplacements(0);
 
     const pattern = new RegExp(
