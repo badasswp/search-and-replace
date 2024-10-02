@@ -29,6 +29,13 @@ This plugin brings the familiar Search and Replace functionality that PC users h
 
 == Changelog ==
 
+= 1.1.0 =
+* Feat: Case Sensitive checkbox.
+* Update asset images and screenshots.
+* Fix Bugs and Linting issues.
+* Update README.txt file.
+* Tested up to WP 6.6.2.
+
 = 1.0.4 =
 * Update README.txt file.
 
