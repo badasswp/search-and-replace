@@ -57,5 +57,9 @@ msgid "Done"
 msgstr ""
 
 #. dist/app.js
-msgid "items replaced successfully"
+msgid "item(s) replaced successfully"
+msgstr ""
+
+#. dist/app.js
+msgid "Match Case | Expression"
 msgstr ""
