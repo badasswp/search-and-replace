@@ -13,8 +13,11 @@
       "Search & Replace": [
         "\u641c\u7d22\u548c\u66ff\u6362"
       ],
-      "items replaced successfully": [
+      "item(s) replaced successfully": [
         "\u5DF2\u6210\u529F\u66F4\u6362\u7684\u7269\u54C1"
+      ],
+      "Match Case | Expression": [
+        "匹配案例 |表达"
       ]
     }
   }
