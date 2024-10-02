@@ -13,8 +13,11 @@
       "Search & Replace": [
         "Pretra\u017eivanje i Zamjena"
       ],
-      "items replaced successfully": [
+      "item(s) replaced successfully": [
         "stavke su uspje\u0161no zamijenjene"
+      ],
+      "Match Case | Expression": [
+        "Slučaj šibice | Izraz"
       ]
     }
   }
