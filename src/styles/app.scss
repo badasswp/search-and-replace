@@ -35,6 +35,18 @@
 	}
 
 	&__toggle {
-		margin-bottom: 2.25em;
+		margin-bottom: 1.5em;
+	}
+
+	&__notification {
+		margin: 1.5em 0;
+		padding: 0.75em 1.25em;
+		background: #F7F7F7;
+		border-left: 5px solid orange;
+
+		p {
+			margin: 0;
+			padding: 0;
+		}
 	}
 }
