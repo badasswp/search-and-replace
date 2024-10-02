@@ -13,8 +13,11 @@
       "Search & Replace": [
         "Buscar y Reemplazar"
       ],
-      "items replaced successfully": [
+      "item(s) replaced successfully": [
         "artículos reemplazados con éxito"
+      ],
+      "Match Case | Expression": [
+        "Estuche de fósforo | Expresión"
       ]
     }
   }

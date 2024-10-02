@@ -13,8 +13,11 @@
       "Search & Replace": [
         "Cerca & Sostituisci"
       ],
-      "items replaced successfully": [
+      "item(s) replaced successfully": [
         "articoli sostituiti con successo"
+      ],
+      "Match Case | Expression": [
+        "Custodia per fiammiferi | Espressione"
       ]
     }
   }

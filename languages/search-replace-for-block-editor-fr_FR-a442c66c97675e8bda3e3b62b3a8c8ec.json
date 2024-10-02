@@ -13,8 +13,11 @@
       "Search & Replace": [
         "Recherche & Remplace"
       ],
-      "items replaced successfully": [
+      "item(s) replaced successfully": [
         "articles remplacés avec succès"
+      ],
+      "Match Case | Expression": [
+        "Cas de match | Expression"
       ]
     }
   }

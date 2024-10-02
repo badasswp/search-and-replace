@@ -11,7 +11,7 @@ import { getBlockTypes } from '@wordpress/blocks';
  *
  * @returns {string[]}
  */
-export const getAllowedBlocks = () => {
+export const getAllowedBlocks = (): string[] => {
   /**
    * Allow Text Blocks.
    *
@@ -36,7 +36,7 @@ export const getAllowedBlocks = () => {
  *
  * @returns {string[]}
  */
-export const getTextBlocks = () => getBlockTypes()
+export const getTextBlocks = (): string[] => getBlockTypes()
   .filter((block) => {
     return !!(block?.category === 'text');
   })
@@ -90,9 +90,9 @@ export const getShortcut = () => {
  *
  * @since 1.0.2
  *
- * @returns {bool}
+ * @returns {boolean}
  */
-export const isCaseSensitive = () => {
+export const isCaseSensitive = (): boolean => {
   /**
    * Filter Case Sensitivity.
    *
@@ -100,8 +100,8 @@ export const isCaseSensitive = () => {
    *
    * @since 1.0.2
    *
-   * @param {bool} Case Sensitivity.
-   * @returns {bool}
+   * @param {boolean} Case Sensitivity.
+   * @returns {boolean}
    */
-  return applyFilters('search-replace-for-block-editor.caseSensitive', false);
+  return applyFilters('search-replace-for-block-editor.caseSensitive', false) as boolean;
 }

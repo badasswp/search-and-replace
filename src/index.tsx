@@ -3,11 +3,11 @@ import {
     __experimentalMainDashboardButton as MainDashboardButton,
 } from '@wordpress/edit-post';
 import { __ } from '@wordpress/i18n';
+import { search } from '@wordpress/icons';
 import { useState } from '@wordpress/element';
-import { Modal, TextControl, Button } from '@wordpress/components';
 import { dispatch, select } from '@wordpress/data';
 import { registerPlugin } from '@wordpress/plugins';
-import { search } from '@wordpress/icons';
+import { Modal, TextControl, ToggleControl, Button } from '@wordpress/components';
 
 import './styles/app.scss';
 
@@ -29,15 +29,29 @@ const SearchReplaceForBlockEditor = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [searchInput, setSearchInput] = useState('');
   const [replaceInput, setReplaceInput] = useState('');
+  const [caseSensitive, setCaseSensitive] = useState(false);
 
-  const openModal = () => {
+  const openModal = (): void => {
     setIsModalVisible(true);
     setReplacements(0);
   }
 
-  const closeModal = () => {
+  const closeModal = (): void => {
     setIsModalVisible(false);
     setReplacements(0);
+  }
+
+  /**
+   * Handle case sensitive toggle feature
+   * to enable user perform case-sensitive search
+   * and replacements.
+   *
+   * @since 1.1.0
+   *
+   * @param {boolean} newValue
+   */
+  const handleCaseSensitive = (newValue: boolean): void => {
+    setCaseSensitive( newValue );
   }
 
   /**
@@ -48,12 +62,16 @@ const SearchReplaceForBlockEditor = () => {
    *
    * @returns {void}
    */
-  const replace = () => {
+  const replace = (): void => {
     setReplacements(0);
+
+    if (!searchInput) {
+      return;
+    }
 
     const pattern = new RegExp(
       `(?<!<[^>]*)${searchInput}(?<![^>]*<)`,
-      isCaseSensitive() ? 'g' : 'gi'
+      isCaseSensitive() || caseSensitive ? 'g' : 'gi'
     );
 
     select('core/block-editor').getBlocks().forEach((element) => {
@@ -117,7 +135,7 @@ const SearchReplaceForBlockEditor = () => {
   const replaceBlockAttribute = (args, attribute) => {
     const { attributes, clientId } = args.element;
 
-    if (attributes === undefined || attributes[attribute] === undefined) {
+    if (undefined === attributes || undefined === attributes[attribute]) {
       return;
     }
 
@@ -175,7 +193,23 @@ const SearchReplaceForBlockEditor = () => {
               />
             </div>
 
-            {replacements ? (<p><strong>{replacements}</strong> {__('items replaced successfully', 'search-replace-for-block-editor')}.</p>) : ''}
+            <div id="search-replace-modal__toggle">
+              <ToggleControl
+                label={__('Match Case | Expression', 'search-replace-for-block-editor')}
+                checked={caseSensitive}
+                onChange={handleCaseSensitive}
+              />
+            </div>
+
+            {
+              replacements ? (
+                <div id="search-replace-modal__notification">
+                  <p>
+                    <strong>{replacements}</strong> {__('item(s) replaced successfully', 'search-replace-for-block-editor')}.
+                  </p>
+                </div>
+              ) : ''
+            }
 
             <div id="search-replace-modal__button-group">
               <Button
