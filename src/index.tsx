@@ -67,7 +67,7 @@ const SearchReplaceForBlockEditor = () => {
 
     const pattern = new RegExp(
       `(?<!<[^>]*)${searchInput}(?<![^>]*<)`,
-      isCaseSensitive() ? 'g' : 'gi'
+      isCaseSensitive() || caseSensitive ? 'g' : 'gi'
     );
 
     select('core/block-editor').getBlocks().forEach((element) => {
