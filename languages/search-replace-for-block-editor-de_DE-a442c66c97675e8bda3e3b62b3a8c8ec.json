@@ -13,8 +13,11 @@
       "Search & Replace": [
         "Suchen & Ersetzen"
       ],
-      "items replaced successfully": [
+      "item(s) replaced successfully": [
         "artikel erfolgreich ausgetauscht"
+      ],
+      "Match Case | Expression": [
+        "Streichholz-Fall | Ausdruck"
       ]
     }
   }
