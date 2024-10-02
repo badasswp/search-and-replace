@@ -7,7 +7,7 @@ import { search } from '@wordpress/icons';
 import { useState } from '@wordpress/element';
 import { dispatch, select } from '@wordpress/data';
 import { registerPlugin } from '@wordpress/plugins';
-import { Modal, TextControl, Button } from '@wordpress/components';
+import { Modal, TextControl, ToggleControl, Button } from '@wordpress/components';
 
 import './styles/app.scss';
 
@@ -29,6 +29,7 @@ const SearchReplaceForBlockEditor = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [searchInput, setSearchInput] = useState('');
   const [replaceInput, setReplaceInput] = useState('');
+  const [caseSensitive, setCaseSensitive] = useState(false);
 
   const openModal = () => {
     setIsModalVisible(true);
@@ -38,6 +39,19 @@ const SearchReplaceForBlockEditor = () => {
   const closeModal = () => {
     setIsModalVisible(false);
     setReplacements(0);
+  }
+
+  /**
+   * Handle case sensitive toggle feature
+   * to enable user perform case-sensitive search
+   * and replacements.
+   *
+   * @since 1.1.0
+   *
+   * @param {boolean} newValue
+   */
+  const handleCaseSensitive = (newValue: boolean): void => {
+    setCaseSensitive( newValue );
   }
 
   /**
@@ -172,6 +186,14 @@ const SearchReplaceForBlockEditor = () => {
                 label={__('Replace')}
                 value={replaceInput}
                 onChange={(value)=>setReplaceInput(value)}
+              />
+            </div>
+
+            <div id="search-replace-modal__toggle">
+              <ToggleControl
+                label="Match Case | Expression"
+                checked={caseSensitive}
+                onChange={handleCaseSensitive}
               />
             </div>
 
