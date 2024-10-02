@@ -65,6 +65,10 @@ const SearchReplaceForBlockEditor = () => {
   const replace = (): void => {
     setReplacements(0);
 
+    if (!searchInput) {
+      return;
+    }
+
     const pattern = new RegExp(
       `(?<!<[^>]*)${searchInput}(?<![^>]*<)`,
       isCaseSensitive() || caseSensitive ? 'g' : 'gi'
