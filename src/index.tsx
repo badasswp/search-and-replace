@@ -191,7 +191,7 @@ const SearchReplaceForBlockEditor = () => {
 
             <div id="search-replace-modal__toggle">
               <ToggleControl
-                label="Match Case | Expression"
+                label={__('Match Case | Expression', 'search-replace-for-block-editor')}
                 checked={caseSensitive}
                 onChange={handleCaseSensitive}
               />
