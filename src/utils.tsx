@@ -54,7 +54,7 @@ export const getTextBlocks = (): string[] => getBlockTypes()
  *
  * @returns {Object}
  */
-export const getShortcut = (): {} => {
+export const getShortcut = () => {
   const options = {
     CMD: {
       modifier: 'primary',
