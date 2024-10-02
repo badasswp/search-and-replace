@@ -34,6 +34,7 @@ This plugin brings the familiar Search and Replace functionality that PC users h
 * Update asset images and screenshots.
 * Fix Bugs and Linting issues.
 * Update README.txt file.
+* Update Translation files.
 * Tested up to WP 6.6.2.
 
 = 1.0.4 =
