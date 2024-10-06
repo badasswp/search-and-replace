@@ -20,12 +20,15 @@ Search and Replace text within the Block Editor.
 
 == Description ==
 
-This plugin brings the familiar Search and Replace functionality that PC users have grown accustomed to in Microsoft Word and Google Docs to the block editor. It enhances user efficiency by allowing quick text searches and bulk changes throughout content, saving time and ensuring consistency. It also reduces the risk of manual errors, streamlining workflows for content creators and site administrators, ultimately improving the overall management of WordPress sites.
+This plugin brings the familiar Search and Replace functionality that PC users have grown accustomed to in Microsoft Word and Google Docs to the Block Editor.
+
+Now you can easily search and replace text right in the Block Editor. Its easy and does exactly what it says. You can also match the text case using the 'Match Case | Expression' toggle.
 
 == Screenshots ==
 
 1. Search & Replace for Block Editor icon - Locate the top left of the Block Editor.
 2. Search & Replace for Block Editor modal - Search and Replace text in the Block Editor.
+3. Match Case in Search & Replace - Now you can match case of the text and Search and Replace.
 
 == Changelog ==
 
