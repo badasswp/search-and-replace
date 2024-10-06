@@ -32,7 +32,7 @@ You can get a taste of how this works, by using the [demo](https://tastewp.com/c
 
 = 🔌🎨 Plug and Play or Customize =
 
-The Search & Replace for Block Editor plugin is built to work right out of the box. Simply install and start using.
+The Search & Replace for Block Editor plugin is built to work right out of the box. Simply install, activate and start using.
 
 Want to add your personal touch? All of our documentation can be found [here](https://github.com/badasswp/search-and-replace). You can override the plugin's behaviour with custom logic of your own using [hooks](https://github.com/badasswp/search-and-replace?tab=readme-ov-file#hooks).
 
