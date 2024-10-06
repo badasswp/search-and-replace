@@ -20,20 +20,32 @@ Search and Replace text within the Block Editor.
 
 == Description ==
 
-This plugin brings the familiar Search and Replace functionality that PC users have grown accustomed to in Microsoft Word and Google Docs to the Block Editor.
+This plugin brings the familiar Search and Replace functionality that PC users have grown accustomed to in <strong>Microsoft Word</strong> and <strong>Google Docs</strong> to the Block Editor.
 
 Now you can easily search and replace text right in the Block Editor. Its easy and does exactly what it says. You can also match the text case using the 'Match Case | Expression' toggle.
+
+= ✨ Getting Started =
+
+Create a new Post or open an existing Post. Locate the 'Search and Replace' icon at the <strong>top left</strong> corner of the Block Editor and click on it. Proceed to type in the text you wish to replace and click on 'Replace'.
+
+You can get a taste of how this works, by using the [demo](https://tastewp.com/create/NMS/8.0/6.6.2/search-replace-for-block-editor/twentytwentythree?ni=true&origin=wp) link.
+
+= 🔌🎨 Plug and Play or Customize =
+
+The Search & Replace for Block Editor plugin is built to work right out of the box. Simply install and start using.
+
+Want to add your personal touch? All of our documentation can be found [here](https://github.com/badasswp/search-and-replace). You can override the plugin's behaviour with custom logic of your own using [hooks](https://github.com/badasswp/search-and-replace?tab=readme-ov-file#hooks).
 
 == Screenshots ==
 
 1. Search & Replace for Block Editor icon - Locate the top left of the Block Editor.
 2. Search & Replace for Block Editor modal - Search and Replace text in the Block Editor.
-3. Match Case in Search & Replace - Now you can match case of the text and Search and Replace.
+3. Match Case in Search & Replace - Now you can match the case of the text and Search and Replace.
 
 == Changelog ==
 
 = 1.1.0 =
-* Feat: Case Sensitive checkbox.
+* Feat: Case Sensitive toggle.
 * Update asset images and screenshots.
 * Fix Bugs and Linting issues.
 * Update README.txt file.
