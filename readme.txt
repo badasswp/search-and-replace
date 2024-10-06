@@ -44,6 +44,11 @@ Want to add your personal touch? All of our documentation can be found [here](ht
 
 == Changelog ==
 
+= 1.1.1 =
+* Update README notes.
+* Update asset icons & screenshots.
+* Tested up to WP 6.6.2.
+
 = 1.1.0 =
 * Feat: Case Sensitive toggle.
 * Update asset images and screenshots.
