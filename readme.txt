@@ -3,7 +3,7 @@ Contributors: badasswp
 Tags: search, replace, text, block, editor.
 Requires at least: 4.0
 Tested up to: 6.6.2
-Stable tag: 1.1.0
+Stable tag: 1.1.1
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -20,17 +20,37 @@ Search and Replace text within the Block Editor.
 
 == Description ==
 
-This plugin brings the familiar Search and Replace functionality that PC users have grown accustomed to in Microsoft Word and Google Docs to the block editor. It enhances user efficiency by allowing quick text searches and bulk changes throughout content, saving time and ensuring consistency. It also reduces the risk of manual errors, streamlining workflows for content creators and site administrators, ultimately improving the overall management of WordPress sites.
+This plugin brings the familiar Search and Replace functionality that PC users have grown accustomed to in <strong>Microsoft Word</strong> and <strong>Google Docs</strong> to the Block Editor.
+
+Now you can easily search and replace text right in the Block Editor. Its easy and does exactly what it says. You can also match the text case using the 'Match Case | Expression' toggle.
+
+= ✨ Getting Started =
+
+Create a new Post or open an existing Post. Locate the 'Search and Replace' icon at the <strong>top left</strong> corner of the Block Editor and click on it. Proceed to type in the text you wish to replace and click on 'Replace'.
+
+You can get a taste of how this works, by using the [demo](https://tastewp.com/create/NMS/8.0/6.6.2/search-replace-for-block-editor/twentytwentythree?ni=true&origin=wp) link.
+
+= 🔌🎨 Plug and Play or Customize =
+
+The Search & Replace for Block Editor plugin is built to work right out of the box. Simply install, activate and start using.
+
+Want to add your personal touch? All of our documentation can be found [here](https://github.com/badasswp/search-and-replace). You can override the plugin's behaviour with custom logic of your own using [hooks](https://github.com/badasswp/search-and-replace?tab=readme-ov-file#hooks).
 
 == Screenshots ==
 
 1. Search & Replace for Block Editor icon - Locate the top left of the Block Editor.
 2. Search & Replace for Block Editor modal - Search and Replace text in the Block Editor.
+3. Match Case in Search & Replace - Now you can match the case of the text and Search and Replace.
 
 == Changelog ==
 
+= 1.1.1 =
+* Update README notes.
+* Update asset icons & screenshots.
+* Tested up to WP 6.6.2.
+
 = 1.1.0 =
-* Feat: Case Sensitive checkbox.
+* Feat: Case Sensitive toggle.
 * Update asset images and screenshots.
 * Fix Bugs and Linting issues.
 * Update README.txt file.

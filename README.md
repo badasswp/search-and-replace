@@ -11,9 +11,9 @@ You can also get the latest version from any of our [release tags](https://githu
 
 ## Why Search and Replace for Block Editor?
 
-This plugin brings the familiar __Search and Replace__ functionality that PC users have grown accustomed to while using __Microsoft Word__ and __Google Docs__ to the block editor. It enhances user efficiency by allowing quick text searches and bulk changes throughout content, saving time and ensuring consistency.
+This plugin brings the familiar __Search and Replace__ functionality that PC users have grown accustomed to while using __Microsoft Word__ and __Google Docs__ to the Block Editor.
 
-It also reduces the risk of manual errors, streamlining workflows for editors, content creators and site administrators, ultimately improving the overall management of WordPress sites.
+Now you can easily search and replace text right in the Block Editor. Its easy and does exactly what it says. You can also match the text case using the 'Match Case | Expression' toggle.
 
 https://github.com/badasswp/search-and-replace/assets/149586343/d4acfab3-338b-434f-b09c-769df9331095
 

@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.1.1
+* Update README notes.
+* Update asset icons & screenshots.
+* Tested up to WP 6.6.2.
+
 ## 1.1.0
 * Feat: Case Sensitive checkbox.
 * Update asset images and screenshots.
