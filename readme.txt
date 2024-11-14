@@ -28,7 +28,13 @@ Now you can easily search and replace text right in the Block Editor. Its easy a
 
 Create a new Post or open an existing Post. Locate the 'Search and Replace' icon at the <strong>top left</strong> corner of the Block Editor and click on it. Proceed to type in the text you wish to replace and click on 'Replace'.
 
-You can get a taste of how this works, by using the [demo](https://tastewp.com/create/NMS/8.0/6.6.2/search-replace-for-block-editor/twentytwentythree?ni=true&origin=wp) link.
+You can get a taste of how this works, by using the [demo](https://tastewp.com/create/NMS/8.0/6.7.0/search-replace-for-block-editor/twentytwentythree?ni=true&origin=wp) link.
+
+= ⚡ Shortcut Keys & Text Selection =
+
+To quickly access the Search and Replace modal, press <strong>CTRL + SHIFT + F</strong>. This will fire up the dialog box where you can quickly change things.
+
+You can also <strong>select text</strong> on your Block Editor and <strong>use the Shortcut</strong>. This will grab the text you have selected and fire up your dialog box with the text already typed into it. This makes working with the Search and Replace tool faster.
 
 = 🔌🎨 Plug and Play or Customize =
 
