@@ -227,6 +227,4 @@ const SearchReplaceForBlockEditor = () => {
   );
 };
 
-registerPlugin('search-replace-for-block-editor', {
-  render: SearchReplaceForBlockEditor,
-});
+export default SearchReplaceForBlockEditor;
