@@ -1,7 +1,3 @@
-import {
-    __experimentalFullscreenModeClose as FullscreenModeClose,
-    __experimentalMainDashboardButton as MainDashboardButton,
-} from '@wordpress/edit-post';
 import { __ } from '@wordpress/i18n';
 import { search } from '@wordpress/icons';
 import { useState } from '@wordpress/element';
@@ -163,8 +159,7 @@ const SearchReplaceForBlockEditor = () => {
   }
 
   return (
-    <MainDashboardButton>
-      <FullscreenModeClose />
+    <>
       <Shortcut onKeyDown={openModal} />
       <Button
         icon={search}
@@ -228,7 +223,7 @@ const SearchReplaceForBlockEditor = () => {
           </Modal>
         )
       }
-    </MainDashboardButton>
+    </>
   );
 };
 
