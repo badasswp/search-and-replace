@@ -2,7 +2,7 @@
 
 ## 1.2.0
 * Fix WP upgrade 6.7 issue.
-* Add selection range functionality.
+* Add text selection shortcut functionality.
 * Update README notes.
 * Tested up to WP 6.7.0.
 
