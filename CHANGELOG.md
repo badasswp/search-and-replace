@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.2.0
+* Fix WP upgrade 6.7 issue.
+* Add selection range functionality.
+* Update README notes.
+* Tested up to WP 6.7.0.
+
 ## 1.1.1
 * Update README notes.
 * Update asset icons & screenshots.
