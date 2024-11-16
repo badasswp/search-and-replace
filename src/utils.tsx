@@ -137,3 +137,22 @@ export const getEditorRoot = () => {
     }, interval);
   });
 };
+
+/**
+ * Get App Container.
+ *
+ * Create an DIV container within the Editor root where
+ * we will inject our React app.
+ *
+ * @since 1.2.0
+ *
+ * @param {HTMLElement} parent - The Parent DOM element.
+ * @returns {HTMLDivElement}
+ */
+export const getAppRoot = (parent) => {
+  const container = document.createElement('div');
+  container.id = 'search-and-replace';
+  parent.appendChild(container);
+
+  return container;
+};
