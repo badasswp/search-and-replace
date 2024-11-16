@@ -177,14 +177,16 @@ const SearchReplaceForBlockEditor = () => {
                 type="text"
                 label={__('Search')}
                 value={searchInput}
-                onChange={(value)=>setSearchInput(value)}
+                onChange={(value) => setSearchInput(value)}
                 placeholder="Lorem ipsum..."
+                __nextHasNoMarginBottom
               />
               <TextControl
                 type="text"
                 label={__('Replace')}
                 value={replaceInput}
-                onChange={(value)=>setReplaceInput(value)}
+                onChange={(value) => setReplaceInput(value)}
+                __nextHasNoMarginBottom
               />
             </div>
 
@@ -193,6 +195,7 @@ const SearchReplaceForBlockEditor = () => {
                 label={__('Match Case | Expression', 'search-replace-for-block-editor')}
                 checked={caseSensitive}
                 onChange={handleCaseSensitive}
+                __nextHasNoMarginBottom
               />
             </div>
 
