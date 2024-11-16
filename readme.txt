@@ -51,7 +51,7 @@ Want to add your personal touch? All of our documentation can be found [here](ht
 == Changelog ==
 
 = 1.2.0
-* Fix WP upgrade 6.7 issue.
+* Fix WP upgrade 6.7 issues.
 * Add text selection shortcut functionality.
 * Update README notes.
 * Tested up to WP 6.7.0.
