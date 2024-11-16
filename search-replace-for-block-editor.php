@@ -44,7 +44,7 @@ add_action( 'enqueue_block_editor_assets', function() {
 			'wp-edit-post',
 			'wp-edit-site',
 		],
-		'1.1.0',
+		'1.2.0',
 		false,
 	);
 
