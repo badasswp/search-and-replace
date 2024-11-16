@@ -151,7 +151,7 @@ export const getEditorRoot = () => {
  */
 export const getAppRoot = (parent) => {
   const container = document.createElement('div');
-  container.id = 'search-and-replace';
+  container.id = 'search-replace';
   parent.appendChild(container);
 
   return container;
