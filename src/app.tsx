@@ -2,7 +2,7 @@ import { __ } from '@wordpress/i18n';
 import { search } from '@wordpress/icons';
 import { dispatch, select } from '@wordpress/data';
 import { useState, useEffect } from '@wordpress/element';
-import { Modal, TextControl, ToggleControl, Button, Toolbar } from '@wordpress/components';
+import { Modal, TextControl, ToggleControl, Button } from '@wordpress/components';
 
 import './styles/app.scss';
 
