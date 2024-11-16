@@ -105,3 +105,54 @@ export const isCaseSensitive = (): boolean => {
    */
   return applyFilters('search-replace-for-block-editor.caseSensitive', false) as boolean;
 }
+
+/**
+ * Get Editor Root.
+ *
+ * This callback will attempt to grab the Editor root
+ * where we will inject our App container.
+ *
+ * @since 1.2.0
+ *
+ * @returns Promise<HTMLElement>
+ */
+export const getEditorRoot = () => {
+  let elapsedTime = 0;
+  const interval = 100;
+
+  return new Promise((resolve, reject) => {
+    const intervalId = setInterval(() => {
+      elapsedTime += interval;
+      const root = document.getElementById('editor').querySelector('.editor-header__toolbar');
+
+      if (root) {
+        clearInterval(intervalId);
+        resolve(root);
+      }
+
+      if (elapsedTime > (10 * interval)) {
+        clearInterval(intervalId);
+        reject(new Error('Unable to get Editor root container...'));
+      }
+    }, interval);
+  });
+};
+
+/**
+ * Get App Container.
+ *
+ * Create an DIV container within the Editor root where
+ * we will inject our React app.
+ *
+ * @since 1.2.0
+ *
+ * @param {HTMLElement} parent - The Parent DOM element.
+ * @returns {HTMLDivElement}
+ */
+export const getAppRoot = (parent) => {
+  const container = document.createElement('div');
+  container.id = 'search-replace';
+  parent.appendChild(container);
+
+  return container;
+};
