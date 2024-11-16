@@ -1,7 +1,7 @@
 import { __ } from '@wordpress/i18n';
 import { search } from '@wordpress/icons';
-import { useState } from '@wordpress/element';
 import { dispatch, select } from '@wordpress/data';
+import { useState, useEffect } from '@wordpress/element';
 import { Modal, TextControl, ToggleControl, Button, Toolbar } from '@wordpress/components';
 
 import './styles/app.scss';
@@ -35,6 +35,46 @@ const SearchReplaceForBlockEditor = () => {
     setIsModalVisible(false);
     setReplacements(0);
   }
+
+  /**
+   * On Selection.
+   *
+   * Populate the find field when the user selects
+   * a text range in the Block Editor.
+   *
+   * @since 1.2.0
+   *
+   * @returns {void}
+   */
+  const onSelection = () => {
+    const selectedText = window.getSelection().toString();
+
+    if (selectedText) {
+      setSearchInput(selectedText);
+    }
+  };
+
+  /**
+   * Listen for Selection.
+   *
+   * Constantly listen for when the user selects a
+   * a text in the Block Editor.
+   *
+   * @since 1.2.0
+   *
+   * @returns {void}
+   */
+  useEffect(() => {
+    document.addEventListener(
+      'selectionchange', onSelection
+    );
+
+    return () => {
+      document.removeEventListener(
+        'selectionchange', onSelection
+      );
+    };
+  }, []);
 
   /**
    * Handle case sensitive toggle feature
