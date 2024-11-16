@@ -2,7 +2,7 @@ import { __ } from '@wordpress/i18n';
 import { search } from '@wordpress/icons';
 import { useState } from '@wordpress/element';
 import { dispatch, select } from '@wordpress/data';
-import { Modal, TextControl, ToggleControl, Button } from '@wordpress/components';
+import { Modal, TextControl, ToggleControl, Button, Toolbar } from '@wordpress/components';
 
 import './styles/app.scss';
 
@@ -161,7 +161,8 @@ const SearchReplaceForBlockEditor = () => {
     <>
       <Shortcut onKeyDown={openModal} />
       <Button
-        icon={search}
+        icon={ search }
+        label={__('Search & Replace', 'search-replace-for-block-editor')}
         onClick={openModal}
       />
       {
