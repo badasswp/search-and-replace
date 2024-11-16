@@ -107,7 +107,7 @@ export const isCaseSensitive = (): boolean => {
 }
 
 /**
- * Get Root.
+ * Get Editor Root.
  *
  * This callback will attempt to grab the Editor root
  * where we will inject our App container.
