@@ -48,11 +48,34 @@ const SearchReplaceForBlockEditor = () => {
    */
   const onSelection = () => {
     const selectedText = window.getSelection().toString();
+    const targetSelector = '.search-replace-modal';
 
-    if (selectedText) {
+    if (selectedText && !inContainer(targetSelector)) {
       setSearchInput(selectedText);
     }
   };
+
+  /**
+   * Check if the selection is made inside target container.
+   * 
+   * @param selector Target selector.
+   * 
+   * @returns {boolean}
+   */
+  const inContainer = (selector) => {
+    const selection = window.getSelection();
+    const targetDiv = document.querySelector(selector);
+    
+    if (!selection.rangeCount || !targetDiv) {
+      return false;
+    }
+    
+    const range = selection.getRangeAt(0);
+    const isStartInside = targetDiv.contains(range.startContainer);
+    const isEndInside = targetDiv.contains(range.endContainer);
+    
+    return isStartInside && isEndInside;
+  }
 
   /**
    * Listen for Selection.
