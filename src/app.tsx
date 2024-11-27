@@ -74,6 +74,7 @@ const SearchReplaceForBlockEditor = () => {
     }
     
     const range = selection.getRangeAt(0);
+
     return targetDiv.contains(range.startContainer) && targetDiv.contains(range.endContainer);
   }
 
@@ -229,7 +230,7 @@ const SearchReplaceForBlockEditor = () => {
    * by dispatching the change using the block's clientId
    * as reference.
    *
-   * @since 1.2.1
+   * @since 1.3.0
    *
    * @param {Object} args Args object containing element, pattern and text.
    *
