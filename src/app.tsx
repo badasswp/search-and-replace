@@ -141,6 +141,10 @@ const SearchReplaceForBlockEditor = () => {
         case 'core/details':
           replaceBlockAttribute(args, 'summary');
           break;
+        
+        case 'core/table':
+          replaceTableContent(args);
+          break;
 
         default:
           replaceBlockAttribute(args, 'content');
@@ -196,6 +200,125 @@ const SearchReplaceForBlockEditor = () => {
       setReplacements((items) => items + 1);
     }
   }
+
+  /**
+   * Do the actual job of replacing the string in table block
+   * by dispatching the change using the block's clientId
+   * as reference.
+   *
+   * @since 1.3.0
+   *
+   * @param {Object} args Args object containing element, pattern and text.
+   *
+   * @returns {void}
+   */
+  const replaceTableContent = (args) => {
+    const { attributes, clientId } = args.element;
+
+    // Handle Table Caption Replacement
+    if (attributes && attributes.caption) {
+      let oldCaptionString = attributes.caption.originalHTML || attributes.caption;
+      let newCaptionString = oldCaptionString.replace(args.pattern, () => {
+        setReplacements((items) => items + 1);
+        return args.text;
+      });
+
+      if (newCaptionString !== oldCaptionString) {
+        const captionProperty = { caption: newCaptionString };
+        (dispatch('core/block-editor') as any).updateBlockAttributes(clientId, captionProperty);
+      }
+    }
+
+    // Replace body cells content
+    if (attributes.body) {
+      const updatedBody = attributes.body.map(row => {
+        if (row.cells) {
+
+          row.cells = row.cells.map(cell => {
+            if (cell.content && cell.content.originalHTML) {
+              let oldCellContent = cell.content.originalHTML;
+
+              let newCellContent = oldCellContent.replace(args.pattern, () => {
+                setReplacements((items) => items + 1);
+                return args.text;
+              });
+
+              if (newCellContent !== oldCellContent) {
+                cell.content = newCellContent;
+              }
+            }
+            return cell;
+          });
+        }
+        return row;
+      });
+
+      // If any cell content was updated, dispatch the update
+      if (JSON.stringify(updatedBody) !== JSON.stringify(attributes.body)) {
+        const bodyProperty = { body: updatedBody };
+        (dispatch('core/block-editor') as any).updateBlockAttributes(clientId, bodyProperty);
+      }
+    }
+
+    // Replace head cells content
+    if (attributes.head) {
+      const updatedHead = attributes.head.map(row => {
+        if (row.cells) {
+          row.cells = row.cells.map(cell => {
+            if (cell.content && cell.content.originalHTML) {
+              let oldCellContent = cell.content.originalHTML;
+              let newCellContent = oldCellContent.replace(args.pattern, () => {
+                setReplacements((items) => items + 1);
+                return args.text;
+              });
+
+              if (newCellContent !== oldCellContent) {
+                cell.content = newCellContent; 
+              }
+            }
+            return cell;
+          });
+        }
+        return row;
+      });
+
+      // If any head cell content was updated, dispatch the update
+      if (JSON.stringify(updatedHead) !== JSON.stringify(attributes.head)) {
+        const headProperty = { head: updatedHead };
+        (dispatch('core/block-editor') as any).updateBlockAttributes(clientId, headProperty);
+      }
+    }
+
+    // Replace foot cells content
+    if (attributes.foot) {
+      const updatedFoot = attributes.foot.map(row => {
+        if (row.cells) {
+          row.cells = row.cells.map(cell => {
+            if (cell.content && cell.content.originalHTML) {
+              let oldCellContent = cell.content.originalHTML;
+              let newCellContent = oldCellContent.replace(args.pattern, () => {
+                setReplacements((items) => items + 1);
+                return args.text;
+              });
+
+              if (newCellContent !== oldCellContent) {
+                cell.content = newCellContent; 
+              }
+            }
+            return cell;
+          });
+        }
+        return row;
+      });
+
+      // If any foot cell content was updated, dispatch the update
+      if (JSON.stringify(updatedFoot) !== JSON.stringify(attributes.foot)) {
+        const footProperty = { foot: updatedFoot };
+        (dispatch('core/block-editor') as any).updateBlockAttributes(clientId, footProperty);
+      }
+    }
+  }
+
 
   return (
     <>
