@@ -74,6 +74,7 @@ const SearchReplaceForBlockEditor = () => {
     }
     
     const range = selection.getRangeAt(0);
+
     return targetDiv.contains(range.startContainer) && targetDiv.contains(range.endContainer);
   }
 
