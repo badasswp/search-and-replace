@@ -2,6 +2,7 @@
 
 ## 1.2.1
 * Fix in modal selection issue.
+* Fix missing tooltip component.
 * Tested up to WP 6.7.0.
 
 ## 1.2.0
