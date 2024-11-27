@@ -2,7 +2,7 @@ import { __ } from '@wordpress/i18n';
 import { search } from '@wordpress/icons';
 import { dispatch, select } from '@wordpress/data';
 import { useState, useEffect } from '@wordpress/element';
-import { Modal, TextControl, ToggleControl, Button } from '@wordpress/components';
+import { Modal, TextControl, ToggleControl, Button, Tooltip } from '@wordpress/components';
 
 import './styles/app.scss';
 
@@ -58,21 +58,21 @@ const SearchReplaceForBlockEditor = () => {
   /**
    * Check if the selection is made inside target container,
    * for e.g. the `search-replace-modal`.
-   * 
+   *
    * @since 1.2.1
-   * 
+   *
    * @param {string} selector Target selector.
-   * 
+   *
    * @returns {boolean}
    */
   const inContainer = (selector) => {
     const selection = window.getSelection();
     const targetDiv = document.querySelector(selector);
-    
+
     if (!selection.rangeCount || !targetDiv) {
       return false;
     }
-    
+
     const range = selection.getRangeAt(0);
 
     return targetDiv.contains(range.startContainer) && targetDiv.contains(range.endContainer);
@@ -224,11 +224,13 @@ const SearchReplaceForBlockEditor = () => {
   return (
     <>
       <Shortcut onKeyDown={openModal} />
-      <Button
-        icon={ search }
-        label={__('Search & Replace', 'search-replace-for-block-editor')}
-        onClick={openModal}
-      />
+      <Tooltip text={__('Search & Replace', 'search-replace-for-block-editor')}>
+        <Button
+          icon={ search }
+          label={__('Search & Replace', 'search-replace-for-block-editor')}
+          onClick={openModal}
+        />
+      </Tooltip>
       {
         isModalVisible && (
           <Modal
