@@ -6,7 +6,7 @@ import { Modal, TextControl, ToggleControl, Button, Tooltip } from '@wordpress/c
 
 import './styles/app.scss';
 
-import { getAllowedBlocks, isCaseSensitive } from './utils';
+import { getAllowedBlocks, isCaseSensitive, inContainer } from './utils';
 import { Shortcut } from './shortcut';
 
 /**
