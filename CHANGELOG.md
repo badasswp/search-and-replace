@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.3.0
+* Fix table content replacement issue.
+* Tested up to WP 6.7.0.
+
 ## 1.2.0
 * Fix WP upgrade 6.7 issues.
 * Add text selection shortcut functionality.
