@@ -13,7 +13,7 @@ import { Shortcut } from './shortcut';
  * Search & Replace for Block Editor.
  *
  * This function returns a JSX component that comprises
- * the WP Main dashboard, FullscreenModeClose, Modal & Search button.
+ * the Tooltip, Search Icon, Modal & Shortcut.
  *
  * @since 1.0.0
  *
@@ -26,11 +26,25 @@ const SearchReplaceForBlockEditor = () => {
   const [replaceInput, setReplaceInput] = useState('');
   const [caseSensitive, setCaseSensitive] = useState(false);
 
+  /**
+   * Open Modal.
+   *
+   * @since 1.0.0
+   *
+   * @returns {void}
+   */
   const openModal = (): void => {
     setIsModalVisible(true);
     setReplacements(0);
   }
 
+  /**
+   * Close Modal.
+   *
+   * @since 1.0.0
+   *
+   * @returns {void}
+   */
   const closeModal = (): void => {
     setIsModalVisible(false);
     setReplacements(0);
@@ -39,7 +53,7 @@ const SearchReplaceForBlockEditor = () => {
   /**
    * On Selection.
    *
-   * Populate the find field when the user selects
+   * Populate the search field when the user selects
    * a text range in the Block Editor.
    *
    * @since 1.2.0
