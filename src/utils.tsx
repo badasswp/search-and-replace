@@ -156,3 +156,26 @@ export const getAppRoot = (parent) => {
 
   return container;
 };
+
+/**
+ * Check if the selection is made inside a Container,
+ * for e.g. the `search-replace-modal`.
+ *
+ * @since 1.2.1
+ *
+ * @param {string} selector Target selector.
+ *
+ * @returns {boolean}
+ */
+export const inContainer = (selector) => {
+  const selection = window.getSelection();
+  const targetDiv = document.querySelector(selector);
+
+  if (!selection.rangeCount || !targetDiv) {
+    return false;
+  }
+
+  const range = selection.getRangeAt(0);
+
+  return targetDiv.contains(range.startContainer) && targetDiv.contains(range.endContainer);
+}

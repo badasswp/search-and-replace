@@ -6,14 +6,14 @@ import { Modal, TextControl, ToggleControl, Button, Tooltip } from '@wordpress/c
 
 import './styles/app.scss';
 
-import { getAllowedBlocks, isCaseSensitive } from './utils';
+import { getAllowedBlocks, isCaseSensitive, inContainer } from './utils';
 import { Shortcut } from './shortcut';
 
 /**
  * Search & Replace for Block Editor.
  *
  * This function returns a JSX component that comprises
- * the WP Main dashboard, FullscreenModeClose, Modal & Search button.
+ * the Tooltip, Search Icon, Modal & Shortcut.
  *
  * @since 1.0.0
  *
@@ -26,11 +26,25 @@ const SearchReplaceForBlockEditor = () => {
   const [replaceInput, setReplaceInput] = useState('');
   const [caseSensitive, setCaseSensitive] = useState(false);
 
+  /**
+   * Open Modal.
+   *
+   * @since 1.0.0
+   *
+   * @returns {void}
+   */
   const openModal = (): void => {
     setIsModalVisible(true);
     setReplacements(0);
   }
 
+  /**
+   * Close Modal.
+   *
+   * @since 1.0.0
+   *
+   * @returns {void}
+   */
   const closeModal = (): void => {
     setIsModalVisible(false);
     setReplacements(0);
@@ -39,14 +53,14 @@ const SearchReplaceForBlockEditor = () => {
   /**
    * On Selection.
    *
-   * Populate the find field when the user selects
+   * Populate the search field when the user selects
    * a text range in the Block Editor.
    *
    * @since 1.2.0
    *
    * @returns {void}
    */
-  const onSelection = () => {
+  const handleSelection = () => {
     const selectedText = window.getSelection().toString();
     const modalSelector = '.search-replace-modal';
 
@@ -54,51 +68,6 @@ const SearchReplaceForBlockEditor = () => {
       setSearchInput(selectedText);
     }
   };
-
-  /**
-   * Check if the selection is made inside target container,
-   * for e.g. the `search-replace-modal`.
-   *
-   * @since 1.2.1
-   *
-   * @param {string} selector Target selector.
-   *
-   * @returns {boolean}
-   */
-  const inContainer = (selector) => {
-    const selection = window.getSelection();
-    const targetDiv = document.querySelector(selector);
-
-    if (!selection.rangeCount || !targetDiv) {
-      return false;
-    }
-
-    const range = selection.getRangeAt(0);
-
-    return targetDiv.contains(range.startContainer) && targetDiv.contains(range.endContainer);
-  }
-
-  /**
-   * Listen for Selection.
-   *
-   * Constantly listen for when the user selects a
-   * a text in the Block Editor.
-   *
-   * @since 1.2.0
-   *
-   * @returns {void}
-   */
-  useEffect(() => {
-    document.addEventListener(
-      'selectionchange', onSelection
-    );
-
-    return () => {
-      document.removeEventListener(
-        'selectionchange', onSelection
-      );
-    };
-  }, []);
 
   /**
    * Handle case sensitive toggle feature
@@ -220,6 +189,28 @@ const SearchReplaceForBlockEditor = () => {
       setReplacements((items) => items + 1);
     }
   }
+
+  /**
+   * Listen for Selection.
+   *
+   * Constantly listen for when the user selects a
+   * a text in the Block Editor.
+   *
+   * @since 1.2.0
+   *
+   * @returns {void}
+   */
+  useEffect(() => {
+    document.addEventListener(
+      'selectionchange', handleSelection
+    );
+
+    return () => {
+      document.removeEventListener(
+        'selectionchange', handleSelection
+      );
+    };
+  }, []);
 
   return (
     <>
