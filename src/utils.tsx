@@ -170,7 +170,9 @@ export const getAppRoot = (parent) => {
 export const getBlockEditorIframe = () => {
   const editor = document.querySelector('iframe[name="editor-canvas"]');
 
-  return editor ? editor.contentDocument || editor.contentWindow.document : document;
+  return editor && editor instanceof HTMLIFrameElement
+    ? editor.contentDocument || editor.contentWindow?.document
+    : document;
 }
 
 /**
