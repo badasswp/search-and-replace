@@ -156,3 +156,44 @@ export const getAppRoot = (parent) => {
 
   return container;
 };
+
+/**
+ * Get iFrame Document.
+ *
+ * Retrieves the document object of the Block Editor
+ * iframe with the name "editor-canvas".
+ *
+ * @since 1.2.1
+ *
+ * @returns {Document}
+ */
+export const getBlockEditorIframe = () => {
+  const editor = document.querySelector('iframe[name="editor-canvas"]');
+
+  return editor && editor instanceof HTMLIFrameElement
+    ? editor.contentDocument || editor.contentWindow?.document
+    : document;
+}
+
+/**
+ * Check if the selection is made inside a Container,
+ * for e.g. the `search-replace-modal`.
+ *
+ * @since 1.2.1
+ *
+ * @param {string} selector Target selector.
+ *
+ * @returns {boolean}
+ */
+export const inContainer = (selector) => {
+  const selection = window.getSelection();
+  const targetDiv = document.querySelector(selector);
+
+  if (!selection.rangeCount || !targetDiv) {
+    return false;
+  }
+
+  const range = selection.getRangeAt(0);
+
+  return targetDiv.contains(range.startContainer) && targetDiv.contains(range.endContainer);
+}

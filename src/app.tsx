@@ -2,18 +2,18 @@ import { __ } from '@wordpress/i18n';
 import { search } from '@wordpress/icons';
 import { dispatch, select } from '@wordpress/data';
 import { useState, useEffect } from '@wordpress/element';
-import { Modal, TextControl, ToggleControl, Button } from '@wordpress/components';
+import { Modal, TextControl, ToggleControl, Button, Tooltip } from '@wordpress/components';
 
 import './styles/app.scss';
 
-import { getAllowedBlocks, isCaseSensitive } from './utils';
+import { getAllowedBlocks, getBlockEditorIframe, isCaseSensitive, inContainer } from './utils';
 import { Shortcut } from './shortcut';
 
 /**
  * Search & Replace for Block Editor.
  *
  * This function returns a JSX component that comprises
- * the WP Main dashboard, FullscreenModeClose, Modal & Search button.
+ * the Tooltip, Search Icon, Modal & Shortcut.
  *
  * @since 1.0.0
  *
@@ -26,11 +26,25 @@ const SearchReplaceForBlockEditor = () => {
   const [replaceInput, setReplaceInput] = useState('');
   const [caseSensitive, setCaseSensitive] = useState(false);
 
+  /**
+   * Open Modal.
+   *
+   * @since 1.0.0
+   *
+   * @returns {void}
+   */
   const openModal = (): void => {
     setIsModalVisible(true);
     setReplacements(0);
   }
 
+  /**
+   * Close Modal.
+   *
+   * @since 1.0.0
+   *
+   * @returns {void}
+   */
   const closeModal = (): void => {
     setIsModalVisible(false);
     setReplacements(0);
@@ -39,42 +53,21 @@ const SearchReplaceForBlockEditor = () => {
   /**
    * On Selection.
    *
-   * Populate the find field when the user selects
+   * Populate the search field when the user selects
    * a text range in the Block Editor.
    *
    * @since 1.2.0
    *
    * @returns {void}
    */
-  const onSelection = () => {
-    const selectedText = window.getSelection().toString();
+  const handleSelection = () => {
+    const selectedText = getBlockEditorIframe().getSelection().toString();
+    const modalSelector = '.search-replace-modal';
 
-    if (selectedText) {
+    if (selectedText && !inContainer(modalSelector)) {
       setSearchInput(selectedText);
     }
   };
-
-  /**
-   * Listen for Selection.
-   *
-   * Constantly listen for when the user selects a
-   * a text in the Block Editor.
-   *
-   * @since 1.2.0
-   *
-   * @returns {void}
-   */
-  useEffect(() => {
-    document.addEventListener(
-      'selectionchange', onSelection
-    );
-
-    return () => {
-      document.removeEventListener(
-        'selectionchange', onSelection
-      );
-    };
-  }, []);
 
   /**
    * Handle case sensitive toggle feature
@@ -197,14 +190,40 @@ const SearchReplaceForBlockEditor = () => {
     }
   }
 
+  /**
+   * Listen for Selection.
+   *
+   * Constantly listen for when the user selects a
+   * a text in the Block Editor.
+   *
+   * @since 1.2.0
+   *
+   * @returns {void}
+   */
+  useEffect(() => {
+    const editor = getBlockEditorIframe();
+
+    editor.addEventListener(
+      'selectionchange', handleSelection
+    );
+
+    return () => {
+      editor.removeEventListener(
+        'selectionchange', handleSelection
+      );
+    };
+  }, []);
+
   return (
     <>
       <Shortcut onKeyDown={openModal} />
-      <Button
-        icon={ search }
-        label={__('Search & Replace', 'search-replace-for-block-editor')}
-        onClick={openModal}
-      />
+      <Tooltip text={__('Search & Replace', 'search-replace-for-block-editor')}>
+        <Button
+          icon={ search }
+          label={__('Search & Replace', 'search-replace-for-block-editor')}
+          onClick={openModal}
+        />
+      </Tooltip>
       {
         isModalVisible && (
           <Modal
