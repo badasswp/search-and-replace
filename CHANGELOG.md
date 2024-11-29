@@ -4,7 +4,8 @@
 * Fix in modal selection issue.
 * Fix missing tooltip component.
 * Fix block editor selection issue due to iframe.
-* Tested up to WP 6.7.0.
+* Update README notes.
+* Tested up to WP 6.7.1.
 
 ## 1.2.0
 * Fix WP upgrade 6.7 issues.
