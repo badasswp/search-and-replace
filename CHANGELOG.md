@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.3.0
+* Prevent timeout issues in getEditorRoot.
+
 ## 1.2.1
 * Fix in modal selection issue.
 * Fix missing tooltip component.
