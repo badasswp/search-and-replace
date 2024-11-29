@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.3.0
+* Fix backward compatibility issues due to WP upgrade.
+
 ## 1.2.1
 * Fix in modal selection issue.
 * Fix missing tooltip component.
