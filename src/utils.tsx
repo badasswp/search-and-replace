@@ -213,5 +213,5 @@ export const inContainer = (selector) => {
 const isWpVersion = (version) => {
   const { wpVersion } = srfbe;
 
-  return parseInt(wpVersion) * 100 < parseInt(version) * 100
+  return parseInt(version) * 100 >= parseInt(wpVersion) * 100;
 }
