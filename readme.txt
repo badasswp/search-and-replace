@@ -1,9 +1,9 @@
 === Search and Replace for Block Editor ===
-Contributors: badasswp
+Contributors: badasswp, anandraj
 Tags: search, replace, text, block, editor.
-Requires at least: 4.0
-Tested up to: 6.7.0
-Stable tag: 1.2.0
+Requires at least: 6.0
+Tested up to: 6.7.1
+Stable tag: 1.2.1
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -50,7 +50,14 @@ Want to add your personal touch? All of our documentation can be found [here](ht
 
 == Changelog ==
 
-= 1.2.0
+= 1.2.1 =
+* Fix in modal selection issue.
+* Fix missing tooltip component.
+* Fix block editor selection issue due to iframe.
+* Update README notes.
+* Tested up to WP 6.7.1.
+
+= 1.2.0 =
 * Fix WP upgrade 6.7 issues.
 * Add text selection shortcut functionality.
 * Update README notes.
