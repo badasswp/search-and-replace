@@ -120,10 +120,14 @@ export const getEditorRoot = () => {
   let elapsedTime = 0;
   const interval = 100;
 
+  const selector = isWpVersion('6.7.0')
+    ? '.editor-header__toolbar'
+    : '.edit-post-header__toolbar';
+
   return new Promise((resolve, reject) => {
     const intervalId = setInterval(() => {
       elapsedTime += interval;
-      const root = document.getElementById('editor').querySelector('.editor-header__toolbar');
+      const root = document.getElementById('editor').querySelector(selector);
 
       if (root) {
         clearInterval(intervalId);
@@ -196,4 +200,18 @@ export const inContainer = (selector) => {
   const range = selection.getRangeAt(0);
 
   return targetDiv.contains(range.startContainer) && targetDiv.contains(range.endContainer);
+}
+
+/**
+ * Check if is WP version.
+ *
+ * @since 1.3.0
+ *
+ * @param {string} version WP Version.
+ * @returns {boolean}
+ */
+const isWpVersion = (version) => {
+  const { wpVersion } = srfbe;
+
+  return parseInt(wpVersion) * 100 < parseInt(version) * 100
 }
