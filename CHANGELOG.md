@@ -1,7 +1,7 @@
 # Changelog
 
 ## 1.3.0
-* Prevent timeout issues in getEditorRoot.
+* Fix timeout issues causing Icon not to load.
 
 ## 1.2.1
 * Fix in modal selection issue.
