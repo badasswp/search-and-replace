@@ -158,6 +158,24 @@ export const getAppRoot = (parent) => {
 };
 
 /**
+ * Get iFrame Document.
+ *
+ * Retrieves the document object of the Block Editor
+ * iframe with the name "editor-canvas".
+ *
+ * @since 1.2.1
+ *
+ * @returns {Document}
+ */
+export const getBlockEditorIframe = () => {
+  const editor = document.querySelector('iframe[name="editor-canvas"]');
+
+  return editor && editor instanceof HTMLIFrameElement
+    ? editor.contentDocument || editor.contentWindow?.document
+    : document;
+}
+
+/**
  * Check if the selection is made inside a Container,
  * for e.g. the `search-replace-modal`.
  *

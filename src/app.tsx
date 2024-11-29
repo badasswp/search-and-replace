@@ -6,7 +6,7 @@ import { Modal, TextControl, ToggleControl, Button, Tooltip } from '@wordpress/c
 
 import './styles/app.scss';
 
-import { getAllowedBlocks, isCaseSensitive, inContainer } from './utils';
+import { getAllowedBlocks, getBlockEditorIframe, isCaseSensitive, inContainer } from './utils';
 import { Shortcut } from './shortcut';
 
 /**
@@ -61,7 +61,7 @@ const SearchReplaceForBlockEditor = () => {
    * @returns {void}
    */
   const handleSelection = () => {
-    const selectedText = window.getSelection().toString();
+    const selectedText = getBlockEditorIframe().getSelection().toString();
     const modalSelector = '.search-replace-modal';
 
     if (selectedText && !inContainer(modalSelector)) {
@@ -201,12 +201,14 @@ const SearchReplaceForBlockEditor = () => {
    * @returns {void}
    */
   useEffect(() => {
-    document.addEventListener(
+    const editor = getBlockEditorIframe();
+
+    editor.addEventListener(
       'selectionchange', handleSelection
     );
 
     return () => {
-      document.removeEventListener(
+      editor.removeEventListener(
         'selectionchange', handleSelection
       );
     };
