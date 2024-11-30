@@ -1,6 +1,6 @@
 # Changelog
 
-## 1.3.0
+## 1.2.2
 * Fix timeout issues causing Icon not to load.
 
 ## 1.2.1
