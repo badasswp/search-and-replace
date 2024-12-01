@@ -213,5 +213,13 @@ export const inContainer = (selector) => {
 const isWpVersion = (version) => {
   const { wpVersion } = srfbe;
 
-  return parseInt(version) * 100 >= parseInt(wpVersion) * 100;
+  const argVersion = getNumberToBase10(
+    version.split('.').map(Number)
+  );
+
+  const sysVersion = getNumberToBase10(
+    wpVersion.split('.').map(Number)
+  );
+
+  return ! (sysVersion < argVersion);
 }
