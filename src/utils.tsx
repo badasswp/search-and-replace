@@ -134,7 +134,7 @@ export const getEditorRoot = () => {
         resolve(root);
       }
 
-      if (elapsedTime > (10 * interval)) {
+      if (elapsedTime > (600 * interval)) {
         clearInterval(intervalId);
         reject(new Error('Unable to get Editor root container...'));
       }
