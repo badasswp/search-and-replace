@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.2.2
+* Fix style issues for WP 6.6.2.
+
 ## 1.2.1
 * Fix in modal selection issue.
 * Fix missing tooltip component.
