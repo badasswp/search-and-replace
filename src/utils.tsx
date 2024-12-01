@@ -120,10 +120,14 @@ export const getEditorRoot = () => {
   let elapsedTime = 0;
   const interval = 100;
 
+  const selector = isWpVersion('6.7.0')
+    ? '.editor-header__toolbar'
+    : '.edit-post-header__toolbar';
+
   return new Promise((resolve, reject) => {
     const intervalId = setInterval(() => {
       elapsedTime += interval;
-      const root = document.getElementById('editor').querySelector('.editor-header__toolbar');
+      const root = document.querySelector(selector);
 
       if (root) {
         clearInterval(intervalId);
@@ -196,4 +200,44 @@ export const inContainer = (selector) => {
   const range = selection.getRangeAt(0);
 
   return targetDiv.contains(range.startContainer) && targetDiv.contains(range.endContainer);
+}
+
+/**
+ * Check if it's up to WP version.
+ *
+ * @since 1.2.2
+ *
+ * @param {string} version WP Version.
+ * @returns {boolean}
+ */
+const isWpVersion = (version) => {
+  const { wpVersion } = srfbe;
+
+  const argVersion = getNumberToBase10(
+    version.split('.').map(Number)
+  );
+
+  const sysVersion = getNumberToBase10(
+    wpVersion.split('.').map(Number)
+  );
+
+  return ! (sysVersion < argVersion);
+}
+
+/**
+ * Given an array of numbers, get the Radix
+ * (converted to base 10). For e.g. [5, 6, 1] becomes
+ * 561 or [2, 7, 4] becomes 274.
+ *
+ * @since 1.2.2
+ *
+ * @param {number[]} values Array of +ve Numbers.
+ * @returns {number}
+ */
+export const getNumberToBase10 = (values) => {
+  const radix = values.reduce((sum, value, index) => {
+    return sum + (value * Math.pow(10, ((values.length - 1) - index)));
+  }, 0);
+
+  return radix;
 }
