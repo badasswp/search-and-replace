@@ -1,4 +1,5 @@
-.editor-header__toolbar {
+.editor-header__toolbar,
+.edit-post-header__toolbar {
 	& > * {
 		order: 2;
 	}
@@ -48,7 +49,7 @@
 	}
 }
 
-.version-6-6-2 {
+body:not([class*='version-6-7-']) {
 	#search-replace {
 		margin-left: 8.5px;
 		margin-right: -11px;
