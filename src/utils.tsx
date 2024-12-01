@@ -127,7 +127,7 @@ export const getEditorRoot = () => {
   return new Promise((resolve, reject) => {
     const intervalId = setInterval(() => {
       elapsedTime += interval;
-      const root = document.getElementById('editor').querySelector(selector);
+      const root = document.querySelector(selector);
 
       if (root) {
         clearInterval(intervalId);
