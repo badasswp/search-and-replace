@@ -223,3 +223,21 @@ const isWpVersion = (version) => {
 
   return ! (sysVersion < argVersion);
 }
+
+/**
+ * Given an array of numbers, get the Radix
+ * (converted to base 10). For e.g. [5, 6, 1] becomes
+ * 561 or [2, 7, 4] becomes 274.
+ *
+ * @since 1.2.2
+ *
+ * @param {number[]} values Array of +ve Numbers.
+ * @returns {number}
+ */
+export const getNumberToBase10 = (values) => {
+  const radix = values.reduce((sum, value, index) => {
+    return sum + (value * Math.pow(10, ((values.length - 1) - index)));
+  }, 0);
+
+  return radix;
+}
