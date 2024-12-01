@@ -25,7 +25,7 @@ if ( ! defined( 'WPINC' ) ) {
  *
  * @since 1.0.0
  * @since 1.0.2 Load asset via plugin directory URL.
- * @since 1.3.0 Localise WP version.
+ * @since 1.2.2 Localise WP version.
  *
  * @wp-hook 'enqueue_block_editor_assets'
  */
