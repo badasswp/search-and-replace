@@ -203,9 +203,9 @@ export const inContainer = (selector) => {
 }
 
 /**
- * Check if is WP version.
+ * Check if it's up to WP version.
  *
- * @since 1.3.0
+ * @since 1.2.2
  *
  * @param {string} version WP Version.
  * @returns {boolean}
