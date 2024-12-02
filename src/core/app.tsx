@@ -4,7 +4,7 @@ import { dispatch, select } from '@wordpress/data';
 import { useState, useEffect } from '@wordpress/element';
 import { Modal, TextControl, ToggleControl, Button, Tooltip } from '@wordpress/components';
 
-import './styles/app.scss';
+import '../styles/app.scss';
 
 import { getAllowedBlocks, getBlockEditorIframe, isCaseSensitive, inContainer } from './utils';
 import { Shortcut } from './shortcut';
