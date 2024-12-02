@@ -4,6 +4,7 @@
 * Fix style issues for WP 6.6.2.
 * Fix timeout issues causing Icon not to load.
 * Fix backward compatibility issues due to WP upgrade.
+* Apply coding standards.
 
 ## 1.2.1
 * Fix in modal selection issue.
