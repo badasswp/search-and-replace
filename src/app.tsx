@@ -19,7 +19,7 @@ import { Shortcut } from './shortcut';
  *
  * @returns {JSX.Element}
  */
-const SearchReplaceForBlockEditor = () => {
+const SearchReplaceForBlockEditor = (): JSX.Element => {
   const [replacements, setReplacements] = useState(0);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [searchInput, setSearchInput] = useState('');
