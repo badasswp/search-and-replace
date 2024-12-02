@@ -17,7 +17,7 @@ import { getShortcut } from './utils';
  *
  * @returns {JSX.Element|null}
  */
-export const Shortcut = ({ onKeyDown }) => {
+export const Shortcut = ({ onKeyDown }): JSX.Element | null => {
   const dispatch = useDispatch();
 
   dispatch( 'core/keyboard-shortcuts' ).registerShortcut( {
