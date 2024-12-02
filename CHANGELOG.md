@@ -5,6 +5,7 @@
 * Fix timeout issues causing Icon not to load.
 * Fix backward compatibility issues due to WP upgrade.
 * Apply coding standards.
+* Update README notes.
 * Tested up to WP 6.7.1.
 
 ## 1.2.1
