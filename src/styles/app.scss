@@ -6,10 +6,6 @@
 }
 
 #search-replace {
-	order: 1;
-	margin-left: -8.5px;
-	margin-right: 3px;
-
 	&-modal {
 		&__text-group {
 			display: flex;
@@ -49,9 +45,43 @@
 	}
 }
 
-body:not([class*='version-6-7-']) {
+body {
 	#search-replace {
-		margin-left: 8.5px;
-		margin-right: -11px;
+		order: 1;
+		z-index: 1000;
+		margin-left: -8px;
+    	margin-right: 6px;
+	}
+
+	&[class*='version-5-9-'],
+	&[class*='version-6-0-'],
+	&[class*='version-6-1-'] {
+		#search-replace {
+			margin-left: 8.5px;
+			margin-right: -26px;
+		}
+	}
+
+	&[class*='version-6-2-'],
+	&[class*='version-6-3-'],
+	&[class*='version-6-4-'] {
+		#search-replace {
+			margin-left: 8.5px;
+			margin-right: -18px;
+		}
+	}
+
+	&[class*='version-6-5-'] {
+		#search-replace {
+			margin-left: 8.5px;
+			margin-right: -14px;
+		}
+	}
+
+	&[class*='version-6-6-'] {
+		#search-replace {
+			margin-left: 8.5px;
+			margin-right: -10px;
+		}
 	}
 }

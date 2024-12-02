@@ -2,7 +2,7 @@ import { useDispatch } from '@wordpress/data';
 import { useCallback } from '@wordpress/element';
 import { useShortcut } from '@wordpress/keyboard-shortcuts';
 
-import { getShortcut } from './utils';
+import { getShortcut, isWpVersion } from './utils';
 
 /**
  * Shortcut for Block Editor.
@@ -18,6 +18,10 @@ import { getShortcut } from './utils';
  * @returns {JSX.Element|null}
  */
 export const Shortcut = ({ onKeyDown }): JSX.Element | null => {
+  if (!isWpVersion('6.4.0')) {
+    return null;
+  }
+
   const dispatch = useDispatch();
 
   dispatch( 'core/keyboard-shortcuts' ).registerShortcut( {
