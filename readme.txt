@@ -24,6 +24,17 @@ This plugin brings the familiar Search and Replace functionality that PC users h
 
 Now you can easily search and replace text right in the Block Editor. Its easy and does exactly what it says. You can also match the text case using the 'Match Case | Expression' toggle.
 
+= ✔️ Features =
+
+Our plugin comes with everything you need to find and replace text quicker and more efficiently.
+
+✔️ <strong>Search & Replace</strong> text, typos, keywords faster.
+✔️ <strong>Shortcut Keys</strong> - CMD + SHIFT + F.
+✔️ <strong>Match Case</strong> Sensitivity.
+✔️ <strong>Custom Hooks</strong> to help you customize plugin behaviour.
+✔️ Available in <strong>mutiple langauges</strong> such as Arabic, Chinese, Hebrew, Hindi, Russian, German, Italian, Croatian, Spanish & French languages.
+✔️ <strong>Backward compatible</strong>, works with most WP versions.
+
 = ✨ Getting Started =
 
 Create a new Post or open an existing Post. Locate the 'Search and Replace' icon at the <strong>top left</strong> corner of the Block Editor and click on it. Proceed to type in the text you wish to replace and click on 'Replace'.
