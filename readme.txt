@@ -1,9 +1,9 @@
 === Search and Replace for Block Editor ===
-Contributors: badasswp
+Contributors: badasswp, anandraj
 Tags: search, replace, text, block, editor.
-Requires at least: 4.0
-Tested up to: 6.7.0
-Stable tag: 1.2.0
+Requires at least: 6.0
+Tested up to: 6.7.1
+Stable tag: 1.2.2
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -23,6 +23,17 @@ Search and Replace text within the Block Editor.
 This plugin brings the familiar Search and Replace functionality that PC users have grown accustomed to in <strong>Microsoft Word</strong> and <strong>Google Docs</strong> to the Block Editor.
 
 Now you can easily search and replace text right in the Block Editor. Its easy and does exactly what it says. You can also match the text case using the 'Match Case | Expression' toggle.
+
+= ✔️ Features =
+
+Our plugin comes with everything you need to find and replace text quicker and more efficiently.
+
+✔️ <strong>Search & Replace</strong> text, typos, keywords faster.
+✔️ <strong>Shortcut Keys</strong> - CMD + SHIFT + F.
+✔️ <strong>Match Case</strong> Sensitivity.
+✔️ <strong>Custom Hooks</strong> to help you customize plugin behaviour.
+✔️ Available in <strong>mutiple langauges</strong> such as Arabic, Chinese, Hebrew, Hindi, Russian, German, Italian, Croatian, Spanish & French languages.
+✔️ <strong>Backward compatible</strong>, works with most WP versions.
 
 = ✨ Getting Started =
 
@@ -50,7 +61,22 @@ Want to add your personal touch? All of our documentation can be found [here](ht
 
 == Changelog ==
 
-= 1.2.0
+= 1.2.2 =
+* Fix style issues for WP 6.6.2.
+* Fix timeout issues causing Icon not to load.
+* Fix backward compatibility issues due to WP upgrade.
+* Apply coding standards.
+* Update README notes.
+* Tested up to WP 6.7.1.
+
+= 1.2.1 =
+* Fix in modal selection issue.
+* Fix missing tooltip component.
+* Fix block editor selection issue due to iframe.
+* Update README notes.
+* Tested up to WP 6.7.1.
+
+= 1.2.0 =
 * Fix WP upgrade 6.7 issues.
 * Add text selection shortcut functionality.
 * Update README notes.

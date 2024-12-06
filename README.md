@@ -42,6 +42,7 @@ addFilter(
 **Parameters**
 
 - allowedBlocks _`{string[]}`_ List of Allowed Blocks.
+<br/>
 
 #### `search-replace-for-block-editor.keyboardShortcut`
 
@@ -65,6 +66,7 @@ addFilter(
 **Parameters**
 
 - shortcut _`{Object}`_ By default this is an object, containing `modifier` and `character` properties which together represent the following command `CMD + SHIFT + F`.
+<br/>
 
 #### `search-replace-for-block-editor.caseSensitive`
 
@@ -90,7 +92,8 @@ addFilter(
 
 ### Setup
 
-- Clone the repository.
+- Clone the repository into your `wp-content/plugins` folder.
 - Make sure you have [Node](https://nodejs.org) installed on your computer.
-- Run `npm install && npm run build` to build JS dependencies.
+- Install `yarn` globally: `npm install --global yarn`.
+- Run `yarn install && yarn build` to build JS dependencies.
 - For local development, you can use [Docker](https://docs.docker.com/install/) or [Local by Flywheel](https://localwp.com/).

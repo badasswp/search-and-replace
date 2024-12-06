@@ -3,7 +3,7 @@
  * Plugin Name: Search and Replace for Block Editor
  * Plugin URI:  https://github.com/badasswp/search-and-replace
  * Description: Search and Replace text within the Block Editor.
- * Version:     1.2.0
+ * Version:     1.2.2
  * Author:      badasswp
  * Author URI:  https://github.com/badasswp
  * License:     GPL v2 or later
@@ -25,10 +25,13 @@ if ( ! defined( 'WPINC' ) ) {
  *
  * @since 1.0.0
  * @since 1.0.2 Load asset via plugin directory URL.
+ * @since 1.2.2 Localise WP version.
  *
  * @wp-hook 'enqueue_block_editor_assets'
  */
 add_action( 'enqueue_block_editor_assets', function() {
+	global $wp_version;
+
 	wp_enqueue_script(
 		'search-replace-for-block-editor',
 		trailingslashit( plugin_dir_url( __FILE__ ) ) . 'dist/app.js',
@@ -44,7 +47,7 @@ add_action( 'enqueue_block_editor_assets', function() {
 			'wp-edit-post',
 			'wp-edit-site',
 		],
-		'1.2.0',
+		'1.2.2',
 		false,
 	);
 
@@ -52,6 +55,14 @@ add_action( 'enqueue_block_editor_assets', function() {
 		'search-replace-for-block-editor',
 		'search-replace-for-block-editor',
 		plugin_dir_path( __FILE__ ) . 'languages'
+	);
+
+	wp_localize_script(
+		'search-replace-for-block-editor',
+		'srfbe',
+		[
+			'wpVersion' => $wp_version,
+		]
 	);
 } );
 
