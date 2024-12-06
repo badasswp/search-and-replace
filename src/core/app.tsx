@@ -4,7 +4,7 @@ import { dispatch, select } from '@wordpress/data';
 import { useState, useEffect } from '@wordpress/element';
 import { Modal, TextControl, ToggleControl, Button, Tooltip } from '@wordpress/components';
 
-import './styles/app.scss';
+import '../styles/app.scss';
 
 import { getAllowedBlocks, getBlockEditorIframe, isCaseSensitive, inContainer } from './utils';
 import { Shortcut } from './shortcut';
@@ -19,7 +19,7 @@ import { Shortcut } from './shortcut';
  *
  * @returns {JSX.Element}
  */
-const SearchReplaceForBlockEditor = () => {
+const SearchReplaceForBlockEditor = (): JSX.Element => {
   const [replacements, setReplacements] = useState(0);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [searchInput, setSearchInput] = useState('');
@@ -62,9 +62,9 @@ const SearchReplaceForBlockEditor = () => {
    *
    * @returns {void}
    */
-  const handleSelection = () => {
-    const selectedText = getBlockEditorIframe().getSelection().toString();
-    const modalSelector = '.search-replace-modal';
+  const handleSelection = (): void => {
+    const selectedText: string = getBlockEditorIframe().getSelection().toString();
+    const modalSelector: string = '.search-replace-modal';
 
     if (selectedText && !inContainer(modalSelector)) {
       setSearchInput(selectedText);
@@ -93,6 +93,7 @@ const SearchReplaceForBlockEditor = () => {
    * @since 1.1.0
    *
    * @param {boolean} newValue
+   * @returns {void}
    */
   const handleCaseSensitive = (newValue: boolean): void => {
     setCaseSensitive( newValue );
@@ -114,7 +115,7 @@ const SearchReplaceForBlockEditor = () => {
       return;
     }
 
-    const pattern = new RegExp(
+    const pattern: RegExp = new RegExp(
       `(?<!<[^>]*)${searchInput}(?<![^>]*<)`,
       isCaseSensitive() || caseSensitive ? 'g' : 'gi'
     );
@@ -133,12 +134,12 @@ const SearchReplaceForBlockEditor = () => {
    * @since 1.0.1 Handle edge-cases for quote, pullquote & details block.
    *
    * @param {Object} element Gutenberg editor block.
-   * @param {string} pattern Search pattern.
+   * @param {RegExp} pattern Search pattern.
    * @param {string} text    Replace pattern.
    *
    * @returns {void}
    */
-  const recursivelyReplace = (element, pattern, text, context) => {
+  const recursivelyReplace = (element, pattern, text): void => {
     if (getAllowedBlocks().indexOf(element.name) !== -1) {
       const args = { element, pattern, text, context };
 
@@ -177,7 +178,7 @@ const SearchReplaceForBlockEditor = () => {
    *
    * @returns {void}
    */
-  const replaceBlockAttribute = (args, attribute) => {
+  const replaceBlockAttribute = (args, attribute): void => {
     const { attributes, clientId } = args.element;
 
     if (undefined === attributes || undefined === attributes[attribute]) {

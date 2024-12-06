@@ -1,4 +1,4 @@
-import { getTextBlocks } from '../src/utils';
+import { getTextBlocks } from '../src/core/utils';
 
 jest.mock('@wordpress/blocks', () => ({
   getBlockTypes: jest.fn(() => {
