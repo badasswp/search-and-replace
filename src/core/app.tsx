@@ -139,7 +139,7 @@ const SearchReplaceForBlockEditor = (): JSX.Element => {
    *
    * @returns {void}
    */
-  const recursivelyReplace = (element, pattern, text): void => {
+  const recursivelyReplace = (element, pattern, text, context): void => {
     if (getAllowedBlocks().indexOf(element.name) !== -1) {
       const args = { element, pattern, text, context };
 
