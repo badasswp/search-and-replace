@@ -114,23 +114,27 @@ export const isCaseSensitive = (): boolean => {
  *
  * @since 1.2.0
  *
- * @returns Promise<HTMLElement>
+ * @returns Promise<HTMLElement | Error>
  */
-export const getEditorRoot = () => {
-  let elapsedTime = 0;
-  const interval = 100;
+export const getEditorRoot = (): Promise<HTMLElement | Error> => {
+  let elapsedTime: number = 0;
+  const interval: number = 100;
+
+  const selector: string = isWpVersion('6.6.0')
+    ? '.editor-header__toolbar'
+    : '.edit-post-header__toolbar';
 
   return new Promise((resolve, reject) => {
     const intervalId = setInterval(() => {
       elapsedTime += interval;
-      const root = document.getElementById('editor').querySelector('.editor-header__toolbar');
+      const root = document.querySelector(selector) as HTMLElement | null;
 
       if (root) {
         clearInterval(intervalId);
         resolve(root);
       }
 
-      if (elapsedTime > (10 * interval)) {
+      if (elapsedTime > (600 * interval)) {
         clearInterval(intervalId);
         reject(new Error('Unable to get Editor root container...'));
       }
@@ -149,8 +153,8 @@ export const getEditorRoot = () => {
  * @param {HTMLElement} parent - The Parent DOM element.
  * @returns {HTMLDivElement}
  */
-export const getAppRoot = (parent) => {
-  const container = document.createElement('div');
+export const getAppRoot = (parent: HTMLElement): HTMLDivElement => {
+  const container: HTMLDivElement = document.createElement('div');
   container.id = 'search-replace';
   parent.appendChild(container);
 
@@ -167,7 +171,7 @@ export const getAppRoot = (parent) => {
  *
  * @returns {Document}
  */
-export const getBlockEditorIframe = () => {
+export const getBlockEditorIframe = (): Document => {
   const editor = document.querySelector('iframe[name="editor-canvas"]');
 
   return editor && editor instanceof HTMLIFrameElement
@@ -182,18 +186,57 @@ export const getBlockEditorIframe = () => {
  * @since 1.2.1
  *
  * @param {string} selector Target selector.
- *
  * @returns {boolean}
  */
-export const inContainer = (selector) => {
-  const selection = window.getSelection();
-  const targetDiv = document.querySelector(selector);
+export const inContainer = (selector: string): boolean => {
+  const selection = window.getSelection() as Selection | null;
+  const targetDiv = document.querySelector(selector) as HTMLElement | null;
 
-  if (!selection.rangeCount || !targetDiv) {
+  if (!selection?.rangeCount || !targetDiv) {
     return false;
   }
 
-  const range = selection.getRangeAt(0);
+  const range: Range = selection.getRangeAt(0);
 
   return targetDiv.contains(range.startContainer) && targetDiv.contains(range.endContainer);
+}
+
+/**
+ * Check if it's up to WP version.
+ *
+ * @since 1.2.2
+ *
+ * @param {string} version WP Version.
+ * @returns {boolean}
+ */
+export const isWpVersion = (version: string) => {
+  const { wpVersion } = srfbe as { wpVersion: string };
+
+  const argVersion: number = getNumberToBase10(
+    version.split('.').map(Number)
+  );
+
+  const sysVersion: number = getNumberToBase10(
+    wpVersion.split('.').map(Number)
+  );
+
+  return ! (sysVersion < argVersion);
+}
+
+/**
+ * Given an array of numbers, get the Radix
+ * (converted to base 10). For e.g. [5, 6, 1] becomes
+ * 561 or [2, 7, 4] becomes 274.
+ *
+ * @since 1.2.2
+ *
+ * @param {number[]} values Array of positive numbers.
+ * @returns {number}
+ */
+export const getNumberToBase10 = (values: number[]): number => {
+  const radix: number = values.reduce((sum: number, value: number, index: number) => {
+    return sum + (value * Math.pow(10, ((values.length - 1) - index)));
+  }, 0);
+
+  return radix;
 }

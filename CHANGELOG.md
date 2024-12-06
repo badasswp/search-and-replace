@@ -1,8 +1,18 @@
 # Changelog
 
+<<<<<<< HEAD
 ## 1.3.0
 * Feat: Add Search count feature.
 * Tested up to WP 6.7.0.
+=======
+## 1.2.2
+* Fix style issues for WP 6.6.2.
+* Fix timeout issues causing Icon not to load.
+* Fix backward compatibility issues due to WP upgrade.
+* Apply coding standards.
+* Update README notes.
+* Tested up to WP 6.7.1.
+>>>>>>> 50eb3a2614dd80a539efeb6841660ee3e76aaabb
 
 ## 1.2.1
 * Fix in modal selection issue.
