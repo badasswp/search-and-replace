@@ -1,7 +1,7 @@
 # Changelog
 
 ## 1.3.0
-* Introducing feature for search count.
+* Feat: Add Search count feature.
 * Tested up to WP 6.7.0.
 
 ## 1.2.1
