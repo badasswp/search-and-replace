@@ -37,7 +37,6 @@ const SearchReplaceForBlockEditor = (): JSX.Element => {
   const openModal = (): void => {
     setIsModalVisible(true);
     setReplacements(0);
-    searchInput ? replace(false) : '';
   }
 
   /**
@@ -72,10 +71,10 @@ const SearchReplaceForBlockEditor = (): JSX.Element => {
   };
 
   /**
-   * Listen for case-sensitivity change.
+   * Listen for changes in Search Input & Case Sensitivity.
    *
-   * Constantly listen for when the user changes the
-   * case-sensitivity.
+   * By passing in a FALSY context to the replace callback, we only 
+   * search for matched strings, we DO NOT replace matched strings.
    *
    * @since 1.3.0
    *
@@ -104,7 +103,9 @@ const SearchReplaceForBlockEditor = (): JSX.Element => {
    * clicks the 'Replace' button.
    *
    * @since 1.0.0
+   * @since 1.3.0 Pass in context param to determine if it is Search or Replace.
    *
+   * @param {boolean} context True (Replace), False (Search).
    * @returns {void}
    */
   const replace = (context = false): void => {
@@ -132,10 +133,12 @@ const SearchReplaceForBlockEditor = (): JSX.Element => {
    *
    * @since 1.0.0
    * @since 1.0.1 Handle edge-cases for quote, pullquote & details block.
+   * @since 1.3.0 Pass in context param to determine if it is Search or Replace.
    *
    * @param {Object} element Gutenberg editor block.
    * @param {RegExp} pattern Search pattern.
    * @param {string} text    Replace pattern.
+   * @param {boolean} context True (Replace), False (Search).
    *
    * @returns {void}
    */
@@ -198,13 +201,14 @@ const SearchReplaceForBlockEditor = (): JSX.Element => {
     const property = {};
     property[attribute] = newString;
 
-    if(args.context){
-      (dispatch('core/block-editor') as any).updateBlockAttributes(clientId, property);
+    if (args.context) {
+      (dispatch('core/block-editor') as any)
+      .updateBlockAttributes(clientId, property);
     }
 
     // Handle edge-case ('value') with Pullquotes.
     if (attributes.value) {
-      if(args.context){
+      if (args.context) {
         (dispatch('core/block-editor') as any)
         .updateBlockAttributes(clientId, { value: newString });  
       }
@@ -281,22 +285,20 @@ const SearchReplaceForBlockEditor = (): JSX.Element => {
             </div>
 
             {
-              context ? (
+              replacements ? (
                 <div id="search-replace-modal__notification">
                   <p>
-                    <strong>{replacements}</strong> {__('item(s) replaced successfully', 'search-replace-for-block-editor')}.
+                    {context ? (
+                      <>
+                        <strong>{replacements}</strong> {__('item(s) replaced successfully', 'search-replace-for-block-editor')}.
+                      </>
+                    ) : (
+                      <>
+                        <strong>{replacements}</strong> {__('item(s) found', 'search-replace-for-block-editor')}.
+                      </>
+                    )}
                   </p>
                 </div>
-              ) : ''
-            }
-
-            {
-              !context && searchInput ? (
-                <div id="search-replace-modal__notification">
-                <p>
-                  <strong>{replacements}</strong> {__('item(s) found', 'search-replace-for-block-editor')}.
-                </p>
-              </div>
               ) : ''
             }
 
