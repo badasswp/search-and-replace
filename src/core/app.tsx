@@ -25,6 +25,7 @@ const SearchReplaceForBlockEditor = (): JSX.Element => {
   const [searchInput, setSearchInput] = useState('');
   const [replaceInput, setReplaceInput] = useState('');
   const [caseSensitive, setCaseSensitive] = useState(false);
+  const [context, setContext] = useState(false);
 
   /**
    * Open Modal.
@@ -70,6 +71,20 @@ const SearchReplaceForBlockEditor = (): JSX.Element => {
   };
 
   /**
+   * Listen for changes in Search Input & Case Sensitivity.
+   *
+   * By passing in a FALSY context to the replace callback, we only 
+   * search for matched strings, we DO NOT replace matched strings.
+   *
+   * @since 1.3.0
+   *
+   * @returns {void}
+   */
+  useEffect(() => {
+    replace(false);
+  }, [searchInput, caseSensitive]);
+
+  /**
    * Handle case sensitive toggle feature
    * to enable user perform case-sensitive search
    * and replacements.
@@ -88,10 +103,13 @@ const SearchReplaceForBlockEditor = (): JSX.Element => {
    * clicks the 'Replace' button.
    *
    * @since 1.0.0
+   * @since 1.3.0 Pass in context param to determine if it is Search or Replace.
    *
+   * @param {boolean} context True (Replace), False (Search).
    * @returns {void}
    */
-  const replace = (): void => {
+  const replace = (context = false): void => {
+    setContext(context);
     setReplacements(0);
 
     if (!searchInput) {
@@ -104,7 +122,7 @@ const SearchReplaceForBlockEditor = (): JSX.Element => {
     );
 
     select('core/block-editor').getBlocks().forEach((element) => {
-      recursivelyReplace(element, pattern, replaceInput);
+      recursivelyReplace(element, pattern, replaceInput, context);
     });
   };
 
@@ -115,16 +133,18 @@ const SearchReplaceForBlockEditor = (): JSX.Element => {
    *
    * @since 1.0.0
    * @since 1.0.1 Handle edge-cases for quote, pullquote & details block.
+   * @since 1.3.0 Pass in context param to determine if it is Search or Replace.
    *
    * @param {Object} element Gutenberg editor block.
    * @param {RegExp} pattern Search pattern.
    * @param {string} text    Replace pattern.
+   * @param {boolean} context True (Replace), False (Search).
    *
    * @returns {void}
    */
-  const recursivelyReplace = (element, pattern, text): void => {
+  const recursivelyReplace = (element, pattern, text, context): void => {
     if (getAllowedBlocks().indexOf(element.name) !== -1) {
-      const args = { element, pattern, text };
+      const args = { element, pattern, text, context };
 
       switch (element.name) {
         case 'core/quote':
@@ -144,7 +164,7 @@ const SearchReplaceForBlockEditor = (): JSX.Element => {
 
     if (element.innerBlocks.length) {
       element.innerBlocks.forEach((innerElement) => {
-        recursivelyReplace(innerElement, pattern, text);
+        recursivelyReplace(innerElement, pattern, text, context);
       });
     }
   }
@@ -181,12 +201,17 @@ const SearchReplaceForBlockEditor = (): JSX.Element => {
     const property = {};
     property[attribute] = newString;
 
-    (dispatch('core/block-editor') as any).updateBlockAttributes(clientId, property);
+    if (args.context) {
+      (dispatch('core/block-editor') as any)
+      .updateBlockAttributes(clientId, property);
+    }
 
     // Handle edge-case ('value') with Pullquotes.
     if (attributes.value) {
-      (dispatch('core/block-editor') as any)
-        .updateBlockAttributes(clientId, { value: newString });
+      if (args.context) {
+        (dispatch('core/block-editor') as any)
+        .updateBlockAttributes(clientId, { value: newString });  
+      }
       setReplacements((items) => items + 1);
     }
   }
@@ -263,7 +288,15 @@ const SearchReplaceForBlockEditor = (): JSX.Element => {
               replacements ? (
                 <div id="search-replace-modal__notification">
                   <p>
-                    <strong>{replacements}</strong> {__('item(s) replaced successfully', 'search-replace-for-block-editor')}.
+                    {context ? (
+                      <>
+                        <strong>{replacements}</strong> {__('item(s) replaced successfully', 'search-replace-for-block-editor')}.
+                      </>
+                    ) : (
+                      <>
+                        <strong>{replacements}</strong> {__('item(s) found', 'search-replace-for-block-editor')}.
+                      </>
+                    )}
                   </p>
                 </div>
               ) : ''
@@ -272,7 +305,7 @@ const SearchReplaceForBlockEditor = (): JSX.Element => {
             <div id="search-replace-modal__button-group">
               <Button
                 variant="primary"
-                onClick={replace}
+                onClick={() => replace(true)}
               >
                 {__('Replace')}
               </Button>
