@@ -3,7 +3,7 @@ Contributors: badasswp, anandraj
 Tags: search, replace, text, block, editor.
 Requires at least: 6.0
 Tested up to: 6.7.1
-Stable tag: 1.2.2
+Stable tag: 1.2.3
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -60,6 +60,10 @@ Want to add your personal touch? All of our documentation can be found [here](ht
 3. Match Case in Search & Replace - Now you can match the case of the text and Search and Replace.
 
 == Changelog ==
+
+= 1.2.3 =
+* Fix: Crashing Gutenberg Block Editor on Toggle Block Inserter.
+* Tested up to WP 6.7.1.
 
 = 1.2.2 =
 * Fix style issues for WP 6.6.2.
