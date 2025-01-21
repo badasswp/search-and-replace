@@ -45,7 +45,6 @@ add_action( 'enqueue_block_editor_assets', function() {
 			'wp-compose',
 			'wp-plugins',
 			'wp-edit-post',
-			'wp-edit-site',
 		],
 		'1.2.2',
 		false,
