@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.2.3
+* Fix: Toggle Block UI from breaking.
+
 ## 1.2.2
 * Fix style issues for WP 6.6.2.
 * Fix timeout issues causing Icon not to load.
