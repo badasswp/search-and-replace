@@ -1,7 +1,8 @@
 # Changelog
 
 ## 1.2.3
-* Fix: Toggle Block UI from breaking.
+* Fix: Crashing Gutenberg Block Editor on Toggle Block Inserter.
+* Tested up to WP 6.7.1.
 
 ## 1.2.2
 * Fix style issues for WP 6.6.2.
