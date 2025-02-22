@@ -8,7 +8,7 @@ Requires PHP: 7.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Search and Replace text within the Block Editor.
+Search and Replace text within the WordPress Block Editor just like Microsoft Word or Google Docs. It's super fast, easy & just works!
 
 == Installation ==
 
