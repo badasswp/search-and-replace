@@ -81,7 +81,7 @@ const SearchReplaceForBlockEditor = (): JSX.Element => {
    * @returns {void}
    */
   useEffect(() => {
-    replace(false);
+    replace();
   }, [searchInput, caseSensitive]);
 
   /**
