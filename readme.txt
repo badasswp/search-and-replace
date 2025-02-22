@@ -1,5 +1,5 @@
 === Search and Replace for Block Editor ===
-Contributors: badasswp, anandraj
+Contributors: badasswp, rajanand346
 Tags: search, replace, text, block, editor.
 Requires at least: 6.0
 Tested up to: 6.7.1
