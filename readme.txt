@@ -61,6 +61,10 @@ Want to add your personal touch? All of our documentation can be found [here](ht
 
 == Changelog ==
 
+= 1.3.0 =
+* Feat: Add Search count feature.
+* Tested up to WP 6.7.2.
+
 = 1.2.3 =
 * Fix: Crashing Gutenberg Block Editor on Toggle Block Inserter.
 * Tested up to WP 6.7.2.
