@@ -1,14 +1,14 @@
 === Search and Replace for Block Editor ===
-Contributors: badasswp, anandraj
+Contributors: badasswp, rajanand346
 Tags: search, replace, text, block, editor.
 Requires at least: 6.0
-Tested up to: 6.7.1
-Stable tag: 1.2.3
+Tested up to: 6.7.2
+Stable tag: 1.3.0
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Search and Replace text within the Block Editor.
+Search and Replace text within the WordPress Block Editor just like Microsoft Word or Google Docs. It's super fast, easy & just works!
 
 == Installation ==
 
@@ -61,9 +61,13 @@ Want to add your personal touch? All of our documentation can be found [here](ht
 
 == Changelog ==
 
+= 1.3.0 =
+* Feat: Add Search count feature.
+* Tested up to WP 6.7.2.
+
 = 1.2.3 =
 * Fix: Crashing Gutenberg Block Editor on Toggle Block Inserter.
-* Tested up to WP 6.7.1.
+* Tested up to WP 6.7.2.
 
 = 1.2.2 =
 * Fix style issues for WP 6.6.2.

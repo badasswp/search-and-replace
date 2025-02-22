@@ -17,8 +17,8 @@ import { getShortcut, isWpVersion } from './utils';
  *
  * @returns {JSX.Element|null}
  */
-export const Shortcut = ({ onKeyDown }): JSX.Element | null => {
-  if (!isWpVersion('6.4.0')) {
+export const Shortcut = ( { onKeyDown } ): JSX.Element | null => {
+  if ( ! isWpVersion( '6.4.0' ) ) {
     return null;
   }
 
