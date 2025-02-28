@@ -66,7 +66,7 @@ addFilter(
 
 **Parameters**
 
-- allowedBlocksAndFields _`{object[]}`_ List of Allowed Blocks and it fields. Inside the object the a name property for the name of the block and an array fields for the search fieds of this block.
+- allowedBlocksAndFields _`{object[]}`_ List of Allowed Blocks and it fields. Inside the object the a name property for the name of the block and an array fields for the search fields of this block.
 <br/>
 
 #### `search-replace-for-block-editor.keyboardShortcut`
