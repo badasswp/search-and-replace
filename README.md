@@ -39,6 +39,11 @@ addFilter(
 );
 ```
 
+**Parameters**
+
+- allowedBlocks _`{string[]}`_ List of Allowed Blocks.
+  <br/>
+
 #### `search-replace-for-block-editor.allowedBlocksAndFields`
 
 This custom hook (filter) provides the ability to include the search and replace functionality for your custom block with custom fields:
@@ -61,7 +66,8 @@ addFilter(
 
 **Parameters**
 
-- allowedBlocks _`{string[]}`_ List of Allowed Blocks.
+- allowedBlocksAndFields _`{object[]}`_ List of Allowed Blocks and it fields. Inside the object the a name property for the name of the block and an array fields
+- for the search fieds of this block.
 <br/>
 
 #### `search-replace-for-block-editor.keyboardShortcut`
