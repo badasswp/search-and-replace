@@ -1,3 +1,7 @@
+/* eslint-disable no-console */
+/* eslint-disable react/no-deprecated */
+/* eslint-disable import/no-extraneous-dependencies */
+
 import ReactDOM from 'react-dom';
 import { createRoot } from 'react-dom/client';
 
