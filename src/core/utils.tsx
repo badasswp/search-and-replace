@@ -1,5 +1,5 @@
-import { applyFilters } from '@wordpress/hooks';
-import { getBlockTypes } from '@wordpress/blocks';
+import { applyFilters } from "@wordpress/hooks";
+import { getBlockTypes } from "@wordpress/blocks";
 
 /**
  * Allowed Blocks.
@@ -23,8 +23,38 @@ export const getAllowedBlocks = (): string[] => {
    * @param {string[]} blocks List of Blocks.
    * @returns {string[]}
    */
-  return applyFilters( 'search-replace-for-block-editor.allowedBlocks', getTextBlocks() ) as string[];
-}
+  const blocks = applyFilters(
+    "search-replace-for-block-editor.allowedBlocks",
+    getTextBlocks(),
+  ) as string[];
+
+  const fieldBlocks = getAllowedBlocksAndFields().map((block) => {
+    if (block.hasOwnProperty("name")) {
+      return block.name as string;
+    }
+  }) as string[];
+
+  return [...blocks, ...fieldBlocks];
+};
+
+export const getAllowedBlocksAndFields = (): object[] => {
+  /**
+   *    Allow Text Blocks and its fields
+   *
+   * Filter and allow only these Specific blocks and its fields
+   * for the Search & Replace. See example
+   *  [
+   *  {name:'block1', fields: ['field1', 'field2']},
+   *  {name:'block2', fields: ['textfield1', 'textfield2']}
+   *  ]
+   *  @param {object[]} List of Blocks and its fields.
+   *  @returns {object[]}
+   */
+  return applyFilters(
+    "search-replace-for-block-editor.allowedBlocksAndFields",
+    getTextBlocks(),
+  ) as object[];
+};
 
 /**
  * Get Text Blocks.
@@ -36,13 +66,14 @@ export const getAllowedBlocks = (): string[] => {
  *
  * @returns {string[]}
  */
-export const getTextBlocks = (): string[] => getBlockTypes()
-  .filter( ( block ) => {
-    return !!(block?.category === 'text');
-  } )
-  .map( ( block ) => {
-    return block?.name;
-  } );
+export const getTextBlocks = (): string[] =>
+  getBlockTypes()
+    .filter((block) => {
+      return !!(block?.category === "text");
+    })
+    .map((block) => {
+      return block?.name;
+    });
 
 /**
  * Get ShortCut.
@@ -57,18 +88,18 @@ export const getTextBlocks = (): string[] => getBlockTypes()
 export const getShortcut = () => {
   const options = {
     CMD: {
-      modifier: 'primary',
-      character: 'f',
+      modifier: "primary",
+      character: "f",
     },
     SHIFT: {
-      modifier: 'primaryShift',
-      character: 'f',
+      modifier: "primaryShift",
+      character: "f",
     },
     ALT: {
-      modifier: 'primaryAlt',
-      character: 'f',
+      modifier: "primaryAlt",
+      character: "f",
     },
-  }
+  };
 
   /**
    * Filter Keyboard Shortcut.
@@ -81,8 +112,11 @@ export const getShortcut = () => {
    * @param {Object} Shortcut Option.
    * @returns {Object}
    */
-  return applyFilters( 'search-replace-for-block-editor.keyboardShortcut', options.SHIFT );
-}
+  return applyFilters(
+    "search-replace-for-block-editor.keyboardShortcut",
+    options.SHIFT,
+  );
+};
 
 /**
  * Determine if a Search & Replace activity is case-sensitive
@@ -103,8 +137,11 @@ export const isCaseSensitive = (): boolean => {
    * @param {boolean} Case Sensitivity.
    * @returns {boolean}
    */
-  return applyFilters( 'search-replace-for-block-editor.caseSensitive', false ) as boolean;
-}
+  return applyFilters(
+    "search-replace-for-block-editor.caseSensitive",
+    false,
+  ) as boolean;
+};
 
 /**
  * Get Editor Root.
@@ -120,26 +157,26 @@ export const getEditorRoot = (): Promise<HTMLElement | Error> => {
   let elapsedTime: number = 0;
   const interval: number = 100;
 
-  const selector: string = isWpVersion( '6.6.0' )
-    ? '.editor-header__toolbar'
-    : '.edit-post-header__toolbar';
+  const selector: string = isWpVersion("6.6.0")
+    ? ".editor-header__toolbar"
+    : ".edit-post-header__toolbar";
 
-  return new Promise( ( resolve, reject ) => {
-    const intervalId = setInterval( () => {
+  return new Promise((resolve, reject) => {
+    const intervalId = setInterval(() => {
       elapsedTime += interval;
       const root = document.querySelector(selector) as HTMLElement | null;
 
-      if ( root ) {
+      if (root) {
         clearInterval(intervalId);
-        resolve( root );
+        resolve(root);
       }
 
-      if ( elapsedTime > ( 600 * interval ) ) {
-        clearInterval( intervalId );
-        reject( new Error( 'Unable to get Editor root container...' ) );
+      if (elapsedTime > 600 * interval) {
+        clearInterval(intervalId);
+        reject(new Error("Unable to get Editor root container..."));
       }
     }, interval);
-  } );
+  });
 };
 
 /**
@@ -153,10 +190,10 @@ export const getEditorRoot = (): Promise<HTMLElement | Error> => {
  * @param {HTMLElement} parent - The Parent DOM element.
  * @returns {HTMLDivElement}
  */
-export const getAppRoot = ( parent: HTMLElement ): HTMLDivElement => {
-  const container: HTMLDivElement = document.createElement( 'div' );
-  container.id = 'search-replace';
-  parent.appendChild( container );
+export const getAppRoot = (parent: HTMLElement): HTMLDivElement => {
+  const container: HTMLDivElement = document.createElement("div");
+  container.id = "search-replace";
+  parent.appendChild(container);
 
   return container;
 };
@@ -172,12 +209,12 @@ export const getAppRoot = ( parent: HTMLElement ): HTMLDivElement => {
  * @returns {Document}
  */
 export const getBlockEditorIframe = (): Document => {
-  const editor = document.querySelector( 'iframe[name="editor-canvas"]' );
+  const editor = document.querySelector('iframe[name="editor-canvas"]');
 
   return editor && editor instanceof HTMLIFrameElement
     ? editor.contentDocument || editor.contentWindow?.document
     : document;
-}
+};
 
 /**
  * Check if the selection is made inside a Container,
@@ -188,18 +225,21 @@ export const getBlockEditorIframe = (): Document => {
  * @param {string} selector Target selector.
  * @returns {boolean}
  */
-export const inContainer = ( selector: string ): boolean => {
+export const inContainer = (selector: string): boolean => {
   const selection = window.getSelection() as Selection | null;
-  const targetDiv = document.querySelector( selector ) as HTMLElement | null;
+  const targetDiv = document.querySelector(selector) as HTMLElement | null;
 
-  if ( ! selection?.rangeCount || ! targetDiv ) {
+  if (!selection?.rangeCount || !targetDiv) {
     return false;
   }
 
-  const range: Range = selection.getRangeAt( 0 );
+  const range: Range = selection.getRangeAt(0);
 
-  return targetDiv.contains( range.startContainer ) && targetDiv.contains( range.endContainer );
-}
+  return (
+    targetDiv.contains(range.startContainer) &&
+    targetDiv.contains(range.endContainer)
+  );
+};
 
 /**
  * Check if it's up to WP version.
@@ -209,19 +249,17 @@ export const inContainer = ( selector: string ): boolean => {
  * @param {string} version WP Version.
  * @returns {boolean}
  */
-export const isWpVersion = ( version: string ): boolean => {
+export const isWpVersion = (version: string): boolean => {
   const { wpVersion } = srfbe as { wpVersion: string };
 
-  const argVersion: number = getNumberToBase10(
-    version.split( '.' ).map( Number )
-  );
+  const argVersion: number = getNumberToBase10(version.split(".").map(Number));
 
   const sysVersion: number = getNumberToBase10(
-    wpVersion.split( '.' ).map( Number )
+    wpVersion.split(".").map(Number),
   );
 
-  return ! ( sysVersion < argVersion );
-}
+  return !(sysVersion < argVersion);
+};
 
 /**
  * Given an array of numbers, get the Radix
@@ -233,10 +271,13 @@ export const isWpVersion = ( version: string ): boolean => {
  * @param {number[]} values Array of positive numbers.
  * @returns {number}
  */
-export const getNumberToBase10 = ( values: number[] ): number => {
-  const radix: number = values.reduce( ( sum: number, value: number, index: number ) => {
-    return sum + ( value * Math.pow(10, ( (values.length - 1) - index) ) );
-  }, 0 );
+export const getNumberToBase10 = (values: number[]): number => {
+  const radix: number = values.reduce(
+    (sum: number, value: number, index: number) => {
+      return sum + value * Math.pow(10, values.length - 1 - index);
+    },
+    0,
+  );
 
   return radix;
-}
+};

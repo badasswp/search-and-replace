@@ -39,6 +39,26 @@ addFilter(
 );
 ```
 
+#### `search-replace-for-block-editor.allowedBlocksAndFields`
+
+This custom hook (filter) provides the ability to include the search and replace functionality for your custom block with custom fields:
+
+```js
+import { addFilter } from '@wordpress/hooks';
+
+addFilter(
+  'search-replace-for-block-editor.allowedBlocksallowedBlocksAndFields',
+  'yourBlock',
+  (allowedBlocksAndFields) => {
+    allowedBlocksAndFields.push({
+      name: 'yourBlock',
+      fields: ['text', 'label', 'title'],
+    });
+    return allowedBlocksAndFields;
+  }
+);
+```
+
 **Parameters**
 
 - allowedBlocks _`{string[]}`_ List of Allowed Blocks.
