@@ -10,15 +10,16 @@ import {
 	Tooltip,
 } from '@wordpress/components';
 
-import '../styles/app.scss';
-
+import { Shortcut } from './shortcut';
 import {
 	getAllowedBlocks,
 	getBlockEditorIframe,
 	isCaseSensitive,
 	isSelectionInModal,
+	isWpVersion,
 } from './utils';
-import { Shortcut } from './shortcut';
+
+import '../styles/app.scss';
 
 /**
  * Search & Replace for Block Editor.
@@ -257,9 +258,21 @@ const SearchReplaceForBlockEditor = (): JSX.Element => {
 		};
 	}, [] );
 
+	/**
+	 * Safe Shortcut.
+	 *
+	 * Check if the current WordPress version is greater than or equal to 6.4.0
+	 * before rendering the Shortcut component.
+	 *
+	 * @since 1.3.1
+	 * @return {JSX.Element|null} Shortcut.
+	 */
+	const SafeShortcut = (): JSX.Element | null =>
+		isWpVersion( '6.4.0' ) ? <Shortcut onKeyDown={ openModal } /> : null;
+
 	return (
 		<>
-			<Shortcut onKeyDown={ openModal } />
+			<SafeShortcut />
 			<Tooltip
 				text={ __(
 					'Search & Replace',
