@@ -39,14 +39,17 @@ export const getAllowedBlocks = (): string[] => {
  *
  * @return {string[]} List of Text Blocks.
  */
-export const getTextBlocks = (): string[] =>
-	getBlockTypes()
+export const getTextBlocks = (): string[] => {
+	const textBlocks = getBlockTypes()
 		.filter( ( block ) => {
 			return !! ( block?.category === 'text' );
 		} )
 		.map( ( block ) => {
 			return block?.name;
 		} );
+
+	return textBlocks.length ? textBlocks : getFallbackTextBlocks();
+};
 
 /**
  * Get ShortCut.
@@ -124,7 +127,7 @@ export const isCaseSensitive = (): boolean => {
  *
  * @since 1.2.0
  *
- * @return Promise<HTMLElement | Error>
+ * @return Promise<HTMLElement | Error> A Promise that resolves
  */
 export const getEditorRoot = (): Promise< HTMLElement | Error > => {
 	let elapsedTime: number = 0;
@@ -262,4 +265,57 @@ export const getNumberToBase10 = ( values: number[] ): number => {
 	);
 
 	return radix;
+};
+
+/**
+ * Get Fallback Text Blocks.
+ *
+ * This function returns a list of fallback text blocks
+ * that can be used in case the `allowedBlocks` hook
+ * returns an empty array.
+ *
+ * @since 1.4.0
+ *
+ * @return {string[]} List of Fallback Text Blocks.
+ */
+export const getFallbackTextBlocks = (): string[] => {
+	return [
+		'core/paragraph',
+		'core/heading',
+		'core/list',
+		'core/list-item',
+		'core/quote',
+		'core/code',
+		'core/details',
+		'core/missing',
+		'core/preformatted',
+		'core/pullquote',
+		'core/table',
+		'core/verse',
+		'core/footnotes',
+		'core/freeform',
+	];
+};
+
+/**
+ * Get Shortcut Event.
+ *
+ * This function returns a Keyboard event for
+ * the plugin's shortcut action.
+ *
+ * @since 1.4.0
+ *
+ * @return {KeyboardEvent} The Keyboard event for the shortcut action.
+ */
+export const getShortcutEvent = (): KeyboardEvent => {
+	return new KeyboardEvent( 'keydown', {
+		key: 'F',
+		code: 'KeyF',
+		keyCode: 70,
+		charCode: 70,
+		shiftKey: true,
+		metaKey: true,
+		ctrlKey: navigator.platform.includes( 'Mac' ) ? false : true,
+		bubbles: true,
+	} );
 };
