@@ -100,8 +100,8 @@ const SearchReplaceForBlockEditor = (): JSX.Element => {
 	 * @param {boolean} status The status of the context.
 	 * @return {void}
 	 */
-	const replace = ( context: boolean = false ): void => {
-		setContext( context );
+	const replace = ( status: boolean = false ): void => {
+		setContext( status );
 		setReplacements( 0 );
 
 		if ( ! searchInput ) {
@@ -195,9 +195,10 @@ const SearchReplaceForBlockEditor = (): JSX.Element => {
 
 		const oldString: string =
 			attributes[ attribute ].text || attributes[ attribute ];
-		const newString: string = oldString.replace( args.pattern, () => {
+
+		const newString: string = oldString.replace( pattern, () => {
 			setReplacements( ( items ) => items + 1 );
-			return args.text;
+			return text;
 		} );
 
 		if ( newString === oldString ) {
@@ -207,7 +208,7 @@ const SearchReplaceForBlockEditor = (): JSX.Element => {
 		const property = {};
 		property[ attribute ] = newString;
 
-		if ( args.context ) {
+		if ( status ) {
 			( dispatch( 'core/block-editor' ) as any ).updateBlockAttributes(
 				clientId,
 				property
@@ -216,7 +217,7 @@ const SearchReplaceForBlockEditor = (): JSX.Element => {
 
 		// Handle edge-case ('value') with Pullquotes.
 		if ( attributes.value ) {
-			if ( args.context ) {
+			if ( status ) {
 				(
 					dispatch( 'core/block-editor' ) as any
 				 ).updateBlockAttributes( clientId, { value: newString } );
