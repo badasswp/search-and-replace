@@ -21,14 +21,14 @@ export const Shortcut = ( { onKeyDown } ): JSX.Element | null => {
 	const dispatch = useDispatch();
 
 	dispatch( 'core/keyboard-shortcuts' ).registerShortcut( {
-		name: 'search-replace-for-block-editor/search-replace',
+		name: 'search-replace-for-block-editor/shortcut',
 		keyCombination: getShortcut(),
 		category: 'global',
 		description: 'Search & Replace',
 	} );
 
 	useShortcut(
-		'search-replace-for-block-editor/search-replace',
+		'search-replace-for-block-editor/shortcut',
 		useCallback( () => {
 			onKeyDown();
 			// eslint-disable-next-line react-hooks/exhaustive-deps
