@@ -127,7 +127,7 @@ export const isCaseSensitive = (): boolean => {
  *
  * @since 1.2.0
  *
- * @return Promise<HTMLElement | Error> A Promise that resolves
+ * @return Promise<HTMLElement | Error> A Promise that resolves to a HTMLElement, if successful.
  */
 export const getEditorRoot = (): Promise< HTMLElement | Error > => {
 	let elapsedTime: number = 0;
