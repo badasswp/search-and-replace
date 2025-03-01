@@ -78,10 +78,8 @@ const SearchReplaceForBlockEditor = (): JSX.Element => {
 	};
 
 	/**
-	 * Listen for changes in Search Input & Case Sensitivity.
-	 *
-	 * By passing in a FALSY context to the replace callback, we only
-	 * search for matched strings, we DO NOT replace matched strings.
+	 * Listen for changes to input or case-sensitivity
+	 * and perform Searches only.
 	 *
 	 * @since 1.3.0
 	 *
@@ -97,9 +95,9 @@ const SearchReplaceForBlockEditor = (): JSX.Element => {
 	 * clicks the 'Replace' button.
 	 *
 	 * @since 1.0.0
-	 * @since 1.3.0 Pass in context param to determine if it is Search or Replace.
+	 * @since 1.3.0 Pass in context param (status) to determine if it is Search or Replace.
 	 *
-	 * @param {boolean} context True (Replace), False (Search).
+	 * @param {boolean} status The status of the context.
 	 * @return {void}
 	 */
 	const replace = ( context: boolean = false ): void => {
@@ -129,12 +127,12 @@ const SearchReplaceForBlockEditor = (): JSX.Element => {
 	 *
 	 * @since 1.0.0
 	 * @since 1.0.1 Handle edge-cases for quote, pullquote & details block.
-	 * @since 1.3.0 Pass in context param to determine if it is Search or Replace.
+	 * @since 1.3.0 Pass in context param (status) to determine if it is Search or Replace.
 	 *
-	 * @param {Object}  element Gutenberg editor block.
+	 * @param {any}     element Gutenberg editor block.
 	 * @param {RegExp}  pattern Search pattern.
 	 * @param {string}  text    Replace pattern.
-	 * @param {boolean} context True (Replace), False (Search).
+	 * @param {boolean} status  True (Replace), False (Search).
 	 *
 	 * @return {void}
 	 */
@@ -179,7 +177,7 @@ const SearchReplaceForBlockEditor = (): JSX.Element => {
 	 *
 	 * @since 1.0.1
 	 *
-	 * @param {Object} args      Args object containing element, pattern and text.
+	 * @param {any}    args      Args object containing element, pattern and text.
 	 * @param {string} attribute The attribute to be mutated e.g. content.
 	 *
 	 * @return {void}
@@ -240,20 +238,44 @@ const SearchReplaceForBlockEditor = (): JSX.Element => {
 	useEffect( () => {
 		const editor = getBlockEditorIframe();
 
+		if ( ! editor || editor === document ) {
+			return;
+		}
+
 		editor.addEventListener( 'selectionchange', handleSelection );
 
 		return () => {
 			editor.removeEventListener( 'selectionchange', handleSelection );
 		};
-	}, [] );
+	} );
+
+	/**
+	 * On Selection.
+	 *
+	 * Populate the search field when the user selects
+	 * a text range in the Block Editor.
+	 *
+	 * @since 1.2.0
+	 *
+	 * @return {void}
+	 */
+	const handleSelection = (): void => {
+		const selectedText: string = getBlockEditorIframe()
+			.getSelection()
+			.toString();
+
+		if ( selectedText && ! isSelectionInModal() ) {
+			setSearchInput( selectedText );
+		}
+	};
 
 	/**
 	 * Safe Shortcut.
 	 *
-	 * Check if the current WordPress version is greater than or equal to 6.4.0
+	 * Check if the current WP version is greater than or equal to 6.4.0
 	 * before rendering the Shortcut component.
 	 *
-	 * @since 1.3.1
+	 * @since 1.4.0
 	 * @return {JSX.Element|null} Shortcut.
 	 */
 	const SafeShortcut = (): JSX.Element | null =>
