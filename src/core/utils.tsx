@@ -61,7 +61,7 @@ export const getTextBlocks = (): string[] => {
  *
  * @return {Object} Shortcut Option.
  */
-export const getShortcut = () => {
+export const getShortcut = (): { modifier: string; character: string } => {
 	const options = {
 		CMD: {
 			modifier: 'primary',
@@ -91,7 +91,7 @@ export const getShortcut = () => {
 	return applyFilters(
 		'search-replace-for-block-editor.keyboardShortcut',
 		options.SHIFT
-	);
+	) as { modifier: string; character: string };
 };
 
 /**
