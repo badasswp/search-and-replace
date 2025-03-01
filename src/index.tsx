@@ -5,6 +5,7 @@
 import ReactDOM from 'react-dom';
 import { createRoot } from 'react-dom/client';
 
+import './core/toolbar';
 import SearchReplaceForBlockEditor from './core/app';
 import { getAppRoot, getEditorRoot, isWpVersion } from './core/utils';
 
