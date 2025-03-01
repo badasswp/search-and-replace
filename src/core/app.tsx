@@ -64,23 +64,17 @@ const SearchReplaceForBlockEditor = (): JSX.Element => {
 	};
 
 	/**
-	 * On Selection.
+	 * Handle case sensitive toggle feature
+	 * to enable user perform case-sensitive search
+	 * and replacements.
 	 *
-	 * Populate the search field when the user selects
-	 * a text range in the Block Editor.
+	 * @since 1.1.0
 	 *
-	 * @since 1.2.0
-	 *
+	 * @param {boolean} newValue
 	 * @return {void}
 	 */
-	const handleSelection = (): void => {
-		const selectedText: string = getBlockEditorIframe()
-			.getSelection()
-			.toString();
-
-		if ( selectedText && ! isSelectionInModal() ) {
-			setSearchInput( selectedText );
-		}
+	const handleCaseSensitive = ( newValue: boolean ): void => {
+		setCaseSensitive( newValue );
 	};
 
 	/**
@@ -95,21 +89,8 @@ const SearchReplaceForBlockEditor = (): JSX.Element => {
 	 */
 	useEffect( () => {
 		replace();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [ searchInput, caseSensitive ] );
-
-	/**
-	 * Handle case sensitive toggle feature
-	 * to enable user perform case-sensitive search
-	 * and replacements.
-	 *
-	 * @since 1.1.0
-	 *
-	 * @param {boolean} newValue
-	 * @return {void}
-	 */
-	const handleCaseSensitive = ( newValue: boolean ): void => {
-		setCaseSensitive( newValue );
-	};
 
 	/**
 	 * Handle the implementation for when the user
@@ -136,8 +117,8 @@ const SearchReplaceForBlockEditor = (): JSX.Element => {
 
 		select( 'core/block-editor' )
 			.getBlocks()
-			.forEach( ( element ) => {
-				recursivelyReplace( element, pattern, replaceInput, context );
+			.forEach( ( element: any ) => {
+				recursivelyReplace( element, pattern, replaceInput, status );
 			} );
 	};
 
@@ -157,11 +138,18 @@ const SearchReplaceForBlockEditor = (): JSX.Element => {
 	 *
 	 * @return {void}
 	 */
-	const recursivelyReplace = ( element, pattern, text, context ): void => {
-		if ( getAllowedBlocks().indexOf( element.name ) !== -1 ) {
-			const args = { element, pattern, text, context };
+	const recursivelyReplace = (
+		element: any,
+		pattern: RegExp,
+		text: string,
+		status: boolean
+	): void => {
+		const { name, innerBlocks } = element;
 
-			switch ( element.name ) {
+		if ( getAllowedBlocks().indexOf( name ) !== -1 ) {
+			const args = { element, pattern, text, status };
+
+			switch ( name ) {
 				case 'core/quote':
 				case 'core/pullquote':
 					replaceBlockAttribute( args, 'citation' );
@@ -177,9 +165,9 @@ const SearchReplaceForBlockEditor = (): JSX.Element => {
 			}
 		}
 
-		if ( element.innerBlocks.length ) {
-			element.innerBlocks.forEach( ( innerElement ) => {
-				recursivelyReplace( innerElement, pattern, text, context );
+		if ( innerBlocks.length ) {
+			innerBlocks.forEach( ( innerElement: any ) => {
+				recursivelyReplace( innerElement, pattern, text, status );
 			} );
 		}
 	};
@@ -196,8 +184,9 @@ const SearchReplaceForBlockEditor = (): JSX.Element => {
 	 *
 	 * @return {void}
 	 */
-	const replaceBlockAttribute = ( args, attribute ): void => {
-		const { attributes, clientId } = args.element;
+	const replaceBlockAttribute = ( args: any, attribute: string ): void => {
+		const { pattern, text, element, status } = args;
+		const { attributes, clientId } = element;
 
 		if (
 			undefined === attributes ||
