@@ -46,7 +46,7 @@ add_action( 'enqueue_block_editor_assets', function() {
 			'wp-plugins',
 			'wp-edit-post',
 		],
-		'1.3.0',
+		'1.4.0',
 		false,
 	);
 

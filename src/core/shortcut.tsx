@@ -2,7 +2,7 @@ import { useDispatch } from '@wordpress/data';
 import { useCallback } from '@wordpress/element';
 import { useShortcut } from '@wordpress/keyboard-shortcuts';
 
-import { getShortcut, isWpVersion } from './utils';
+import { getShortcut } from './utils';
 
 /**
  * Shortcut for Block Editor.
@@ -12,31 +12,28 @@ import { getShortcut, isWpVersion } from './utils';
  *
  * @since 1.0.1
  *
- * @param {Object}   Props.
- * @param {function} OpenModal Function.
+ * @param {Object}   props           - The properties object.
+ * @param {Function} props.onKeyDown - The function to call when the shortcut is triggered.
  *
- * @returns {JSX.Element|null}
+ * @return {JSX.Element|null} Shortcut.
  */
 export const Shortcut = ( { onKeyDown } ): JSX.Element | null => {
-  if ( ! isWpVersion( '6.4.0' ) ) {
-    return null;
-  }
+	const dispatch = useDispatch();
 
-  const dispatch = useDispatch();
+	dispatch( 'core/keyboard-shortcuts' ).registerShortcut( {
+		name: 'search-replace-for-block-editor/search-replace',
+		keyCombination: getShortcut(),
+		category: 'global',
+		description: 'Search & Replace',
+	} );
 
-  dispatch( 'core/keyboard-shortcuts' ).registerShortcut( {
-    name: 'search-replace-for-block-editor/search-replace',
-    keyCombination: getShortcut(),
-    category: 'global',
-    description: 'Search & Replace',
-  } );
+	useShortcut(
+		'search-replace-for-block-editor/search-replace',
+		useCallback( () => {
+			onKeyDown();
+			// eslint-disable-next-line react-hooks/exhaustive-deps
+		}, [] )
+	);
 
-  useShortcut(
-    'search-replace-for-block-editor/search-replace',
-    useCallback( () => {
-      onKeyDown();
-    }, [] )
-  );
-
-  return null;
+	return null;
 };
