@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.4.0
+* Feat: Add search icon to Toolbar.
+* Chore: Enforce WP linting across plugin.
+* Tested up to WP 6.7.2.
+
 ## 1.3.0
 * Feat: Add Search count feature.
 * Tested up to WP 6.7.2.
