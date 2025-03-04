@@ -44,30 +44,32 @@ addFilter(
 - allowedBlocks _`{string[]}`_ List of Allowed Blocks.
   <br/>
 
-#### `search-replace-for-block-editor.allowedBlocksAndFields`
+#### `search-replace-for-block-editor.replaceBlockAttribute`
 
-This custom hook (filter) provides the ability to include the search and replace functionality for your custom block with custom fields:
+This custom hook (action) provides users the ability to include the search and replace functionality for custom blocks with custom properties:
 
 ```js
-import { addFilter } from '@wordpress/hooks';
+import { addAction } from '@wordpress/hooks';
 
-addFilter(
-  'search-replace-for-block-editor.allowedBlocksallowedBlocksAndFields',
-  'yourBlock',
-  (allowedBlocksAndFields) => {
-    allowedBlocksAndFields.push({
-      name: 'yourBlock',
-      fields: ['text', 'label', 'title'],
-    });
-    return allowedBlocksAndFields;
-  }
+addAction(
+	'search-replace-for-block-editor.replaceBlockAttribute',
+	'yourBlock',
+	( replaceBlockAttribute, name, args ) => {
+		const { element: block } = args;
+		if ( block.hasOwnProperty( 'fields' ) ) {
+			block.fields.forEach( ( property ) => {
+				replaceBlockAttribute( args, property );
+			} );
+		}
+	}
 );
 ```
 
 **Parameters**
 
-- allowedBlocksAndFields _`{object[]}`_ List of Allowed Blocks and it fields. Inside the object the a name property for the name of the block and an array fields for the search fields of this block.
-<br/>
+- replaceBlockAttribute _`{Function}`_ By default, this is a function that takes in an `args` and `property` as params.
+- name _`{string}`_ By default, this is a string containing the `name` of the block.
+- args _`{Object}`_ By default, this is an object containing the `element`, `pattern`, `text` and `status`.
 
 #### `search-replace-for-block-editor.keyboardShortcut`
 

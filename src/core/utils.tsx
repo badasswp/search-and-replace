@@ -23,38 +23,10 @@ export const getAllowedBlocks = (): string[] => {
 	 * @param {string[]} blocks List of Blocks.
 	 * @return {string[]}
 	 */
-	const blocks = applyFilters(
+	return applyFilters(
 		'search-replace-for-block-editor.allowedBlocks',
 		getTextBlocks()
 	) as string[];
-
-	const fieldBlocks = getAllowedBlocksAndFields().map( ( block ) => {
-		if ( block.hasOwnProperty( 'name' ) ) {
-			return block.name as string;
-		}
-		return null;
-	} ) as string[];
-
-	return [ ...blocks, ...fieldBlocks ];
-};
-
-export const getAllowedBlocksAndFields = (): object[] => {
-	/**
-	 *    Allow Text Blocks and its fields
-	 *
-	 * Filter and allow only these Specific blocks and its fields
-	 * for the Search & Replace. See example
-	 *  [
-	 *  {name:'block1', fields: ['field1', 'field2']},
-	 *  {name:'block2', fields: ['textfield1', 'textfield2']}
-	 *  ]
-	 * @param {object[]} List of Blocks and its fields.
-	 *  @return {object[]}
-	 */
-	return applyFilters(
-		'search-replace-for-block-editor.allowedBlocksAndFields',
-		getTextBlocks()
-	) as object[];
 };
 
 /**

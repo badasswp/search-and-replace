@@ -2,6 +2,7 @@ import { __ } from '@wordpress/i18n';
 import { search } from '@wordpress/icons';
 import { dispatch, select } from '@wordpress/data';
 import { useState, useEffect } from '@wordpress/element';
+import { doAction } from '@wordpress/hooks';
 import {
 	Modal,
 	TextControl,
@@ -17,7 +18,6 @@ import {
 	isCaseSensitive,
 	isSelectionInModal,
 	isWpVersion,
-	getAllowedBlocksAndFields,
 } from './utils';
 
 import '../styles/app.scss';
@@ -144,10 +144,9 @@ const SearchReplaceForBlockEditor = (): JSX.Element => {
 		status: boolean
 	): void => {
 		const { name, innerBlocks } = element;
+		const args = { element, pattern, text, status };
 
 		if ( getAllowedBlocks().indexOf( name ) !== -1 ) {
-			const args = { element, pattern, text, status };
-
 			switch ( name ) {
 				case 'core/quote':
 				case 'core/pullquote':
@@ -159,20 +158,17 @@ const SearchReplaceForBlockEditor = (): JSX.Element => {
 					break;
 
 				default:
-					getAllowedBlocksAndFields()
-						.filter( ( block ) => block.name === element.name )
-						.map( ( block ) => {
-							if ( block.hasOwnProperty( 'fields' ) ) {
-								block.fields.forEach( ( field ) => {
-									replaceBlockAttribute( args, field );
-								} );
-							}
-							return block;
-						} );
 					replaceBlockAttribute( args, 'content' );
 					break;
 			}
 		}
+
+		doAction(
+			'search-replace-for-block-editor.replaceBlockAttribute',
+			replaceBlockAttribute,
+			name,
+			args
+		);
 
 		if ( innerBlocks.length ) {
 			innerBlocks.forEach( ( innerElement: any ) => {
