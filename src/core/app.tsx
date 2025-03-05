@@ -1,8 +1,8 @@
 import { __ } from '@wordpress/i18n';
 import { search } from '@wordpress/icons';
+import { doAction } from '@wordpress/hooks';
 import { dispatch, select } from '@wordpress/data';
 import { useState, useEffect } from '@wordpress/element';
-import { doAction } from '@wordpress/hooks';
 import {
 	Modal,
 	TextControl,
@@ -144,31 +144,30 @@ const SearchReplaceForBlockEditor = (): JSX.Element => {
 		status: boolean
 	): void => {
 		const { name, innerBlocks } = element;
-		const args = { element, pattern, text, status };
 
 		if ( getAllowedBlocks().indexOf( name ) !== -1 ) {
-			switch ( name ) {
-				case 'core/quote':
-				case 'core/pullquote':
-					replaceBlockAttribute( args, 'citation' );
-					break;
+			const args = { element, pattern, text, status };
 
-				case 'core/details':
-					replaceBlockAttribute( args, 'summary' );
-					break;
-
-				default:
-					replaceBlockAttribute( args, 'content' );
-					break;
-			}
+			/**
+			 * Replace Block Attribute.
+			 *
+			 * Fires when the block attribute is being replaced.
+			 *
+			 * @since 1.4.0
+			 *
+			 * @param {Function} replaceBlockAttribute Replace Block Attribute.
+			 * @param {string}   name                  Block Name.
+			 * @param {any}      args                  Block Arguments.
+			 *
+			 * @return {void}
+			 */
+			doAction(
+				'search-replace-for-block-editor.replaceBlockAttribute',
+				replaceBlockAttribute,
+				name,
+				args
+			);
 		}
-
-		doAction(
-			'search-replace-for-block-editor.replaceBlockAttribute',
-			replaceBlockAttribute,
-			name,
-			args
-		);
 
 		if ( innerBlocks.length ) {
 			innerBlocks.forEach( ( innerElement: any ) => {
@@ -190,9 +189,11 @@ const SearchReplaceForBlockEditor = (): JSX.Element => {
 	 * @return {void}
 	 */
 	const replaceBlockAttribute = ( args: any, attribute: string ): void => {
+		const property = {};
 		const { pattern, text, element, status } = args;
 		const { attributes, clientId } = element;
 
+		// Bail out, if attribute is not defined.
 		if (
 			undefined === attributes ||
 			undefined === attributes[ attribute ]
@@ -200,6 +201,7 @@ const SearchReplaceForBlockEditor = (): JSX.Element => {
 			return;
 		}
 
+		// Get and replace matched strings.
 		const oldString: string =
 			attributes[ attribute ].text || attributes[ attribute ];
 
@@ -208,30 +210,20 @@ const SearchReplaceForBlockEditor = (): JSX.Element => {
 			return text;
 		} );
 
+		// Bail out, if no change.
 		if ( newString === oldString ) {
 			return;
 		}
 
-		const property = {};
+		// Set the property attribute.
 		property[ attribute ] = newString;
 
+		// Update block property or content (if replace).
 		if ( status ) {
 			( dispatch( 'core/block-editor' ) as any ).updateBlockAttributes(
 				clientId,
 				property
 			);
-		}
-
-		// Handle edge-case ('value') with Pullquotes.
-		if ( attributes.value ) {
-			if ( status ) {
-				(
-					dispatch( 'core/block-editor' ) as any
-				 ).updateBlockAttributes( clientId, {
-					value: newString,
-				} );
-			}
-			setReplacements( ( items ) => items + 1 );
 		}
 	};
 

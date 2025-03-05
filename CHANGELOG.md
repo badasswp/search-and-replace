@@ -3,6 +3,8 @@
 ## 1.4.0
 * Feat: Add search icon to Toolbar.
 * Chore: Enforce WP linting across plugin.
+* Test: Improve unit tests cases.
+* Refactor: Search & Replace core logic to use `replaceBlockAttribute` hook.
 * Tested up to WP 6.7.2.
 
 ## 1.3.0
