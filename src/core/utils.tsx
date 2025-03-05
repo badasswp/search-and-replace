@@ -233,17 +233,24 @@ export const isSelectionInModal = (): boolean => {
  * @return {boolean} Is WP Version.
  */
 export const isWpVersion = ( version: string ): boolean => {
-	const { wpVersion } = srfbe as { wpVersion: string };
+	if ( typeof version !== 'string' ) {
+		return false;
+	}
 
-	const argVersion: number = getNumberToBase10(
-		version.split( '.' ).map( Number )
-	);
+	const argVersion = version;
+	const { wpVersion: sysVersion } = srfbe as { wpVersion: string };
 
-	const sysVersion: number = getNumberToBase10(
-		wpVersion.split( '.' ).map( Number )
-	);
+	const argVersionArray = argVersion.split( '.' ).map( Number );
+	const sysVersionArray = sysVersion.split( '.' ).map( Number );
 
-	return ! ( sysVersion < argVersion );
+	if ( argVersionArray?.length !== 3 || sysVersionArray?.length !== 3 ) {
+		return false;
+	}
+
+	const argVersionRadix: number = getNumberToBase10( argVersionArray );
+	const sysVersionRadix: number = getNumberToBase10( sysVersionArray );
+
+	return ! ( sysVersionRadix < argVersionRadix );
 };
 
 /**
@@ -257,6 +264,16 @@ export const isWpVersion = ( version: string ): boolean => {
  * @return {number} Get Radix.
  */
 export const getNumberToBase10 = ( values: number[] ): number => {
+	if ( ! Array.isArray( values ) ) {
+		return 0;
+	}
+
+	for ( let i = 0; i < values.length; i++ ) {
+		if ( ! Number.isInteger( values[ i ] ) ) {
+			return 0;
+		}
+	}
+
 	const radix: number = values.reduce(
 		( sum: number, value: number, index: number ) => {
 			return sum + value * Math.pow( 10, values.length - 1 - index );
