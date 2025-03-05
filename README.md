@@ -44,6 +44,35 @@ addFilter(
 - allowedBlocks _`{string[]}`_ List of Allowed Blocks.
 <br/>
 
+#### `search-replace-for-block-editor.replaceBlockAttribute`
+
+This custom hook (action) provides users the ability to include the search and replace functionality for custom blocks with custom properties:
+
+```js
+import { addAction } from '@wordpress/hooks';
+
+addAction(
+	'search-replace-for-block-editor.replaceBlockAttribute',
+	'yourBlock',
+	( replaceBlockAttribute, name, args ) => {
+		const { element: block } = args;
+		if ( block.hasOwnProperty( 'fields' ) ) {
+			block.fields.forEach( ( property ) => {
+				replaceBlockAttribute( args, property );
+			} );
+		}
+	}
+);
+```
+
+**Parameters**
+
+- replaceBlockAttribute _`{Function}`_ By default, this is a function that takes in an `args` and `property` as params.
+- name _`{string}`_ By default, this is a string containing the `name` of the block.
+- args _`{Object}`_ By default, this is an object containing the `element`, `pattern`, `text` and `status`.
+<br/>
+<br/>
+
 #### `search-replace-for-block-editor.keyboardShortcut`
 
 This custom hook (filter) provides a way for users to specify their preferred keyboard shortcut option. For e.g to use the 'K' option on your keyboard, you could do like so:
