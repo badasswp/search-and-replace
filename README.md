@@ -27,15 +27,15 @@ This custom hook (filter) provides the ability to include the search and replace
 import { addFilter } from '@wordpress/hooks';
 
 addFilter(
-  'search-replace-for-block-editor.allowedBlocks',
-  'yourBlocks',
-  (allowedBlocks) => {
-    if (allowedBlocks.indexOf('your/block') === -1) {
-      allowedBlocks.push('your/block');
-    }
+	'search-replace-for-block-editor.allowedBlocks',
+	'yourBlocks',
+	( allowedBlocks ) => {
+		if ( allowedBlocks.indexOf( 'your/block' ) === -1 ) {
+			allowedBlocks.push( 'your/block' );
+		}
 
-    return allowedBlocks;
-  }
+		return allowedBlocks;
+	}
 );
 ```
 
@@ -46,7 +46,7 @@ addFilter(
 
 #### `search-replace-for-block-editor.replaceBlockAttribute`
 
-This custom hook (action) provides users the ability to include the search and replace functionality for custom blocks with custom properties:
+This custom hook (action) provides the ability to include search and replace functionality for custom blocks with custom properties:
 
 ```js
 import { addAction } from '@wordpress/hooks';
@@ -55,11 +55,12 @@ addAction(
 	'search-replace-for-block-editor.replaceBlockAttribute',
 	'yourBlock',
 	( replaceBlockAttribute, name, args ) => {
-		const { element: block } = args;
-		if ( block.hasOwnProperty( 'fields' ) ) {
-			block.fields.forEach( ( property ) => {
-				replaceBlockAttribute( args, property );
-			} );
+		const prop = 'title';
+
+		switch ( name ) {
+			case 'namespace/your-block':
+				replaceBlockAttribute( args, prop );
+				break;
 		}
 	}
 );
@@ -71,7 +72,6 @@ addAction(
 - name _`{string}`_ By default, this is a string containing the `name` of the block.
 - args _`{Object}`_ By default, this is an object containing the `element`, `pattern`, `text` and `status`.
 <br/>
-<br/>
 
 #### `search-replace-for-block-editor.keyboardShortcut`
 
@@ -81,14 +81,14 @@ This custom hook (filter) provides a way for users to specify their preferred ke
 import { addFilter } from '@wordpress/hooks';
 
 addFilter(
-  'search-replace-for-block-editor.keyboardShortcut',
-  'yourShortcut',
-  (shortcut) => {
-    return {
-      character: 'k',
-      ...shortcut,
-    }
-  }
+	'search-replace-for-block-editor.keyboardShortcut',
+	'yourShortcut',
+	( shortcut ) => {
+		return {
+			character: 'k',
+			...shortcut,
+		};
+	}
 );
 ```
 
@@ -105,11 +105,11 @@ This custom hook (filter) provides a way for users to specify the case sensitivi
 import { addFilter } from '@wordpress/hooks';
 
 addFilter(
-  'search-replace-for-block-editor.caseSensitive',
-  'yourCaseSensitivity',
-  (isCaseSensitive) => {
-    return true;
-  }
+	'search-replace-for-block-editor.caseSensitive',
+	'yourCaseSensitivity',
+	( isCaseSensitive ) => {
+		return true;
+	}
 );
 ```
 
