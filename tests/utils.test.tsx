@@ -4,7 +4,7 @@ interface Window {
 	};
 }
 
-describe( 'getTextBlocks', () => {
+describe( 'getAllowedBlocks', () => {
 	beforeEach( () => {
 		jest.resetModules();
 	} );
@@ -49,6 +49,12 @@ describe( 'getTextBlocks', () => {
 		const blocks = getAllowedBlocks();
 
 		expect( blocks.length ).toBe( 3 );
+	} );
+} );
+
+describe( 'getTextBlocks', () => {
+	beforeEach( () => {
+		jest.resetModules();
 	} );
 
 	it( 'getTextBlocks passes and returns Blocks in the `text` category', () => {
@@ -132,6 +138,12 @@ describe( 'getTextBlocks', () => {
 		] );
 		expect( blocks.length ).toBe( 14 );
 	} );
+} );
+
+describe( 'getShortcut', () => {
+	beforeEach( () => {
+		jest.resetModules();
+	} );
 
 	it( 'getShorcut passes and returns default Shortcut', () => {
 		const { getShortcut } = require( '../src/core/utils' );
@@ -163,6 +175,12 @@ describe( 'getTextBlocks', () => {
 			modifier: 'primaryAlt',
 		} );
 	} );
+} );
+
+describe( 'getAppRoot', () => {
+	beforeEach( () => {
+		jest.resetModules();
+	} );
 
 	it( 'getAppRoot returns an instance of HTMLDivElement', () => {
 		const { getAppRoot } = require( '../src/core/utils' );
@@ -174,6 +192,12 @@ describe( 'getTextBlocks', () => {
 		expect( root ).toHaveProperty( 'id', 'search-replace' );
 		expect( parent ).toContainElement( root );
 	} );
+} );
+
+describe( 'isSelectionModal', () => {
+	beforeEach( () => {
+		jest.resetModules();
+	} );
 
 	it( 'isSelectionInModal returns false by default if Selection is not made', () => {
 		const { isSelectionInModal } = require( '../src/core/utils' );
@@ -183,6 +207,12 @@ describe( 'getTextBlocks', () => {
 		expect( status ).toBe( false );
 		expect( status ).toBeFalsy();
 	} );
+} );
+
+describe( 'getBlockEditorIframe', () => {
+	beforeEach( () => {
+		jest.resetModules();
+	} );
 
 	it( 'getBlockEditorIframe returns an instance of Document', () => {
 		const { getBlockEditorIframe } = require( '../src/core/utils' );
@@ -190,6 +220,12 @@ describe( 'getTextBlocks', () => {
 		const iframe = getBlockEditorIframe();
 
 		expect( iframe ).toBeInstanceOf( Document );
+	} );
+} );
+
+describe( 'isWpVersion', () => {
+	beforeEach( () => {
+		jest.resetModules();
 	} );
 
 	it( 'isWpVersion returns true if WP version is up to or above passed in arg version', () => {
@@ -252,6 +288,12 @@ describe( 'getTextBlocks', () => {
 		expect( status ).toBe( false );
 		expect( status ).toBeFalsy();
 	} );
+} );
+
+describe( 'getNumberToBase10', () => {
+	beforeEach( () => {
+		jest.resetModules();
+	} );
 
 	it( 'getNumberToBase10 returns the correct Radix', () => {
 		const { getNumberToBase10 } = require( '../src/core/utils' );
@@ -279,6 +321,12 @@ describe( 'getTextBlocks', () => {
 		expect( radix ).toBe( 0 );
 		expect( radix ).toBeFalsy();
 	} );
+} );
+
+describe( 'getFallbackTextBlocks', () => {
+	beforeEach( () => {
+		jest.resetModules();
+	} );
 
 	it( 'getFallbackTextBlocks gets array of default fallback text blocks', () => {
 		const { getFallbackTextBlocks } = require( '../src/core/utils' );
@@ -287,6 +335,12 @@ describe( 'getTextBlocks', () => {
 
 		expect( fallbackTextBlocks.length ).toBe( 14 );
 		expect( fallbackTextBlocks ).toBeInstanceOf( Array );
+	} );
+} );
+
+describe( 'getShortcutEvent', () => {
+	beforeEach( () => {
+		jest.resetModules();
 	} );
 
 	it( 'getShorcutEvent returns the instance of a Keyboard Event', () => {

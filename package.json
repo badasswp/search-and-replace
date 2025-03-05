@@ -10,7 +10,7 @@
 		"dev": "webpack --watch",
 		"build": "webpack",
 		"test": "npm-run-all --parallel test:*",
-		"test:js": "jest --passWithNoTests",
+		"test:js": "jest --passWithNoTests --verbose",
 		"lint:js": "eslint . --ext .js,.jsx,.ts,.tsx",
 		"lint:fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
 		"format": "eslint . --ext .js,.jsx,.ts,.tsx --fix"
