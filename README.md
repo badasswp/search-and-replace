@@ -71,6 +71,7 @@ addAction(
 - name _`{string}`_ By default, this is a string containing the `name` of the block.
 - args _`{Object}`_ By default, this is an object containing the `element`, `pattern`, `text` and `status`.
 <br/>
+<br/>
 
 #### `search-replace-for-block-editor.keyboardShortcut`
 
