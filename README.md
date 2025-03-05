@@ -42,7 +42,7 @@ addFilter(
 **Parameters**
 
 - allowedBlocks _`{string[]}`_ List of Allowed Blocks.
-  <br/>
+<br/>
 
 #### `search-replace-for-block-editor.replaceBlockAttribute`
 
@@ -70,6 +70,7 @@ addAction(
 - replaceBlockAttribute _`{Function}`_ By default, this is a function that takes in an `args` and `property` as params.
 - name _`{string}`_ By default, this is a string containing the `name` of the block.
 - args _`{Object}`_ By default, this is an object containing the `element`, `pattern`, `text` and `status`.
+<br/>
 
 #### `search-replace-for-block-editor.keyboardShortcut`
 
