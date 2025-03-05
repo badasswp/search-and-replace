@@ -9,22 +9,25 @@ import { getBlockTypes } from '@wordpress/blocks';
  *
  * @since 1.0.0
  *
- * @returns {string[]}
+ * @return {string[]} List of Allowed Blocks.
  */
 export const getAllowedBlocks = (): string[] => {
-  /**
-   * Allow Text Blocks.
-   *
-   * Filter and allow only these Specific blocks
-   * for the Search & Replace.
-   *
-   * @since 1.0.0
-   *
-   * @param {string[]} blocks List of Blocks.
-   * @returns {string[]}
-   */
-  return applyFilters( 'search-replace-for-block-editor.allowedBlocks', getTextBlocks() ) as string[];
-}
+	/**
+	 * Allow Text Blocks.
+	 *
+	 * Filter and allow only these Specific blocks
+	 * for the Search & Replace.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param {string[]} blocks List of Blocks.
+	 * @return {string[]}
+	 */
+	return applyFilters(
+		'search-replace-for-block-editor.allowedBlocks',
+		getTextBlocks()
+	) as string[];
+};
 
 /**
  * Get Text Blocks.
@@ -34,15 +37,19 @@ export const getAllowedBlocks = (): string[] => {
  *
  * @since 1.0.0
  *
- * @returns {string[]}
+ * @return {string[]} List of Text Blocks.
  */
-export const getTextBlocks = (): string[] => getBlockTypes()
-  .filter( ( block ) => {
-    return !!(block?.category === 'text');
-  } )
-  .map( ( block ) => {
-    return block?.name;
-  } );
+export const getTextBlocks = (): string[] => {
+	const textBlocks = getBlockTypes()
+		.filter( ( block ) => {
+			return !! ( block?.category === 'text' );
+		} )
+		.map( ( block ) => {
+			return block?.name;
+		} );
+
+	return textBlocks.length ? textBlocks : getFallbackTextBlocks();
+};
 
 /**
  * Get ShortCut.
@@ -52,37 +59,40 @@ export const getTextBlocks = (): string[] => getBlockTypes()
  *
  * @since 1.0.1
  *
- * @returns {Object}
+ * @return {Object} Shortcut Option.
  */
-export const getShortcut = () => {
-  const options = {
-    CMD: {
-      modifier: 'primary',
-      character: 'f',
-    },
-    SHIFT: {
-      modifier: 'primaryShift',
-      character: 'f',
-    },
-    ALT: {
-      modifier: 'primaryAlt',
-      character: 'f',
-    },
-  }
+export const getShortcut = (): { modifier: string; character: string } => {
+	const options = {
+		CMD: {
+			modifier: 'primary',
+			character: 'f',
+		},
+		SHIFT: {
+			modifier: 'primaryShift',
+			character: 'f',
+		},
+		ALT: {
+			modifier: 'primaryAlt',
+			character: 'f',
+		},
+	};
 
-  /**
-   * Filter Keyboard Shortcut.
-   *
-   * By default the passed option would be SHIFT which
-   * represents `CMD + SHIFT + F`.
-   *
-   * @since 1.0.1
-   *
-   * @param {Object} Shortcut Option.
-   * @returns {Object}
-   */
-  return applyFilters( 'search-replace-for-block-editor.keyboardShortcut', options.SHIFT );
-}
+	/**
+	 * Filter Keyboard Shortcut.
+	 *
+	 * By default the passed option would be SHIFT which
+	 * represents `CMD + SHIFT + F`.
+	 *
+	 * @since 1.0.1
+	 *
+	 * @param {Object} Shortcut Option.
+	 * @return {Object}
+	 */
+	return applyFilters(
+		'search-replace-for-block-editor.keyboardShortcut',
+		options.SHIFT
+	) as { modifier: string; character: string };
+};
 
 /**
  * Determine if a Search & Replace activity is case-sensitive
@@ -90,21 +100,24 @@ export const getShortcut = () => {
  *
  * @since 1.0.2
  *
- * @returns {boolean}
+ * @return {boolean} Is Case Sensitive.
  */
 export const isCaseSensitive = (): boolean => {
-  /**
-   * Filter Case Sensitivity.
-   *
-   * By default this would be a falsy value.
-   *
-   * @since 1.0.2
-   *
-   * @param {boolean} Case Sensitivity.
-   * @returns {boolean}
-   */
-  return applyFilters( 'search-replace-for-block-editor.caseSensitive', false ) as boolean;
-}
+	/**
+	 * Filter Case Sensitivity.
+	 *
+	 * By default this would be a falsy value.
+	 *
+	 * @since 1.0.2
+	 *
+	 * @param {boolean} Case Sensitivity.
+	 * @return {boolean}
+	 */
+	return applyFilters(
+		'search-replace-for-block-editor.caseSensitive',
+		false
+	) as boolean;
+};
 
 /**
  * Get Editor Root.
@@ -114,32 +127,34 @@ export const isCaseSensitive = (): boolean => {
  *
  * @since 1.2.0
  *
- * @returns Promise<HTMLElement | Error>
+ * @return Promise<HTMLElement | Error> A Promise that resolves to a HTMLElement, if successful.
  */
-export const getEditorRoot = (): Promise<HTMLElement | Error> => {
-  let elapsedTime: number = 0;
-  const interval: number = 100;
+export const getEditorRoot = (): Promise< HTMLElement | Error > => {
+	let elapsedTime: number = 0;
+	const interval: number = 100;
 
-  const selector: string = isWpVersion( '6.6.0' )
-    ? '.editor-header__toolbar'
-    : '.edit-post-header__toolbar';
+	const selector: string = isWpVersion( '6.6.0' )
+		? '.editor-header__toolbar'
+		: '.edit-post-header__toolbar';
 
-  return new Promise( ( resolve, reject ) => {
-    const intervalId = setInterval( () => {
-      elapsedTime += interval;
-      const root = document.querySelector(selector) as HTMLElement | null;
+	return new Promise( ( resolve, reject ) => {
+		const intervalId = setInterval( () => {
+			elapsedTime += interval;
+			const root = document.querySelector(
+				selector
+			) as HTMLElement | null;
 
-      if ( root ) {
-        clearInterval(intervalId);
-        resolve( root );
-      }
+			if ( root ) {
+				clearInterval( intervalId );
+				resolve( root );
+			}
 
-      if ( elapsedTime > ( 600 * interval ) ) {
-        clearInterval( intervalId );
-        reject( new Error( 'Unable to get Editor root container...' ) );
-      }
-    }, interval);
-  } );
+			if ( elapsedTime > 600 * interval ) {
+				clearInterval( intervalId );
+				reject( new Error( 'Unable to get Editor root container...' ) );
+			}
+		}, interval );
+	} );
 };
 
 /**
@@ -151,14 +166,14 @@ export const getEditorRoot = (): Promise<HTMLElement | Error> => {
  * @since 1.2.0
  *
  * @param {HTMLElement} parent - The Parent DOM element.
- * @returns {HTMLDivElement}
+ * @return {HTMLDivElement} HTML Div Element
  */
 export const getAppRoot = ( parent: HTMLElement ): HTMLDivElement => {
-  const container: HTMLDivElement = document.createElement( 'div' );
-  container.id = 'search-replace';
-  parent.appendChild( container );
+	const container: HTMLDivElement = document.createElement( 'div' );
+	container.id = 'search-replace';
+	parent.appendChild( container );
 
-  return container;
+	return container;
 };
 
 /**
@@ -169,37 +184,45 @@ export const getAppRoot = ( parent: HTMLElement ): HTMLDivElement => {
  *
  * @since 1.2.1
  *
- * @returns {Document}
+ * @return {Document} Document Object.
  */
 export const getBlockEditorIframe = (): Document => {
-  const editor = document.querySelector( 'iframe[name="editor-canvas"]' );
+	const editor = document.querySelector( 'iframe[name="editor-canvas"]' );
 
-  return editor && editor instanceof HTMLIFrameElement
-    ? editor.contentDocument || editor.contentWindow?.document
-    : document;
-}
+	return editor && editor instanceof HTMLIFrameElement
+		? editor.contentDocument || editor.contentWindow?.document
+		: document;
+};
 
 /**
- * Check if the selection is made inside a Container,
- * for e.g. the `search-replace-modal`.
+ * Check if the selection is made inside the,
+ * `search-replace-modal`.
  *
  * @since 1.2.1
  *
- * @param {string} selector Target selector.
- * @returns {boolean}
+ * @return {boolean} Is Selection in Modal.
  */
-export const inContainer = ( selector: string ): boolean => {
-  const selection = window.getSelection() as Selection | null;
-  const targetDiv = document.querySelector( selector ) as HTMLElement | null;
+export const isSelectionInModal = (): boolean => {
+	const modalSelector: string = '.search-replace-modal';
 
-  if ( ! selection?.rangeCount || ! targetDiv ) {
-    return false;
-  }
+	// eslint-disable-next-line @wordpress/no-global-get-selection
+	const selection = window.getSelection() as Selection | null;
 
-  const range: Range = selection.getRangeAt( 0 );
+	const targetDiv = document.querySelector(
+		modalSelector
+	) as HTMLElement | null;
 
-  return targetDiv.contains( range.startContainer ) && targetDiv.contains( range.endContainer );
-}
+	if ( ! selection?.rangeCount || ! targetDiv ) {
+		return false;
+	}
+
+	const range: Range = selection.getRangeAt( 0 );
+
+	return (
+		targetDiv.contains( range.startContainer ) &&
+		targetDiv.contains( range.endContainer )
+	);
+};
 
 /**
  * Check if it's up to WP version.
@@ -207,21 +230,28 @@ export const inContainer = ( selector: string ): boolean => {
  * @since 1.2.2
  *
  * @param {string} version WP Version.
- * @returns {boolean}
+ * @return {boolean} Is WP Version.
  */
 export const isWpVersion = ( version: string ): boolean => {
-  const { wpVersion } = srfbe as { wpVersion: string };
+	if ( typeof version !== 'string' ) {
+		return false;
+	}
 
-  const argVersion: number = getNumberToBase10(
-    version.split( '.' ).map( Number )
-  );
+	const argVersion = version;
+	const { wpVersion: sysVersion } = srfbe as { wpVersion: string };
 
-  const sysVersion: number = getNumberToBase10(
-    wpVersion.split( '.' ).map( Number )
-  );
+	const argVersionArray = argVersion.split( '.' ).map( Number );
+	const sysVersionArray = sysVersion.split( '.' ).map( Number );
 
-  return ! ( sysVersion < argVersion );
-}
+	if ( argVersionArray?.length !== 3 || sysVersionArray?.length !== 3 ) {
+		return false;
+	}
+
+	const argVersionRadix: number = getNumberToBase10( argVersionArray );
+	const sysVersionRadix: number = getNumberToBase10( sysVersionArray );
+
+	return ! ( sysVersionRadix < argVersionRadix );
+};
 
 /**
  * Given an array of numbers, get the Radix
@@ -231,12 +261,78 @@ export const isWpVersion = ( version: string ): boolean => {
  * @since 1.2.2
  *
  * @param {number[]} values Array of positive numbers.
- * @returns {number}
+ * @return {number} Get Radix.
  */
 export const getNumberToBase10 = ( values: number[] ): number => {
-  const radix: number = values.reduce( ( sum: number, value: number, index: number ) => {
-    return sum + ( value * Math.pow(10, ( (values.length - 1) - index) ) );
-  }, 0 );
+	if ( ! Array.isArray( values ) ) {
+		return 0;
+	}
 
-  return radix;
-}
+	for ( let i = 0; i < values.length; i++ ) {
+		if ( ! Number.isInteger( values[ i ] ) ) {
+			return 0;
+		}
+	}
+
+	const radix: number = values.reduce(
+		( sum: number, value: number, index: number ) => {
+			return sum + value * Math.pow( 10, values.length - 1 - index );
+		},
+		0
+	);
+
+	return radix;
+};
+
+/**
+ * Get Fallback Text Blocks.
+ *
+ * This function returns a list of fallback text blocks
+ * that can be used in case the `allowedBlocks` hook
+ * returns an empty array.
+ *
+ * @since 1.4.0
+ *
+ * @return {string[]} List of Fallback Text Blocks.
+ */
+export const getFallbackTextBlocks = (): string[] => {
+	return [
+		'core/paragraph',
+		'core/heading',
+		'core/list',
+		'core/list-item',
+		'core/quote',
+		'core/code',
+		'core/details',
+		'core/missing',
+		'core/preformatted',
+		'core/pullquote',
+		'core/table',
+		'core/verse',
+		'core/footnotes',
+		'core/freeform',
+	];
+};
+
+/**
+ * Get Shortcut Event.
+ *
+ * This function returns a Keyboard event for
+ * the plugin's shortcut action.
+ *
+ * @since 1.4.0
+ *
+ * @return {KeyboardEvent} The Keyboard event for the shortcut action.
+ */
+export const getShortcutEvent = (): KeyboardEvent => {
+	return new KeyboardEvent( 'keydown', {
+		key: 'F',
+		code: 'KeyF',
+		keyCode: 70,
+		charCode: 70,
+		shiftKey: true,
+		metaKey: true,
+		ctrlKey: navigator.platform.includes( 'Mac' ) ? false : true,
+		bubbles: true,
+	} );
+};

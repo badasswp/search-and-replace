@@ -3,7 +3,7 @@ Contributors: badasswp, rajanand346
 Tags: search, replace, text, block, editor.
 Requires at least: 6.0
 Tested up to: 6.7.2
-Stable tag: 1.3.0
+Stable tag: 1.4.0
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -58,8 +58,18 @@ Want to add your personal touch? All of our documentation can be found [here](ht
 1. Search & Replace for Block Editor icon - Locate the top left of the Block Editor.
 2. Search & Replace for Block Editor modal - Search and Replace text in the Block Editor.
 3. Match Case in Search & Replace - Now you can match the case of the text and Search and Replace.
+4. Search & Replace icon in Toolbar - For a faster workflow you can use the toolbar icon in the Toolbar.
+5. Search & Replace Toolbar icon in action - Make changes a lot quicker and get more done in less time.
 
 == Changelog ==
+
+= 1.4.0 =
+* Feat: Add search icon to Toolbar.
+* Feat: Add new custom hook `search-replace-for-block-editor.replaceBlockAttribute`.
+* Chore: Enforce WP linting across plugin.
+* Test: Improve unit tests cases.
+* Refactor: Search & Replace core logic to use `replaceBlockAttribute` hook.
+* Tested up to WP 6.7.2.
 
 = 1.3.0 =
 * Feat: Add Search count feature.

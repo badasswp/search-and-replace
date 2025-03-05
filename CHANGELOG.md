@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.4.0
+* Feat: Add search icon to Toolbar.
+* Feat: Add new custom hook `search-replace-for-block-editor.replaceBlockAttribute`.
+* Chore: Enforce WP linting across plugin.
+* Test: Improve unit tests cases.
+* Refactor: Search & Replace core logic to use `replaceBlockAttribute` hook.
+* Tested up to WP 6.7.2.
+
 ## 1.3.0
 * Feat: Add Search count feature.
 * Tested up to WP 6.7.2.
