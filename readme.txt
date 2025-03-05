@@ -65,6 +65,7 @@ Want to add your personal touch? All of our documentation can be found [here](ht
 
 = 1.4.0 =
 * Feat: Add search icon to Toolbar.
+* Feat: Add new custom hook `search-replace-for-block-editor.replaceBlockAttribute`.
 * Chore: Enforce WP linting across plugin.
 * Test: Improve unit tests cases.
 * Refactor: Search & Replace core logic to use `replaceBlockAttribute` hook.
