@@ -133,7 +133,7 @@ export const getEditorRoot = (): Promise< HTMLElement | Error > => {
 	let elapsedTime: number = 0;
 	const interval: number = 100;
 
-	const selector: string = isWpVersion( '6.6.0' )
+	const selector: string = isWpVersionGreaterThanOrEqualTo( '6.6.0' )
 		? '.editor-header__toolbar'
 		: '.edit-post-header__toolbar';
 
@@ -232,7 +232,7 @@ export const isSelectionInModal = (): boolean => {
  * @param {string} version WP Version.
  * @return {boolean} Is WP Version.
  */
-export const isWpVersion = ( version: string ): boolean => {
+export const isWpVersionGreaterThanOrEqualTo = ( version: string ): boolean => {
 	if ( typeof version !== 'string' ) {
 		return false;
 	}

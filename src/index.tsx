@@ -8,12 +8,16 @@ import { createRoot } from 'react-dom/client';
 import './core/toolbar';
 import './core/filters';
 import SearchReplaceForBlockEditor from './core/app';
-import { getAppRoot, getEditorRoot, isWpVersion } from './core/utils';
+import {
+	getAppRoot,
+	getEditorRoot,
+	isWpVersionGreaterThanOrEqualTo,
+} from './core/utils';
 
 ( async () => {
 	try {
 		const app = getAppRoot( ( await getEditorRoot() ) as HTMLElement );
-		if ( ! isWpVersion( '6.2.0' ) ) {
+		if ( ! isWpVersionGreaterThanOrEqualTo( '6.2.0' ) ) {
 			ReactDOM.render( <SearchReplaceForBlockEditor />, app );
 		} else {
 			createRoot( app ).render( <SearchReplaceForBlockEditor /> );
