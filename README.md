@@ -117,12 +117,32 @@ addFilter(
 
 - isCaseSensitive _`{bool}`_ By default, this is a falsy value.
 
-## Development
+---
 
-### Setup
+## Contribute
 
-- Clone the repository into your `wp-content/plugins` folder.
-- Make sure you have [Node](https://nodejs.org) installed on your computer.
-- Install `yarn` globally: `npm install --global yarn`.
-- Run `yarn install && yarn build` to build JS dependencies.
-- For local development, you can use [Docker](https://docs.docker.com/install/) or [Local by Flywheel](https://localwp.com/).
+Contributions are __welcome__ and will be fully __credited__. To contribute, please fork this repo and raise a PR (Pull Request) against the `master` branch.
+
+### Pre-requisites
+
+You should have the following tools before proceeding to the next steps:
+
+- Composer
+- Yarn
+- Docker
+
+To enable you start development, please run:
+
+```bash
+yarn start
+```
+
+This should spin up a local WP env instance for you to work with at:
+
+```bash
+http://srbe.localhost:5187
+```
+
+You should now have a functioning local WP env to work with. To login to the `wp-admin` backend, please use `admin` for username & `password` for password.
+
+__Awesome!__ - Thanks for being interested in contributing your time and code to this project!
