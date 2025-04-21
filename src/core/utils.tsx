@@ -149,7 +149,7 @@ export const getEditorRoot = (): Promise< HTMLElement | Error > => {
 				resolve( root );
 			}
 
-			if ( elapsedTime > 600 * interval ) {
+			if ( elapsedTime > 100 * interval ) {
 				clearInterval( intervalId );
 				reject( new Error( 'Unable to get Editor root container...' ) );
 			}
