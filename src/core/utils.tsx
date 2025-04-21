@@ -225,6 +225,26 @@ export const isSelectionInModal = (): boolean => {
 };
 
 /**
+ * Standardize Version.
+ *
+ * This function takes an array of version numbers
+ * and ensures that it has exactly three elements.
+ *
+ * @since 1.5.0
+ *
+ * @param {number[]} versionArray - Array of version numbers.
+ * @return {number[]} Standardized version array.
+ */
+export const standardizeVersion = ( versionArray: number[] ): number[] => {
+	const standardizedVersion = [ ...versionArray ];
+	while ( standardizedVersion.length < 3 ) {
+		standardizedVersion.push( 0 );
+	}
+
+	return standardizedVersion;
+};
+
+/**
  * Check if it's up to WP version.
  *
  * @since 1.2.2
@@ -240,12 +260,12 @@ export const isWpVersionGreaterThanOrEqualTo = ( version: string ): boolean => {
 	const argVersion = version;
 	const { wpVersion: sysVersion } = srfbe as { wpVersion: string };
 
-	const argVersionArray = argVersion.split( '.' ).map( Number );
-	const sysVersionArray = sysVersion.split( '.' ).map( Number );
-
-	if ( argVersionArray?.length !== 3 || sysVersionArray?.length !== 3 ) {
-		return false;
-	}
+	const argVersionArray = standardizeVersion(
+		argVersion.split( '.' ).map( Number )
+	);
+	const sysVersionArray = standardizeVersion(
+		sysVersion.split( '.' ).map( Number )
+	);
 
 	const argVersionRadix: number = getNumberToBase10( argVersionArray );
 	const sysVersionRadix: number = getNumberToBase10( sysVersionArray );
