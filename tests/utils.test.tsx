@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 interface Window {
 	srfbe: {
 		wpVersion: string;
@@ -163,7 +164,7 @@ describe( 'getShortcut', () => {
 		};
 
 		jest.doMock( '@wordpress/hooks', () => ( {
-			applyFilters: jest.fn( ( arg ) => ( { ...filter } ) ),
+			applyFilters: jest.fn( () => ( { ...filter } ) ),
 		} ) );
 
 		const { getShortcut } = require( '../src/core/utils' );
