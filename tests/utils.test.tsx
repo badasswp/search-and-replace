@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 interface Window {
 	srfbe: {
 		wpVersion: string;
@@ -163,7 +164,7 @@ describe( 'getShortcut', () => {
 		};
 
 		jest.doMock( '@wordpress/hooks', () => ( {
-			applyFilters: jest.fn( ( arg ) => ( { ...filter } ) ),
+			applyFilters: jest.fn( () => ( { ...filter } ) ),
 		} ) );
 
 		const { getShortcut } = require( '../src/core/utils' );
@@ -223,67 +224,92 @@ describe( 'getBlockEditorIframe', () => {
 	} );
 } );
 
-describe( 'isWpVersion', () => {
+describe( 'isWpVersionGreaterThanOrEqualTo', () => {
 	beforeEach( () => {
 		jest.resetModules();
 	} );
 
-	it( 'isWpVersion returns true if WP version is up to or above passed in arg version', () => {
+	it( 'isWpVersionGreaterThanOrEqualTo returns true if WP version is up to or above passed in arg version', () => {
 		window.srfbe = {
 			wpVersion: '6.7.2',
 		};
 
-		const { isWpVersion } = require( '../src/core/utils' );
+		const {
+			isWpVersionGreaterThanOrEqualTo,
+		} = require( '../src/core/utils' );
 
-		const status = isWpVersion( '6.7.0' );
+		const status = isWpVersionGreaterThanOrEqualTo( '6.7.0' );
 
 		expect( status ).toBe( true );
 		expect( status ).toBeTruthy();
 	} );
 
-	it( 'isWpVersion returns false if WP version is not up to passed in arg version', () => {
+	it( 'isWpVersionGreaterThanOrEqualTo returns false if WP version is not up to passed in arg version', () => {
 		window.srfbe = {
 			wpVersion: '6.7.0',
 		};
 
-		const { isWpVersion } = require( '../src/core/utils' );
+		const {
+			isWpVersionGreaterThanOrEqualTo,
+		} = require( '../src/core/utils' );
 
-		const status = isWpVersion( '6.7.1' );
+		const status = isWpVersionGreaterThanOrEqualTo( '6.7.1' );
 
 		expect( status ).toBe( false );
 		expect( status ).toBeFalsy();
 	} );
 
-	it( 'isWpVersion returns false if param version number is not valid', () => {
+	it( 'isWpVersionGreaterThanOrEqualTo returns false if param version number is not valid', () => {
 		window.srfbe = {
 			wpVersion: '2.3',
 		};
 
-		const { isWpVersion } = require( '../src/core/utils' );
+		const {
+			isWpVersionGreaterThanOrEqualTo,
+		} = require( '../src/core/utils' );
 
-		const status = isWpVersion( '6.7' );
+		const status = isWpVersionGreaterThanOrEqualTo( '6.7' );
 
 		expect( status ).toBe( false );
 		expect( status ).toBeFalsy();
 	} );
 
-	it( 'isWpVersion returns false if one of params is invalid version number without dot notation', () => {
+	it( 'isWpVersionGreaterThanOrEqualTo returns true if one of params has version number without dot notation but is equal to or greater than version number', () => {
 		window.srfbe = {
 			wpVersion: '67',
 		};
 
-		const { isWpVersion } = require( '../src/core/utils' );
+		const {
+			isWpVersionGreaterThanOrEqualTo,
+		} = require( '../src/core/utils' );
 
-		const status = isWpVersion( '6.3.2' );
+		const status = isWpVersionGreaterThanOrEqualTo( '6.3.2' );
 
-		expect( status ).toBe( false );
-		expect( status ).toBeFalsy();
+		expect( status ).toBe( true );
+		expect( status ).toBeTruthy();
 	} );
 
-	it( 'isWpVersion returns false if param is not string', () => {
-		const { isWpVersion } = require( '../src/core/utils' );
+	it( 'isWpVersionGreaterThanOrEqualTo returns true if one of params has version number with single dot notation but is equal to or greater than version number', () => {
+		window.srfbe = {
+			wpVersion: '6.8',
+		};
 
-		const status = isWpVersion( 7 );
+		const {
+			isWpVersionGreaterThanOrEqualTo,
+		} = require( '../src/core/utils' );
+
+		const status = isWpVersionGreaterThanOrEqualTo( '6.3.2' );
+
+		expect( status ).toBe( true );
+		expect( status ).toBeTruthy();
+	} );
+
+	it( 'isWpVersionGreaterThanOrEqualTo returns false if param is not string', () => {
+		const {
+			isWpVersionGreaterThanOrEqualTo,
+		} = require( '../src/core/utils' );
+
+		const status = isWpVersionGreaterThanOrEqualTo( 7 );
 
 		expect( status ).toBe( false );
 		expect( status ).toBeFalsy();

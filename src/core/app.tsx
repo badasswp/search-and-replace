@@ -17,7 +17,7 @@ import {
 	getBlockEditorIframe,
 	isCaseSensitive,
 	isSelectionInModal,
-	isWpVersion,
+	isWpVersionGreaterThanOrEqualTo,
 } from './utils';
 
 import '../styles/app.scss';
@@ -281,7 +281,9 @@ const SearchReplaceForBlockEditor = (): JSX.Element => {
 	 * @return {JSX.Element|null} Shortcut.
 	 */
 	const SafeShortcut = (): JSX.Element | null =>
-		isWpVersion( '6.4.0' ) ? <Shortcut onKeyDown={ openModal } /> : null;
+		isWpVersionGreaterThanOrEqualTo( '6.4.0' ) ? (
+			<Shortcut onKeyDown={ openModal } />
+		) : null;
 
 	return (
 		<>

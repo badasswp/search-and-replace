@@ -1,9 +1,9 @@
 === Search and Replace for Block Editor ===
-Contributors: badasswp, rajanand346, sdonkers
+Contributors: badasswp, rajanand346, jargovi
 Tags: search, replace, text, block, editor.
 Requires at least: 6.0
 Tested up to: 6.7.2
-Stable tag: 1.4.0
+Stable tag: 1.5.0
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -62,6 +62,13 @@ Want to add your personal touch? All of our documentation can be found [here](ht
 5. Search & Replace Toolbar icon in action - Make changes a lot quicker and get more done in less time.
 
 == Changelog ==
+
+= 1.5.0 =
+* Fix: Missing icon due to recent WP 6.8 upgrade.
+* Feat: Add local WP dev env.
+* Chore: Update Plugin contributors list.
+* Update README docs.
+* Tested up to WP 6.7.2.
 
 = 1.4.0 =
 * Feat: Add search icon to Toolbar.

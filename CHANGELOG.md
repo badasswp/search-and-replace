@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.5.0
+* Fix: Missing icon due to recent WP 6.8 upgrade.
+* Feat: Add local WP dev env.
+* Chore: Update Plugin contributors list.
+* Update README docs.
+* Tested up to WP 6.7.2.
+
 ## 1.4.0
 * Feat: Add search icon to Toolbar.
 * Feat: Add new custom hook `search-replace-for-block-editor.replaceBlockAttribute`.
