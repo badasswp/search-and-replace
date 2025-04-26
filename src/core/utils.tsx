@@ -133,7 +133,7 @@ export const getEditorRoot = (): Promise< HTMLElement | Error > => {
 	let elapsedTime: number = 0;
 	const interval: number = 100;
 
-	const selector: string = isWpVersion( '6.6.0' )
+	const selector: string = isWpVersionGreaterThanOrEqualTo( '6.6.0' )
 		? '.editor-header__toolbar'
 		: '.edit-post-header__toolbar';
 
@@ -149,7 +149,7 @@ export const getEditorRoot = (): Promise< HTMLElement | Error > => {
 				resolve( root );
 			}
 
-			if ( elapsedTime > 600 * interval ) {
+			if ( elapsedTime > 100 * interval ) {
 				clearInterval( intervalId );
 				reject( new Error( 'Unable to get Editor root container...' ) );
 			}
@@ -225,6 +225,26 @@ export const isSelectionInModal = (): boolean => {
 };
 
 /**
+ * Standardize Version.
+ *
+ * This function takes an array of version numbers
+ * and ensures that it has exactly three elements.
+ *
+ * @since 1.5.0
+ *
+ * @param {number[]} versionArray - Array of version numbers.
+ * @return {number[]} Standardized version array.
+ */
+export const standardizeVersion = ( versionArray: number[] ): number[] => {
+	const standardizedVersion = [ ...versionArray ];
+	while ( standardizedVersion.length < 3 ) {
+		standardizedVersion.push( 0 );
+	}
+
+	return standardizedVersion;
+};
+
+/**
  * Check if it's up to WP version.
  *
  * @since 1.2.2
@@ -232,7 +252,7 @@ export const isSelectionInModal = (): boolean => {
  * @param {string} version WP Version.
  * @return {boolean} Is WP Version.
  */
-export const isWpVersion = ( version: string ): boolean => {
+export const isWpVersionGreaterThanOrEqualTo = ( version: string ): boolean => {
 	if ( typeof version !== 'string' ) {
 		return false;
 	}
@@ -240,12 +260,12 @@ export const isWpVersion = ( version: string ): boolean => {
 	const argVersion = version;
 	const { wpVersion: sysVersion } = srfbe as { wpVersion: string };
 
-	const argVersionArray = argVersion.split( '.' ).map( Number );
-	const sysVersionArray = sysVersion.split( '.' ).map( Number );
-
-	if ( argVersionArray?.length !== 3 || sysVersionArray?.length !== 3 ) {
-		return false;
-	}
+	const argVersionArray = standardizeVersion(
+		argVersion.split( '.' ).map( Number )
+	);
+	const sysVersionArray = standardizeVersion(
+		sysVersion.split( '.' ).map( Number )
+	);
 
 	const argVersionRadix: number = getNumberToBase10( argVersionArray );
 	const sysVersionRadix: number = getNumberToBase10( sysVersionArray );
