@@ -63,6 +63,12 @@ Want to add your personal touch? All of our documentation can be found [here](ht
 
 == Changelog ==
 
+= 1.6.0 =
+* Feat: Add search and replace functionality for __Table Block__.
+* Feat: Add new custom hook `search-replace-for-block-editor.handleAttributeReplacement`.
+* Docs: Update README docs.
+* Tested up to WP 6.8.
+
 = 1.5.0 =
 * Fix: Missing icon due to recent WP 6.8 upgrade.
 * Feat: Add local WP dev env.
