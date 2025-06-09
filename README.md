@@ -73,6 +73,47 @@ addAction(
 - args _`{Object}`_ By default, this is an object containing the `element`, `pattern`, `text` and `status`.
 <br/>
 
+#### `search-replace-for-block-editor.handleAttributeReplacement`
+
+This custom hook (filter) provides a way to modify how the search and replace functionality works for custom attributes for e.g. non-text attributes or objects.
+
+```js
+import { addFilter } from '@wordpress/hooks';
+
+addFilter(
+	'search-replace-for-block-editor.handleAttributeReplacement',
+	'yourNamespace',
+	( oldAttr, args ) => {
+		const { name, pattern, handleAttributeReplacement } = args;
+
+		if ( 'your-custom-block' === name ) {
+			const newAttr = oldAttr.replace(
+				pattern,
+				handleAttributeReplacement
+			);
+
+			return {
+				newAttr,
+				isChanged: oldAttr === newAttr,
+			};
+		}
+
+		return {
+			newAttr: oldAttr,
+			isChanged: false,
+		};
+	}
+);
+```
+
+**Parameters**
+
+- oldAttr _`{any}`_ Old Attribute.
+- name _`{string}`_ Name of Block.
+- pattern _`{RegExp}`_ Regular Expression pattern.
+- handleAttributeReplacement _`{Function}`_ Replace Callback.
+<br/>
+
 #### `search-replace-for-block-editor.keyboardShortcut`
 
 This custom hook (filter) provides a way for users to specify their preferred keyboard shortcut option. For e.g to use the 'K' option on your keyboard, you could do like so:
