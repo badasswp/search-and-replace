@@ -33,12 +33,12 @@ import '../styles/app.scss';
  * @return {JSX.Element} Search & Replace for Block Editor.
  */
 const SearchReplaceForBlockEditor = (): JSX.Element => {
-	const [ replacements, setReplacements ] = useState( 0 );
-	const [ isModalVisible, setIsModalVisible ] = useState( false );
-	const [ searchInput, setSearchInput ] = useState( '' );
-	const [ replaceInput, setReplaceInput ] = useState( '' );
-	const [ caseSensitive, setCaseSensitive ] = useState( false );
-	const [ context, setContext ] = useState( false );
+	const [ replacements, setReplacements ] = useState< number >( 0 );
+	const [ isModalVisible, setIsModalVisible ] = useState< boolean >( false );
+	const [ searchInput, setSearchInput ] = useState< string >( '' );
+	const [ replaceInput, setReplaceInput ] = useState< string >( '' );
+	const [ caseSensitive, setCaseSensitive ] = useState< boolean >( false );
+	const [ context, setContext ] = useState< boolean >( false );
 
 	/**
 	 * Open Modal.
