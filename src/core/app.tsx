@@ -1,6 +1,6 @@
 import { __ } from '@wordpress/i18n';
 import { search } from '@wordpress/icons';
-import { doAction } from '@wordpress/hooks';
+import { applyFilters, doAction } from '@wordpress/hooks';
 import { dispatch, select } from '@wordpress/data';
 import { useState, useEffect } from '@wordpress/element';
 import {
@@ -190,10 +190,13 @@ const SearchReplaceForBlockEditor = (): JSX.Element => {
 	 */
 	const replaceBlockAttribute = ( args: any, attribute: string ): void => {
 		const property = {};
-		const { pattern, text, element, status } = args;
-		const { attributes, clientId } = element;
+		const {
+			pattern,
+			text,
+			element: { attributes, clientId, name },
+			status,
+		} = args;
 
-		// Bail out, if attribute is not defined.
 		if (
 			undefined === attributes ||
 			undefined === attributes[ attribute ]
@@ -201,22 +204,47 @@ const SearchReplaceForBlockEditor = (): JSX.Element => {
 			return;
 		}
 
-		// Get and replace matched strings.
-		const oldString: string =
-			attributes[ attribute ].text || attributes[ attribute ];
+		const oldAttr = attributes[ attribute ].text || attributes[ attribute ];
 
-		const newString: string = oldString.replace( pattern, () => {
-			setReplacements( ( items ) => items + 1 );
+		/**
+		 * Replace Callback.
+		 *
+		 * @return {string} Replacement Text.
+		 */
+		const handleAttributeReplacement = (): string => {
+			setReplacements( ( items: number ) => items + 1 );
 			return text;
-		} );
+		};
 
-		// Bail out, if no change.
-		if ( newString === oldString ) {
+		/**
+		 * Filter the way we handle the attribute replacement
+		 * to cater for special types of blocks.
+		 *
+		 * @since 1.6.0
+		 *
+		 * @param {any}      oldAttr                    Old Attribute.
+		 * @param {string}   name                       Block Name.
+		 * @param {RegExp}   pattern                    Search pattern.
+		 * @param {Function} handleAttributeReplacement Handle Attribute Replacement.
+		 *
+		 * @return {Object}
+		 */
+		const { newAttr, isChanged } = applyFilters(
+			'search-replace-for-block-editor.handleAttributeReplacement',
+			oldAttr,
+			{
+				name,
+				pattern,
+				handleAttributeReplacement,
+			}
+		) as { newAttr: any; isChanged: boolean };
+
+		if ( ! isChanged ) {
 			return;
 		}
 
 		// Set the property attribute.
-		property[ attribute ] = newString;
+		property[ attribute ] = newAttr;
 
 		// Update block property or content (if replace).
 		if ( status ) {
