@@ -64,7 +64,7 @@ Want to add your personal touch? All of our documentation can be found [here](ht
 == Changelog ==
 
 = 1.7.0 =
-* Fix: Issue with search & replace on HTML bearing string.
+* Fix: Issue with rich content replacement (HTML bearing string).
 
 = 1.6.0 =
 * Feat: Add search and replace functionality for __Table Block__.
