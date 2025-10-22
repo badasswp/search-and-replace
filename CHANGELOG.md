@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.7.0
+* Fix: Issue with search & replace on HTML bearing string.
+
 ## 1.6.0
 * Feat: Add search and replace functionality for __Table Block__.
 * Feat: Add new custom hook `search-replace-for-block-editor.handleAttributeReplacement`.
