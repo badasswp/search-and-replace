@@ -95,7 +95,13 @@ const SearchReplaceForBlockEditor = (): JSX.Element => {
 	}, [ searchInput, caseSensitive ] );
 
 	/**
-	 * Focus handling
+	 * Modal Focus.
+	 *
+	 * Automatically focus the user's cursor on the
+	 * modal's first text-field input when the modal
+	 * becomes visible.
+	 *
+	 * @since 1.7.0
 	 */
 	useEffect( () => {
 		if ( isModalVisible && searchFieldRef.current ) {
