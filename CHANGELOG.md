@@ -4,6 +4,7 @@
 * Fix: Issue with rich content replacement (HTML bearing string).
 * Feat: On Modal open, show items found for Highlighted text.
 * Fix: Console warnings & errors.
+* Tested up to WP 6.8.
 
 ## 1.6.0
 * Feat: Add search and replace functionality for __Table Block__.
