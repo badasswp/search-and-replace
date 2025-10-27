@@ -26,27 +26,20 @@ if ( ! defined( 'WPINC' ) ) {
  * @since 1.0.0
  * @since 1.0.2 Load asset via plugin directory URL.
  * @since 1.2.2 Localise WP version.
+ * @since 1.7.0 Use webpack generated PHP asset file.
  *
  * @wp-hook 'enqueue_block_editor_assets'
  */
 add_action( 'enqueue_block_editor_assets', function() {
 	global $wp_version;
 
+	$assets = get_assets( plugin_dir_path( __FILE__ ) . './dist/app.asset.php' );
+
 	wp_enqueue_script(
 		'search-replace-for-block-editor',
 		trailingslashit( plugin_dir_url( __FILE__ ) ) . 'dist/app.js',
-		[
-			'wp-i18n',
-			'wp-element',
-			'wp-blocks',
-			'wp-components',
-			'wp-editor',
-			'wp-hooks',
-			'wp-compose',
-			'wp-plugins',
-			'wp-edit-post',
-		],
-		'1.6.0',
+		$assets['dependencies'],
+		$assets['version'],
 		false,
 	);
 
@@ -79,3 +72,27 @@ add_action( 'init', function() {
 		dirname( plugin_basename( __FILE__ ) ) . '/languages'
 	);
 } );
+
+/**
+ * Get Asset dependencies.
+ *
+ * @since 1.7.0
+ *
+ * @param string $path Path to webpack generated PHP asset file.
+ * @return array
+ */
+function get_assets( string $path ): array {
+	$assets = [
+		'version'      => strval( time() ),
+		'dependencies' => [],
+	];
+
+	if ( ! file_exists( $path ) ) {
+		return $assets;
+	}
+
+	// phpcs:ignore WordPressVIPMinimum.Files.IncludingFile.UsingVariable
+	$assets = require_once $path;
+
+	return $assets;
+}
