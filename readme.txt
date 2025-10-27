@@ -3,7 +3,7 @@ Contributors: badasswp, rajanand346, jargovi
 Tags: search, replace, text, block, editor.
 Requires at least: 6.0
 Tested up to: 6.8
-Stable tag: 1.6.0
+Stable tag: 1.7.0
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -62,6 +62,12 @@ Want to add your personal touch? All of our documentation can be found [here](ht
 5. Search & Replace Toolbar icon in action - Make changes a lot quicker and get more done in less time.
 
 == Changelog ==
+
+= 1.7.0 =
+* Fix: Issue with rich content replacement (HTML bearing string).
+* Feat: On Modal open, show items found for Highlighted text.
+* Fix: Console warnings & errors.
+* Tested up to WP 6.8.
 
 = 1.6.0 =
 * Feat: Add search and replace functionality for __Table Block__.

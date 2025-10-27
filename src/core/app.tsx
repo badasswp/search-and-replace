@@ -2,7 +2,7 @@ import { __ } from '@wordpress/i18n';
 import { search } from '@wordpress/icons';
 import { applyFilters, doAction } from '@wordpress/hooks';
 import { dispatch, select } from '@wordpress/data';
-import { useState, useEffect } from '@wordpress/element';
+import { useState, useEffect, useRef } from '@wordpress/element';
 import {
 	Modal,
 	TextControl,
@@ -40,6 +40,9 @@ const SearchReplaceForBlockEditor = (): JSX.Element => {
 	const [ caseSensitive, setCaseSensitive ] = useState< boolean >( false );
 	const [ context, setContext ] = useState< boolean >( false );
 
+	// Reference to the first field inside the modal
+	const searchFieldRef = useRef< HTMLInputElement | null >( null );
+
 	/**
 	 * Open Modal.
 	 *
@@ -49,7 +52,17 @@ const SearchReplaceForBlockEditor = (): JSX.Element => {
 	 */
 	const openModal = (): void => {
 		setIsModalVisible( true );
-		setReplacements( 0 );
+
+		// Get selected text, if any.
+		const selectedText: string = getBlockEditorIframe()
+			.getSelection()
+			.toString();
+
+		// By default, reset count and search input.
+		if ( ! selectedText ) {
+			setReplacements( 0 );
+			setSearchInput( '' );
+		}
 	};
 
 	/**
@@ -61,7 +74,6 @@ const SearchReplaceForBlockEditor = (): JSX.Element => {
 	 */
 	const closeModal = (): void => {
 		setIsModalVisible( false );
-		setReplacements( 0 );
 	};
 
 	/**
@@ -90,6 +102,23 @@ const SearchReplaceForBlockEditor = (): JSX.Element => {
 		replace();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [ searchInput, caseSensitive ] );
+
+	/**
+	 * Modal Focus.
+	 *
+	 * Automatically focus the user's cursor on the
+	 * modal's first text-field input when the modal
+	 * becomes visible.
+	 *
+	 * @since 1.7.0
+	 */
+	useEffect( () => {
+		if ( isModalVisible && searchFieldRef.current ) {
+			requestAnimationFrame( () => {
+				searchFieldRef.current?.focus();
+			} );
+		}
+	}, [ isModalVisible ] );
 
 	/**
 	 * Handle the implementation for when the user
@@ -204,7 +233,8 @@ const SearchReplaceForBlockEditor = (): JSX.Element => {
 			return;
 		}
 
-		const oldAttr = attributes[ attribute ].text || attributes[ attribute ];
+		const oldAttr =
+			attributes[ attribute ].originalHTML || attributes[ attribute ];
 
 		/**
 		 * Replace Callback.
@@ -343,11 +373,13 @@ const SearchReplaceForBlockEditor = (): JSX.Element => {
 					<div id="search-replace-modal__text-group">
 						<TextControl
 							type="text"
+							ref={ searchFieldRef }
 							label={ __( 'Search' ) }
 							value={ searchInput }
 							onChange={ ( value ) => setSearchInput( value ) }
 							placeholder="Lorem ipsum..."
 							__nextHasNoMarginBottom
+							__next40pxDefaultSize
 						/>
 						<TextControl
 							type="text"
@@ -355,6 +387,7 @@ const SearchReplaceForBlockEditor = (): JSX.Element => {
 							value={ replaceInput }
 							onChange={ ( value ) => setReplaceInput( value ) }
 							__nextHasNoMarginBottom
+							__next40pxDefaultSize
 						/>
 					</div>
 
