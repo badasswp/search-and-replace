@@ -20,6 +20,8 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
+define( 'SRFBE', 'search-replace-for-block-editor' );
+
 /**
  * Load Search & Replace Script for Block Editor.
  *
@@ -36,7 +38,7 @@ add_action( 'enqueue_block_editor_assets', function() {
 	$assets = get_assets( plugin_dir_path( __FILE__ ) . './dist/app.asset.php' );
 
 	wp_enqueue_script(
-		'search-replace-for-block-editor',
+		SRFBE,
 		trailingslashit( plugin_dir_url( __FILE__ ) ) . 'dist/app.js',
 		$assets['dependencies'],
 		$assets['version'],
@@ -44,13 +46,13 @@ add_action( 'enqueue_block_editor_assets', function() {
 	);
 
 	wp_set_script_translations(
-		'search-replace-for-block-editor',
-		'search-replace-for-block-editor',
+		SRFBE,
+		SRFBE,
 		plugin_dir_path( __FILE__ ) . 'languages'
 	);
 
 	wp_localize_script(
-		'search-replace-for-block-editor',
+		SRFBE,
 		'srfbe',
 		[
 			'wpVersion' => $wp_version,
@@ -67,7 +69,7 @@ add_action( 'enqueue_block_editor_assets', function() {
  */
 add_action( 'init', function() {
 	load_plugin_textdomain(
-		'search-replace-for-block-editor',
+		SRFBE,
 		false,
 		dirname( plugin_basename( __FILE__ ) ) . '/languages'
 	);
