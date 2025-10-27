@@ -49,7 +49,17 @@ const SearchReplaceForBlockEditor = (): JSX.Element => {
 	 */
 	const openModal = (): void => {
 		setIsModalVisible( true );
-		setReplacements( 0 );
+
+		// Get selected text, if any.
+		const selectedText: string = getBlockEditorIframe()
+			.getSelection()
+			.toString();
+
+		// By default, reset count and search input.
+		if ( ! selectedText ) {
+			setReplacements( 0 );
+			setSearchInput( '' );
+		}
 	};
 
 	/**
@@ -61,7 +71,6 @@ const SearchReplaceForBlockEditor = (): JSX.Element => {
 	 */
 	const closeModal = (): void => {
 		setIsModalVisible( false );
-		setReplacements( 0 );
 	};
 
 	/**
