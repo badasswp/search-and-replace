@@ -2,6 +2,7 @@
 
 ## 1.7.0
 * Fix: Issue with rich content replacement (HTML bearing string).
+* Feat: On Modal open, show items found for Highlighted text.
 
 ## 1.6.0
 * Feat: Add search and replace functionality for __Table Block__.
