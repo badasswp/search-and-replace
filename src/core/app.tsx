@@ -379,6 +379,7 @@ const SearchReplaceForBlockEditor = (): JSX.Element => {
 							onChange={ ( value ) => setSearchInput( value ) }
 							placeholder="Lorem ipsum..."
 							__nextHasNoMarginBottom
+							__next40pxDefaultSize
 						/>
 						<TextControl
 							type="text"
@@ -386,6 +387,7 @@ const SearchReplaceForBlockEditor = (): JSX.Element => {
 							value={ replaceInput }
 							onChange={ ( value ) => setReplaceInput( value ) }
 							__nextHasNoMarginBottom
+							__next40pxDefaultSize
 						/>
 					</div>
 
