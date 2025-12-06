@@ -62,6 +62,7 @@ const SearchReplaceForBlockEditor = (): JSX.Element => {
 		if ( ! selectedText ) {
 			setReplacements( 0 );
 			setSearchInput( '' );
+			setReplaceInput( '' );
 		}
 	};
 
