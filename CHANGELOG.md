@@ -2,6 +2,7 @@
 
 ## 1.8.0
 * Feat: Add Search & Replace feature for table head, foot & caption.
+* Fix: Reset replace input field.
 * Tested up to WP 6.8.
 
 ## 1.7.0

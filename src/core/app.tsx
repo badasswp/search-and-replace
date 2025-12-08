@@ -40,7 +40,7 @@ const SearchReplaceForBlockEditor = (): JSX.Element => {
 	const [ caseSensitive, setCaseSensitive ] = useState< boolean >( false );
 	const [ context, setContext ] = useState< boolean >( false );
 
-	// Reference to the first field inside the modal
+	// Reference to the first field inside the modal.
 	const searchFieldRef = useRef< HTMLInputElement | null >( null );
 
 	/**
@@ -58,10 +58,11 @@ const SearchReplaceForBlockEditor = (): JSX.Element => {
 			.getSelection()
 			.toString();
 
-		// By default, reset count and search input.
+		// By default, reset count, search & replace inputs.
 		if ( ! selectedText ) {
 			setReplacements( 0 );
 			setSearchInput( '' );
+			setReplaceInput( '' );
 		}
 	};
 
