@@ -33,7 +33,10 @@ addAction(
 				break;
 
 			case 'core/table':
+				replaceBlockAttribute( args, 'head' );
 				replaceBlockAttribute( args, 'body' );
+				replaceBlockAttribute( args, 'foot' );
+				replaceBlockAttribute( args, 'caption' );
 				break;
 
 			default:
