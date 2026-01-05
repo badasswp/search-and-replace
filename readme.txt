@@ -63,6 +63,10 @@ Want to add your personal touch? All of our documentation can be found [here](ht
 
 == Changelog ==
 
+= 1.9.0 =
+* Feat: Use Composer setup for plugin.
+* Tested up to WP 6.9.
+
 = 1.8.0 =
 * Feat: Add Search & Replace feature for table head, foot & caption.
 * Fix: Reset `Replace` input field.
