@@ -64,6 +64,12 @@ Want to add your personal touch? All of our documentation can be found [here](ht
 
 == Changelog ==
 
+= 1.10.3 =
+* Tested up to WP 7.0.
+
+= 1.10.2 =
+* Chore: Update CI/CD pipeline.
+
 = 1.10.1 =
 * Docs: Update doc blocks.
 
