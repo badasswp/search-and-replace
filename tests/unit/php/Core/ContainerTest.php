@@ -3,7 +3,6 @@
 namespace SearchReplaceForBlockEditor\Tests\Core;
 
 use WP_Mock;
-use Mockery;
 use WP_Mock\Tools\TestCase;
 
 use SearchReplaceForBlockEditor\Core\Container;
@@ -17,6 +16,7 @@ use SearchReplaceForBlockEditor\Abstracts\Service;
  * @covers \SearchReplaceForBlockEditor\Services\Admin::register
  * @covers \SearchReplaceForBlockEditor\Services\Boot::register
  * @covers \SearchReplaceForBlockEditor\Abstracts\Service::get_instance
+ * @covers \PingMeOnSlack\Services\Admin::__construct
  */
 class ContainerTest extends TestCase {
 	public Container $container;
@@ -70,6 +70,16 @@ class ContainerTest extends TestCase {
 			[
 				Service::$services[ Admin::class ],
 				'register_options_styles',
+			]
+		);
+
+		$admin = Service::$services[ Admin::class ];
+
+		WP_Mock::expectActionAdded(
+			'admin_init',
+			[
+				$admin->pluginate,
+				'init',
 			]
 		);
 
