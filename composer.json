@@ -15,6 +15,9 @@
 			"email": "badasswpdev@gmail.com"
 		}
 	],
+	"require": {
+		"badasswp/pluginate": "^1.0"
+	},
 	"require-dev": {
 		"badasswp/wp-mock-tc": "^1.0",
 		"phpunit/phpunit": "^9.6",

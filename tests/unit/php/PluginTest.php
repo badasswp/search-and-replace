@@ -3,11 +3,9 @@
 namespace SearchReplaceForBlockEditor\Tests;
 
 use WP_Mock;
-use Mockery;
 use WP_Mock\Tools\TestCase;
 
 use SearchReplaceForBlockEditor\Plugin;
-use SearchReplaceForBlockEditor\Abstracts\Kernel;
 
 /**
  * @covers \SearchReplaceForBlockEditor\Plugin::get_instance
