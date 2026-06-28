@@ -21,6 +21,7 @@ use SearchReplaceForBlockEditor\Services\Admin;
  * @covers \SearchReplaceForBlockEditor\Admin\Options::get_form_page
  * @covers \SearchReplaceForBlockEditor\Admin\Options::get_form_submit
  * @covers \SearchReplaceForBlockEditor\Admin\Options::init
+ * @covers \PingMeOnSlack\Services\Admin::__construct
  */
 class AdminTest extends WPMockTestCase {
 	public Admin $admin;
@@ -43,6 +44,7 @@ class AdminTest extends WPMockTestCase {
 		WP_Mock::expectActionAdded( 'admin_init', [ $this->admin, 'register_options_init' ] );
 		WP_Mock::expectActionAdded( 'admin_menu', [ $this->admin, 'register_options_menu' ] );
 		WP_Mock::expectActionAdded( 'admin_enqueue_scripts', [ $this->admin, 'register_options_styles' ] );
+		WP_Mock::expectActionAdded( 'admin_init', [ $this->admin->pluginate, 'init' ] );
 
 		$this->admin->register();
 
@@ -60,6 +62,21 @@ class AdminTest extends WPMockTestCase {
 				[ $this->admin, 'register_options_page' ],
 				'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iY3VycmVudENvbG9yIj4KCQkJCQk8cGF0aCBkPSJNMTMgNWMtMy4zIDAtNiAyLjctNiA2IDAgMS40LjUgMi43IDEuMyAzLjdsLTMuOCAzLjggMS4xIDEuMSAzLjgtMy44YzEgLjggMi4zIDEuMyAzLjcgMS4zIDMuMyAwIDYtMi43IDYtNlMxNi4zIDUgMTMgNXptMCAxMC41Yy0yLjUgMC00LjUtMi00LjUtNC41czItNC41IDQuNS00LjUgNC41IDIgNC41IDQuNS0yIDQuNS00LjUgNC41eiIgLz4KCQkJCTwvc3ZnPg==',
 				100
+			)
+			->andReturn( null );
+
+		WP_Mock::userFunction( '__' )
+			->andReturnUsing( fn( $text, $domain ) => $text );
+
+		WP_Mock::userFunction( 'add_submenu_page' )
+			->once()
+			->with(
+				'search-replace-for-block-editor',
+				'More Plugins',
+				'More Plugins',
+				'manage_options',
+				'search-replace-for-block-editor-more-plugins',
+				[ $this->admin, 'register_more_plugins' ]
 			)
 			->andReturn( null );
 
