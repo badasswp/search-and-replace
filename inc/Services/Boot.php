@@ -60,7 +60,7 @@ class Boot extends Service implements Kernel {
 
 		wp_enqueue_script(
 			Options::get_page_slug(),
-			plugins_url( sprintf( '%s/dist/app.js', Options::get_page_slug() ) ),
+			plugins_url( 'dist/app.js', dirname( __DIR__ ) ),
 			$assets['dependencies'],
 			$assets['version'],
 			false,
