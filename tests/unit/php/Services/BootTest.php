@@ -78,7 +78,7 @@ class BootTest extends WPMockTestCase {
 			->andReturn( '/var/www/wp-content/plugins/search-replace-for-block-editor/inc/Services/' );
 
 		WP_Mock::userFunction( 'plugins_url' )
-			->with( 'dist/app.js', dirname( dirname( $boot->getFileName() ) ) )
+			->with( 'dist/app.js', dirname( $boot->getFileName(), 2 ) )
 			->andReturn( 'https://example.com/wp-content/plugins/search-replace-for-block-editor/dist/app.js' );
 
 		WP_Mock::userFunction( 'wp_enqueue_script' )
