@@ -15,13 +15,13 @@ use SearchReplaceForBlockEditor\Services\Admin;
  * @covers \SearchReplaceForBlockEditor\Services\Admin::register_options_menu
  * @covers \SearchReplaceForBlockEditor\Services\Admin::register_options_init
  * @covers \SearchReplaceForBlockEditor\Services\Admin::register_options_styles
+ * @covers \SearchReplaceForBlockEditor\Services\Admin::__construct
  * @covers \SearchReplaceForBlockEditor\Admin\Options::__callStatic
  * @covers \SearchReplaceForBlockEditor\Admin\Options::get_form_fields
  * @covers \SearchReplaceForBlockEditor\Admin\Options::get_form_notice
  * @covers \SearchReplaceForBlockEditor\Admin\Options::get_form_page
  * @covers \SearchReplaceForBlockEditor\Admin\Options::get_form_submit
  * @covers \SearchReplaceForBlockEditor\Admin\Options::init
- * @covers \PingMeOnSlack\Services\Admin::__construct
  */
 class AdminTest extends WPMockTestCase {
 	public Admin $admin;
