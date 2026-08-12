@@ -14,9 +14,9 @@ use SearchReplaceForBlockEditor\Abstracts\Service;
  * @covers \SearchReplaceForBlockEditor\Core\Container::__construct
  * @covers \SearchReplaceForBlockEditor\Core\Container::register
  * @covers \SearchReplaceForBlockEditor\Services\Admin::register
+ * @covers \SearchReplaceForBlockEditor\Services\Admin::__construct
  * @covers \SearchReplaceForBlockEditor\Services\Boot::register
  * @covers \SearchReplaceForBlockEditor\Abstracts\Service::get_instance
- * @covers \PingMeOnSlack\Services\Admin::__construct
  */
 class ContainerTest extends TestCase {
 	public Container $container;

@@ -51,3 +51,7 @@ jobs:
       - name: Check PHP Linting
         run: |
           composer run lint
+
+      - name: Run PHP Unit Tests
+        run: |
+          composer run test

@@ -50,6 +50,7 @@ class Boot extends Service implements Kernel {
 	 * @since 1.0.2 Load asset via plugin directory URL.
 	 * @since 1.2.2 Localise WP version.
 	 * @since 1.7.0 Use webpack generated PHP asset file.
+	 * @since 1.12.0 Replace plugin slug with __DIR__ to get plugin directory path.
 	 *
 	 * @wp-hook 'enqueue_block_editor_assets'
 	 */
