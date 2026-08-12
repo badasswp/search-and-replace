@@ -52,6 +52,10 @@ class AdminTest extends WPMockTestCase {
 	}
 
 	public function test_register_options_menu() {
+		$base_64_encoded_for_windows = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iY3VycmVudENvbG9yIj4NCgkJCQkJPHBhdGggZD0iTTEzIDVjLTMuMyAwLTYgMi43LTYgNiAwIDEuNC41IDIuNyAxLjMgMy43bC0zLjggMy44IDEuMSAxLjEgMy44LTMuOGMxIC44IDIuMyAxLjMgMy43IDEuMyAzLjMgMCA2LTIuNyA2LTZTMTYuMyA1IDEzIDV6bTAgMTAuNWMtMi41IDAtNC41LTItNC41LTQuNXMyLTQuNSA0LjUtNC41IDQuNSAyIDQuNSA0LjUtMiA0LjUtNC41IDQuNXoiIC8+DQoJCQkJPC9zdmc+';
+
+		$base_64_encoded_for_non_windows = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iY3VycmVudENvbG9yIj4KCQkJCQk8cGF0aCBkPSJNMTMgNWMtMy4zIDAtNiAyLjctNiA2IDAgMS40LjUgMi43IDEuMyAzLjdsLTMuOCAzLjggMS4xIDEuMSAzLjgtMy44YzEgLjggMi4zIDEuMyAzLjcgMS4zIDMuMyAwIDYtMi43IDYtNlMxNi4zIDUgMTMgNXptMCAxMC41Yy0yLjUgMC00LjUtMi00LjUtNC41czItNC41IDQuNS00LjUgNC41IDIgNC41IDQuNS0yIDQuNS00LjUgNC41eiIgLz4KCQkJCTwvc3ZnPg==';
+
 		WP_Mock::userFunction( 'add_menu_page' )
 			->once()
 			->with(
@@ -60,7 +64,7 @@ class AdminTest extends WPMockTestCase {
 				'manage_options',
 				'search-replace-for-block-editor',
 				[ $this->admin, 'register_options_page' ],
-				'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iY3VycmVudENvbG9yIj4KCQkJCQk8cGF0aCBkPSJNMTMgNWMtMy4zIDAtNiAyLjctNiA2IDAgMS40LjUgMi43IDEuMyAzLjdsLTMuOCAzLjggMS4xIDEuMSAzLjgtMy44YzEgLjggMi4zIDEuMyAzLjcgMS4zIDMuMyAwIDYtMi43IDYtNlMxNi4zIDUgMTMgNXptMCAxMC41Yy0yLjUgMC00LjUtMi00LjUtNC41czItNC41IDQuNS00LjUgNC41IDIgNC41IDQuNS0yIDQuNS00LjUgNC41eiIgLz4KCQkJCTwvc3ZnPg==',
+				strtoupper( substr( PHP_OS, 0, 3 ) ) === 'WIN' ? $base_64_encoded_for_windows : $base_64_encoded_for_non_windows,
 				100
 			)
 			->andReturn( null );
