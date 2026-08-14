@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.12.0
+* Fix: Enqueuing editor scripts when loaded as `mu-plugin`.
+* Test: Fix failing Unit tests.
+* Tested up to WP 7.0.
+
 ## 1.11.0
 * Feat: Add `More Plugins` options page.
 

@@ -162,7 +162,7 @@ export const getEditorRoot = (): Promise< HTMLElement | Error > => {
 /**
  * Get App Container.
  *
- * Create an DIV container within the Editor root where
+ * Create a DIV container within the Editor root where
  * we will inject our React app.
  *
  * @since 1.2.0
